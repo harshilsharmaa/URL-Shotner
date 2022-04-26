@@ -52,7 +52,7 @@ const Home = () => {
 
   return (
     <div className='home'>
-        <h2>Urily.com</h2>
+        <h2>Urliy.com</h2>
         <p>Shorten Your Long Ugly URL 🤪</p>
 
         <form className="form"  onSubmit={handleSubmit}>
