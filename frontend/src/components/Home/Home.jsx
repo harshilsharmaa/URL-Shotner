@@ -56,7 +56,7 @@ const Home = () => {
         <p>Shorten Your Long Ugly URL 🤪</p>
 
         <form className="form"  onSubmit={handleSubmit}>
-            <input type="text"  onChange={(e)=>{setOriginalUrl(e.target.value)}}/>
+            <input type="text" label="Enter URL"  onChange={(e)=>{setOriginalUrl(e.target.value)}}/>
             <button>Shorten</button>
         </form>
 
