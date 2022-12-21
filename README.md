@@ -1,5 +1,4 @@
 # URL-Shotner
-Live: https://urliy.herokuapp.com/
 
 
 ![g1](https://user-images.githubusercontent.com/71216106/167879067-7e57cc03-5bb7-4d6d-b897-5d709326c433.PNG)
