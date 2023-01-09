@@ -1,0 +1,107 @@
+.profile{
+    height: 100%;
+    width: 100%;
+}
+
+.heading{
+    border-bottom: 0.4px solid #7b0bc051;
+}
+
+.subHeading h4{
+    color: rgba(255, 255, 255, 0.774);
+    font-size: 1.9rem;
+    letter-spacing: 2.4px;
+    padding-bottom: 15px;
+    margin-top: 8px;
+}
+
+.accountInfo{
+    padding: 8px 18px;
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.genral-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 45%;
+}
+
+.vertical-line{
+    height: auto 100px;
+    border: 1px solid #7b0bc051;
+}
+
+.change-password{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 45%;
+}
+
+.form-type-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.form-type-2 .info-component{
+    padding: 0 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-type-2 .info-component label{
+    color: rgba(255, 255, 255, 0.774);
+    font-size: 1.7rem;
+    letter-spacing: 1.4px;
+    padding-bottom: 15px;
+    margin-top: 8px;
+}
+
+.form-type-2 .info-component input{
+    width: 50%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #7b0bc051;
+    background-color: #03031f;
+    color: rgba(255, 255, 255, 0.774);
+    font-size: 1.6rem;
+    letter-spacing: 1.4px;
+    /* padding-bottom: 15px; */
+    outline: none;
+    
+}
+
+.form-type-2 .info-component input:focus{
+    border-bottom: 1px solid #7b0bc0;
+}
+
+.info-component button{
+    width: 100%;
+    height: 35px;
+    border: none;
+    background-color: #7b0bc0a3;
+    color: #03031f;
+    font-size: 1.6rem;
+    font-weight: bold;
+    letter-spacing: 1.4px;
+    outline: none;
+    cursor: pointer;
+    margin: 8px auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.682);
+}
+
+.info-component button:hover{
+    background-color: #7b0bc0;
+}

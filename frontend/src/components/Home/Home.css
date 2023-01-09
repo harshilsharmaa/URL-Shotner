@@ -1,14 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html{
     font-size: 62.5%;
 }
 
 .home{
     min-width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     /* justify-content: center; */
+    background-color: #03031f;
+}
+
+.header{
+    width: 100%;
+    margin: 20px 0;
+    /* height: 10%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     background-color: #03031f;
 }
 
@@ -21,9 +38,21 @@ h2{
     font-family: forte;
     letter-spacing: 2.4px;
     text-shadow: 8px 8px 2px black;
+    margin-top: 10px;
+}
+h3{
+    color: #7A0BC0;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-family: forte;
+    letter-spacing: 2.4px;
+    text-shadow: 8px 8px 2px black;
+    margin-top: 10px;
 }
 
-p{
+#title{
     color: #8f105a;
     /* color: #7A0BC0; */
     font-size: 2.5rem;
@@ -35,7 +64,7 @@ p{
     text-shadow: 4px 4px 2px black;
 }
 
-.form {
+.url-form {
     height: 10%;
     display: flex;
     flex-direction: row;
@@ -45,7 +74,7 @@ p{
     margin-top: 20px;
 }
 
-input{
+.url-form input{
     width: 60rem;
     height: 70%;
     border: none;
@@ -62,11 +91,11 @@ input{
     text-overflow: hidden;
 }
 
-input:focus{
+.url-form input:focus{
     border: 2px solid #8f105a;
 }
 
-button{
+.url-form button{
     width: 10rem;
     height: 70%;
     border: 1px solid #c75597;
@@ -81,7 +110,7 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+.url-form button:hover{
     background-color: #270082;
     border: 1px solid #03031f;
 }
@@ -128,11 +157,110 @@ button:hover{
     background-color: rgb(5, 102, 5);
 }
 
+.login-section{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-section p{
+    color: rgba(255, 255, 255, 0.702);
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-align: center;
+    font-family: sans-serif;
+    letter-spacing: 2.4px;
+    text-shadow: 4px 4px 2px black;
+}
+
+.login-section a:hover{
+    cursor: pointer;
+}
+
+.features-section{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.features-section h3{
+    color: rgba(255, 255, 255, 0.702);
+    font-size: 3rem;
+    letter-spacing: 2.4px;
+    padding: 20px;
+}
+
+.features-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.features-div .feature-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 280px;
+    height: 250px;
+    border-radius: 7px;
+    margin-bottom: 40px;
+    background-color: rgba(255, 255, 255, 0.069);           
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.542);   
+}
+
+.features-div .feature-box h4{
+    color: rgba(255, 255, 255, 0.702);
+    font-size: 1.7rem;
+    letter-spacing: 2.4px;
+    padding-bottom: 15px;
+    margin-top: 8px;
+}
+
+.feature-description{
+    color: rgba(255, 255, 255, 0.702);
+    font-size: 1.2rem;
+    letter-spacing: 2.4px;
+    text-align: center;
+}
+
+.feature-box:hover{
+    cursor: pointer;
+    scale: 1.04;
+    transition: all 0.3s ease-in-out;
+}
+
+.feature-image{
+    width: 100%;
+    height: 60%;
+    /* background-color: #fff; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-image img{
+    width: 80%;
+    height: 80%;
+}
+
+/* ---------------------------------------------------------------- */
 
 @media (max-width:1200px){
 
 
-    .form{
+    .url-form{
         flex-direction: column;
     }
 
@@ -143,7 +271,7 @@ button:hover{
         padding-bottom: 1rem;
     }
 
-    input{
+    .url-form input{
         width: 23rem;
         margin-bottom: 1rem;
     }
@@ -160,7 +288,7 @@ button:hover{
         padding-bottom: 1rem;
     }
 
-    input{
+    .url-form input{
         width: 23rem;
         margin-bottom: 1rem;
     }
@@ -177,7 +305,7 @@ button:hover{
         padding-bottom: 1rem;
     }
 
-    input{
+    .url-form input{
         width: 23rem;
         margin-bottom: 1rem;
     }

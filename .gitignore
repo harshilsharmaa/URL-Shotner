@@ -13,3 +13,5 @@
 /frontend/.env.development.local
 /frontend/.env.test.local
 /frontend/.env.production.local
+
+/features.md

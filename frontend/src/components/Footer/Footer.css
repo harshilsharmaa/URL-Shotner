@@ -1,0 +1,58 @@
+.footer{
+    background-color: #14021f;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+}
+
+.footer-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.footer-top a{
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.footer-bottom p{
+    font-size: 1.6rem;
+}
+
+.footer-bottom span img{
+
+    height: 20px;
+    width: 20px;
+    padding-top: 5px;
+
+    animation: heartbeat 1.5s infinite;
+    transition: all 0.3s ease-in-out;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale( .75 );
+    }
+    20% {
+        transform: scale( 1 );
+    }
+    40% {
+        transform: scale( .75 );
+    }
+    60% {
+        transform: scale( 1 );
+    }
+    80% {
+        transform: scale( .75 );
+    }
+    100% {
+        transform: scale( .75 );
+    }
+}
