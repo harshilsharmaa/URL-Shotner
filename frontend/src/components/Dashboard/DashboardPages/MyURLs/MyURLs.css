@@ -1,0 +1,109 @@
+.searchUrl{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0;
+    /* border: 1px solid red; */
+    margin: 20px;
+}
+
+
+
+.searchUrl input{
+    width: 30%;
+    height: 40px;
+    border: 1px solid #ccc;
+    background-color: #ccc;
+    color: black;
+    border-radius: 5px;
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.searchUrl button{
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: #ccc;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    outline: none;
+    padding: 5px;
+    cursor: pointer;
+    border-left: 1px solid rgb(134, 134, 134);
+}
+
+.searchUrl button img{
+    width: 28px;
+    height: 28px;
+    transition: all 0.3s ease;
+}
+
+.searchUrl button:hover img{
+    width: 30px;
+    height: 30px;
+}
+
+.urlList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    margin: 20px;
+    overflow-y: scroll;
+    height: 65%;
+}
+
+
+.urlList-heading{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 90%; */
+    height: 50px;
+    background-color: #7b0bc051;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    margin: 15px 20px;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.urlList-heading-component{
+    /* border: 1px solid red; */
+    color: cyan;
+}
+
+.urlList-heading .sr{
+    width: 3%;
+}
+
+.urlList-heading .name{
+    width: 12%;
+}
+
+
+.urlList-heading .comb-url{
+    width: 35%;
+}
+
+.urlList-heading .expiry{
+    width: 6%;
+}
+
+.urlList-heading .analytics{
+    width: 6%;
+}
+
+
+.urlList-heading .edit{
+    width: 6%;
+}

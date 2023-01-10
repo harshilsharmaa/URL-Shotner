@@ -1,10 +1,18 @@
-
+import url from '../../../images/url.png';
+import dashboard from '../../../images/dashboard.png';
+import profile from '../../../images/profile.png';
+import team from '../../../images/team.png';
 
 export const sideNavbarData = [
     {
         title: 'Dashboard',
         path: '/dashboard-home',
-        icon: 'https://www.flaticon.com/svg/static/icons/svg/25/25231.svg',
+        icon: dashboard,
+    },
+    {
+        title: 'My URLs',
+        path: '/myUrls',
+        icon: url,
     },
     {
         title: 'Reports',
@@ -14,11 +22,11 @@ export const sideNavbarData = [
     {
         title: 'My Team',
         path: '/my-team',
-        icon: 'https://www.flaticon.com/svg/static/icons/svg/25/25231.svg',
+        icon: team,
     },
     {
         title: 'My Profile',
         path: '/profile',
-        icon: 'https://www.flaticon.com/svg/static/icons/svg/25/25231.svg',
+        icon: profile,
     }
 ]

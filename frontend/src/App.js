@@ -19,6 +19,7 @@ function App() {
         <Route path='/dashboard-home' element={<Dashboard page={'dashboard-home'}/>} ></Route>
         <Route path='/profile' element={<Dashboard page={'profile'}/>} ></Route>
         <Route path='/reports' element={<Dashboard page={'reports'}/>} ></Route>
+        <Route path='/myUrls' element={<Dashboard page={'myUrls'}/>} ></Route>
       </Routes>
       <Footer/>
 

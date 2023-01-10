@@ -15,8 +15,12 @@ const SideNavbar = () => {
                         return (
                             <Link to={item.path}>
                                 <div className='menu-item' key={index}>
-                                    {/* <img src={item.icon} alt={item.title} /> */}
-                                    <span>{item.title}</span>
+                                    <div className="menu-item-icon">
+                                        <img src={item.icon} alt={item.title} />
+                                    </div>
+                                    <div className="menu-item-name">
+                                        <span>{item.title}</span>
+                                    </div>
                                 </div>
                             </Link>
                         )       

@@ -1,6 +1,8 @@
 import React from 'react'
 import './DashboardHome.css'
 import Analytics from '../../Analytics/Analytics'
+import csv from '../../../../images/csv.png'
+import pdfIcon from '../../../../images/pdfIcon.png'
 
 const DashboardHome = () => {
   return (
@@ -44,6 +46,17 @@ const DashboardHome = () => {
             <p>200</p>
           </div>
         </div>
+      </section>
+
+      <section className="export">
+        <button>
+          <p>Export CSV</p>
+          <img src={csv} alt="" />
+          </button>
+        <button>
+          Export PDF
+          <img src={pdfIcon} alt="" />
+        </button>
       </section>
 
       <section className="analytics-section">
