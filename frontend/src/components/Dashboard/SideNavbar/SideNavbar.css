@@ -46,3 +46,27 @@ a{
 .menu-item:hover{
     background-color: #23235b;
 }
+
+.sideNavbar-bottom{
+    width: 100%;
+    margin-top: auto;
+}
+
+.sideNavbar-bottom button{
+    width: 100%;
+    border: none;
+    background: none;
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 0.4px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+    padding: 12px 0;
+    letter-spacing: 1px;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.sideNavbar-bottom button:hover{
+    background-color: rgba(255, 0, 0, 0.072);
+}

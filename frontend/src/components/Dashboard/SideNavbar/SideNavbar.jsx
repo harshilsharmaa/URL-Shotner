@@ -23,6 +23,9 @@ const SideNavbar = () => {
                     })
                 }
         </div>
+        <div className="sideNavbar-bottom">
+            <button>Logout</button>
+        </div>
     </div>
   )
 }

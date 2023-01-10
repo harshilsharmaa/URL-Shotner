@@ -1,5 +1,6 @@
 import React from 'react'
 import SideNavbar from './SideNavbar/SideNavbar'
+import DashboardHome from './DashboardPages/DashboradHome/DashboardHome'
 import Profile from './DashboardPages/Profile/Profile'
 import Reports from './DashboardPages/Reports/Reports'
 import './Dashboard.css'
@@ -14,6 +15,7 @@ const Dashboard = ({page}) => {
 
       <section className='mainContent-section'>
         {
+          page==='dashboard-home' ? <DashboardHome /> :
           page==='profile' ? <Profile /> : 
           page==='reports' ? <Reports /> :
           <h1>404</h1>

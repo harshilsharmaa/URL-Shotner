@@ -1,0 +1,55 @@
+.click-cards{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 20px;
+}
+
+.click-card{
+    /* border: 1px solid blue; */
+    background-color: #7b0bc051;
+    width: 230px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.click-card-title{
+    height: 35%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #7b0bc051;
+    padding: 3px 7px;
+}
+
+.click-card-title p{
+    font-size: 1.4rem;
+    letter-spacing: 2.4px;
+    color: rgba(255, 255, 255, 0.774);
+}
+
+.click-card-content{
+    height: 65%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    color: white;
+}
+
+.clicks-tag{
+    background-color: purple;
+    font-size: 1.4rem;
+    border-radius: 3px;
+    padding: 0 5px;
+    /* align-self: flex-end; */
+    color: rgba(255, 255, 255, 0.779);
+}
+

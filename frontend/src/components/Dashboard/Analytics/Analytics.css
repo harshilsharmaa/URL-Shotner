@@ -1,0 +1,67 @@
+.analytics{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.analytic-card{
+    width: 35%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:  #020214 ;
+}
+
+#lineChart{
+    width: 50%;
+    /* border: 1px solid red; */
+}
+
+.analytic-card-title{
+    height: 25%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid #90ee9090;
+}
+
+.analytic-card-title p{
+    margin: 0;
+    padding: 0;
+    margin-left: 10px;
+    color: #4a4a4a;
+    font-size: 2.4em;
+}
+
+.analytic-card-title select{
+    width: 120px;
+    height: 35px;
+    padding: 0 4px;
+    border: none;
+    border-radius: 5px;
+    background-color: #90ee9090;
+    color: #cfcfcf;
+    font-size: 1.4em;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+}
+
+.analytic-card-title select option{
+    color: #cfcfcf;
+    cursor: pointer;
+    background-color: #499b4990;
+}
+
+.analytic-card-content{
+    height: 75%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

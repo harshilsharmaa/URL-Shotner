@@ -16,7 +16,7 @@ function App() {
         <Route path='/signup' element={<Signup/>} ></Route>
 
         {/* Protected Routes */}
-        <Route path='/dashboard' element={<Dashboard page={'profile'}/>} ></Route>
+        <Route path='/dashboard-home' element={<Dashboard page={'dashboard-home'}/>} ></Route>
         <Route path='/profile' element={<Dashboard page={'profile'}/>} ></Route>
         <Route path='/reports' element={<Dashboard page={'reports'}/>} ></Route>
       </Routes>

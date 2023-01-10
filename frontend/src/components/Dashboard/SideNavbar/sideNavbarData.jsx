@@ -3,7 +3,7 @@
 export const sideNavbarData = [
     {
         title: 'Dashboard',
-        path: '/dashboard',
+        path: '/dashboard-home',
         icon: 'https://www.flaticon.com/svg/static/icons/svg/25/25231.svg',
     },
     {
