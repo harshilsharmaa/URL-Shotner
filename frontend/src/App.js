@@ -22,6 +22,7 @@ function App() {
         <Route path='/myUrls' element={<Dashboard page={'myUrls'}/>} ></Route>
         <Route path='/createUrl' element={<Dashboard page={'createUrl'}/>} ></Route>
       </Routes>
+
       <Footer/>
 
     </Router>

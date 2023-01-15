@@ -6,10 +6,11 @@
 
 html{
     font-size: 62.5%;
+    margin: 0;
+    padding: 0;
 }
 
 .home{
-    min-width: 100vw;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -181,13 +182,12 @@ h3{
 }
 
 .features-section{
+    margin: 0 auto;
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    border: 1px solid red;
 }
 
 .features-section h3{
@@ -254,6 +254,100 @@ h3{
     width: 80%;
     height: 80%;
 }
+
+
+
+/* FAQ seaction */
+
+.faq-section{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    /* border: 1px solid red; */
+}
+
+.faq-section h3{
+    color: rgba(255, 255, 255, 0.702);
+    font-size: 3rem;
+    letter-spacing: 2.4px;
+    padding: 20px;
+}
+
+.faq-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    /* border: 1px solid red; */
+}
+
+.faq-collapse{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 85%;
+    padding: 0 10px;
+    border-bottom: 1px solid #c755973f;
+    cursor: pointer;
+}
+
+.faq-section :last-child{
+    border-bottom: none;
+}
+
+.faq-collapse:hover{
+    background-color: #27008212;
+}
+
+.faq-collapse-selected{
+    background-color: #27008212;
+}
+
+.faq-div h2{
+    color: rgba(255, 255, 255, 0.702);
+    font-size: 2rem;
+    letter-spacing: 2.4px;
+    padding: 10px 20px;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: none;
+    /* border: 1px solid red; */
+    text-align: start;
+}
+.collapse-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.faq-collapse .show{
+    color: #ccc;
+    border-radius: 7px;
+    padding: 0 10px;
+    width: 100%;
+    font-size: 1.5rem;
+    text-overflow: hidden;
+    margin-bottom: 10px;
+    padding-left: 58px;
+    /* border:1px solid red; */
+}
+
+.faq-collapse svg{
+    fill: #c75597;
+    height: 2rem;
+    outline: none;
+    transition: all 0.3s ;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
 
 /* ---------------------------------------------------------------- */
 
