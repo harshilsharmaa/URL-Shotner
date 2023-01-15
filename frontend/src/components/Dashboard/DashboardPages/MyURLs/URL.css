@@ -65,6 +65,10 @@
     margin-left: 5px;
 }
 
+.comb-url #shortUrl span:hover{
+    color: rgb(0, 128, 60);
+}
+
 .comb-url #longUrl{
     font-size: 1.2rem;
     color: #ccc;

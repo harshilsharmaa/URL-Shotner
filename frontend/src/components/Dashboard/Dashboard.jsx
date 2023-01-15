@@ -4,6 +4,7 @@ import DashboardHome from './DashboardPages/DashboradHome/DashboardHome'
 import Profile from './DashboardPages/Profile/Profile'
 import Reports from './DashboardPages/Reports/Reports'
 import MyURLs from './DashboardPages/MyURLs/MyURLs'
+import CreateURL from './DashboardPages/CreateUrl/CreateURL'
 import './Dashboard.css'
 
 const Dashboard = ({page}) => {
@@ -20,6 +21,7 @@ const Dashboard = ({page}) => {
           page==='profile' ? <Profile /> : 
           page==='reports' ? <Reports /> :
           page==='myUrls' ? <MyURLs /> :
+          page==='createUrl' ? <CreateURL /> :
           <h1>404</h1>
         }
       </section>
