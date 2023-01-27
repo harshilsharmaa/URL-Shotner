@@ -15,13 +15,19 @@ const urlSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    protected:{
+        type: Boolean,
+        default: false
+    },
+    password:{
+        type: String,
+    },
     urlName:{
         type: String,
-        required: true,
     },
     urlGroup:{
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UrlGroup',
     },
     owner:{
         type: mongoose.Schema.Types.ObjectId,
@@ -42,11 +48,23 @@ const urlSchema = new mongoose.Schema({
     },
     updatedAt: {
         type: Date,
+        default: Date.now
     },
     expiryDate: {
         type: Date,
     }
 })
+
+urlSchema.pre('save', async function(next){
+    if(this.isModified('password')){
+        this.password = await bcrypt.hash(this.password, 10);
+    }
+    next();
+})
+
+urlSchema.methods.comparePassword = async function(password){
+    return await bcrypt.compare(password, this.password);
+}
 
 
 const Url = mongoose.model('Url', urlSchema);

@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 dotenv.config({ path: './config/config.env' });
 
@@ -9,80 +10,39 @@ const app = express();
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 
+// Route for getting the url
+const {getUrl} = require('./controllers/url.controller');
+app.get('/:hash', getUrl)
 
-const Url = require('./models/Url');
+// Routes
+const urlRouter = require('./routes/url.router');
+const googleAuthRouter = require('./auth/google.auth');
+const emailAuthRouter = require('./auth/email.auth');
+const userRouter = require('./routes/user.router');
+const adminRouter = require('./routes/admin.router');
 
+// routers
+app.use('/api/v1/url', urlRouter);
+app.use('/auth', googleAuthRouter);
+app.use('/auth-email', emailAuthRouter);
+app.use('/api/v1/user', userRouter);
+app.use('/api/v1/admin', adminRouter);
 
-app.post('/shorten', async(req, res)=>{
-
-    const originalUrl = req.body.originalUrl;
-
-    const checkUrl = await Url.findOne({originalUrl});
-
-   
-
-    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let urlId = '';
-
-    const genrateUrlId = ()=>{
-
-        const charactersLength = characters.length;
-        for ( let i = 0; i < 7; i++ ) {
-            urlId += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-    }
-
-    const checkUrlId = await Url.findOne({urlId});
-
-    if(checkUrlId){
-        genrateUrlId();
-    }
-
-
-    if(checkUrl){
-
-        genrateUrlId();
-
-        checkUrl.urlId = urlId; 
-        checkUrl.save();
-    }
-    else{
-
-        genrateUrlId();
-
-        const url = await Url.create({
-            originalUrl,
-            urlId,
-        })
-    }
-
-
-    res.status(200).json({
-        urlId
-    })
-})
-
-app.get('/:urlId', async(req, res)=>{
-
-    try {
-
-        const urlId = req.params.urlId;
-        const url = await Url.findOne({urlId});
-        if(url){
-            return res.redirect(url.originalUrl);
-        }
-
-        res.status(404).json({
-            error: 'Url not found'
-        })
-
-    } catch (error) {
-        console.log(error);
-    }
-
-})
+// app.use('/', (req, res) => {
+//     res.send(
+//         `
+//         <html>
+//             <body>
+//                 <h1>URL Shortener</h1>
+//                 <button><a href="/auth/google">Login with Google</a></button>
+//             </body>
+//         </html>
+//         `
+//     );
+// })
 
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
