@@ -1,9 +1,27 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import './MyURLs.css'
 import URL from './URL'
 import search from '../../../../images/search.png'
+import { getMyUrls } from '../../../../Actions/Url.actions'
+import { useSelector, useDispatch } from 'react-redux'
 
 const MyURLs = () => {
+
+    const {urls, error, message, status} = useSelector(state => state.urls);
+
+    const [myUrls, setMyUrls] = useState([]);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getMyUrls());
+    }, [])
+
+    useEffect(() => {
+        setMyUrls(urls)
+        // console.log(urls)
+    }, [urls])
+
   return (
     <div className='myurls page-container'>
       <div className="heading">
@@ -31,26 +49,18 @@ const MyURLs = () => {
                 <p>Expiry</p>
             </div>
             <div className="urlList-heading-component analytics">
-                <p>Analytics</p>
+                <p>View</p>
             </div>
             <div className="urlList-heading-component edit">
                 <p>Edit</p>
             </div>
         </div>
         <section className='urlList'>
-            <URL />
-            <URL />
-            <URL />
-            <URL />
-            <URL />
-            <URL />
-            <URL />
-            <URL />
-            <URL />
-            <URL />
-            <URL />
-            <URL />
-            <URL />
+            {
+                myUrls && myUrls.length>0 ? myUrls.map((url, index) => {
+                    return <URL key={index} index={index+1} url={url} />
+                }):null
+            }
         </section>
     </div>
   )

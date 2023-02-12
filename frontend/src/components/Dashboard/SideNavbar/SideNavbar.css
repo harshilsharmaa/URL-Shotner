@@ -2,10 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: #03031f; */
-    background-color: rgba(0, 0, 0, 0.451);
-    width: 100%;
+    background-color: #020211;
+    width: 20%;
     height: 100%;
+    position: fixed;
+    top: 0;
 }
 
 .sideNavbar__logo{

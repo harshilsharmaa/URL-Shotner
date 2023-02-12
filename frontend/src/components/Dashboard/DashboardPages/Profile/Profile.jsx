@@ -1,5 +1,6 @@
 import React from 'react'
 import './Profile.css'
+import '../../../common.css'
 
 const Profile = () => {
   return (

@@ -49,12 +49,13 @@ router.route('/register').post(
                     await refererUser.save();
                 }
             }
-    
+
             const token = await newUser.generateToken();
 
             const option = {
                 expiresIn: new Date(Date.now() + 30*24*60*60*1000),
-                httpOnly: true
+                httpOnly: true,
+                secure: true
             }
     
             res.status(200).cookie('token', token, option).json({

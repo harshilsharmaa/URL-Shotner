@@ -4,11 +4,11 @@
     justify-content: space-between;
     padding: 0 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    height: 60px;
-    border: 1px solid red;
-    width: 95%;
+    /* height: 60px; */
+    /* border: 1px solid red; */
+    width: 80%;
     display: flex;
-    margin: 20px;
+    margin: 20px auto;
     flex-direction: column;
 }
 
@@ -49,3 +49,45 @@
 .create-url-upper button:hover{
     background: #1565c0;
 }
+
+.createUrl-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+    border: 1px solid yellow;
+}
+
+.createUrl-form .form-component{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.createUrl-form .optional{
+    margin-top: 40px;
+}
+
+.createUrl-form .form-component h4{
+    font-size: 24px;
+    font-weight: 500;
+    color: #ccc;
+    margin-bottom: 20px;
+    align-self: flex-start;
+    margin-left: 30px;
+}
+
+.createUrl-form .date{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 50%; */
+    margin-top: 20px;
+}
+
+

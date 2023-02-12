@@ -24,6 +24,7 @@ DataBase Schema
         hash: string
         urlName: string
         urlGroup: reference to urlGroup schema
+        password: string (default: null)
         owner: reference to user schema
         users: reference to user schema
         analytics: reference to analytics schema

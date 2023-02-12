@@ -3,11 +3,13 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 dotenv.config({ path: './config/config.env' });
 
 const app = express();
 
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -23,6 +25,7 @@ const googleAuthRouter = require('./auth/google.auth');
 const emailAuthRouter = require('./auth/email.auth');
 const userRouter = require('./routes/user.router');
 const adminRouter = require('./routes/admin.router');
+const analyticsRouter = require('./routes/analytics.router');
 
 // routers
 app.use('/api/v1/url', urlRouter);
@@ -30,6 +33,7 @@ app.use('/auth', googleAuthRouter);
 app.use('/auth-email', emailAuthRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/admin', adminRouter);
+app.use('/api/v1/analytics', analyticsRouter);
 
 // app.use('/', (req, res) => {
 //     res.send(

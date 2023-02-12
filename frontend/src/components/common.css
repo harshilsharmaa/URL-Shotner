@@ -1,0 +1,75 @@
+.page-container{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+.heading{
+    border-bottom: 0.4px solid #7b0bc051;
+}
+
+
+
+.export,
+.viewUrl-btn-section{
+    margin: 20px;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+}
+
+.export button,
+.viewUrl-btn-section button{
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7b0bc051;
+    color: #ccc;
+    font-size: 1.4rem;
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.908);
+    transition: all 0.2s ease-in;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+}
+
+.export button p{
+    margin: 0;
+    padding: 0;
+}
+.viewUrl-btn-section button p{
+    margin-right: 30px;
+    margin-left: 20px;
+    padding: 0;
+}
+
+.export button img,
+.viewUrl-btn-section button img{
+    width: 25px;
+    height: 25px;
+    /* border: 1px solid red; */
+}
+
+.export:last-child{
+    margin-left: 30px;
+}
+
+
+
+.viewUrl-btn-section button{
+    margin-right: 30px;
+}
+/* .viewUrl-btn-section:first-child{
+    margin-left: 0px;
+} */
+
+
+.export button:hover,
+.viewUrl-btn-section button:hover{
+    background-color: #7b0bc0a9;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.908);
+}

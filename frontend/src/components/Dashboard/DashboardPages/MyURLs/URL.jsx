@@ -1,28 +1,28 @@
-import React from 'react'
+import React,{useState} from 'react'
+import {Link} from 'react-router-dom'
 import './URL.css'
 import copy from '../../../../images/copy.png'
 import view from '../../../../images/view.png'
 import edit from '../../../../images/edit.png'
 
-const URL = () => {
+const URL = ({url,index}) => {
 
     const clicked = (e) => {
         console.log("id");
     }
-
   return (
     <div className='url'>
         <div className="url-component sr">
-            <p>1</p>
+            <p>{index}</p>
         </div>
 
         <div className="url-component name">
-            <p>Amazone Link</p>
+            <p>{url.urlName}</p>
         </div>
 
         <div className="url-component comb-url">
-            <p id='shortUrl'>https://urily/adgad <span><img src={copy} alt="" /></span></p> 
-            <p id='longUrl'>https://amazone.com/adshvk/32dsdkhiasd?ihas </p>
+            <p id='shortUrl'>{url.shortUrl}<span><img src={copy} alt="" /></span></p> 
+            <p id='longUrl'>{ url.longUrl.slice(0, 50)+". . ." }</p>
         </div>
 
         <div className="url-component expiry">
@@ -30,13 +30,16 @@ const URL = () => {
         </div>
 
         <div className="url-component analytics">
-            <img src={view} alt="" />
+            <Link to={`/url/${url.hash}`}>
+                <img src={view} alt="" />
+            </Link>
         </div>
 
-        <div onClick={()=>clicked()} className="url-component edit">
-            <img src={edit} alt="" />
+        <div className="url-component edit">
+            <Link to={`/editUrl/${url.hash}`}>
+                <img src={edit} alt="" />
+            </Link>
         </div>
-
     </div>
   )
 }

@@ -78,7 +78,7 @@ h3{
 .url-form input{
     width: 60rem;
     height: 70%;
-    border: none;
+    border: 2px solid rgb(167, 163, 163);
     border-radius: 5px;
     color: #8f105a;
     font-size: 2.5rem;
@@ -86,7 +86,7 @@ h3{
     font-family: sans-serif;
     background-color: rgb(167, 163, 163);
     outline: none;
-    padding: 0 5px;
+    padding: 3px 5px;
     transition: all 0.2s;
     margin-right: 2.5rem;
     text-overflow: hidden;

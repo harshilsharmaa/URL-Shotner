@@ -24,6 +24,7 @@ const urlSchema = new mongoose.Schema({
     },
     urlName:{
         type: String,
+        default: '-'
     },
     urlGroup:{
         type: mongoose.Schema.Types.ObjectId,

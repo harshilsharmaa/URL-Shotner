@@ -10,10 +10,14 @@ const analyticsSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Url'
     },
-    clicks:{
-        type: Number,
-        default: 0
+    urlHash:{
+        type: String
     },
+    clicks:[
+        {   
+            type: Date,
+        }
+    ],
     countries:{
         type: Array,
         default: []
@@ -34,6 +38,9 @@ const analyticsSchema = new mongoose.Schema({
         type: Date
     },
     updatedAt: {
-        type: Date
+        type: Date,
+        default: Date.now
     }
 })
+
+module.exports = mongoose.model('Analytics', analyticsSchema);

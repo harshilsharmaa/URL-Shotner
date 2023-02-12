@@ -1,12 +1,3 @@
-.page-container{
-    height: 100%;
-    width: 100%;
-}
-
-.heading{
-    border-bottom: 0.4px solid #7b0bc051;
-}
-
 .subHeading h4{
     color: rgba(255, 255, 255, 0.774);
     font-size: 1.9rem;

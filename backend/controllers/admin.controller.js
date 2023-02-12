@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const Url = require('../models/Url');
+const Analytics = require('../models/Analytics');
 
 exports.getAllUser = async (req, res)=>{
     try {
@@ -33,9 +35,11 @@ exports.removeAllUser = async (req, res)=>{
 exports.dropDB = async (req, res)=>{
     try {
         const users = await User.collection.drop();
+        const urls = await Url.collection.drop();
+        const analytics = await Analytics.collection.drop();
         res.status(200).json({
             success: true,
-            users
+            message: 'Database dropped successfully'
         })
     } catch (error) {
         res.status(400).json({

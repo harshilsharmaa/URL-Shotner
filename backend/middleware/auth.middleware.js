@@ -6,7 +6,7 @@ exports.isAuthenticated = async(req,res,next)=>{
         const { token } = req.cookies;
         if (!token) {
             return res.status(401).json({
-                message: "Please login first",
+                error: "Please login first",
                 success: false
             })
         }
