@@ -27,3 +27,25 @@ export const getAnalytics = () => async(dispatch)=> {
         })
     }
 }
+
+export const getClicks = (hash) => async(dispatch)=> {
+    try{
+        dispatch({
+            type: 'GetClicksRequest'
+        })
+        const {data} = await axios.get(`${root}/api/v1/analytics/clicks?hash=${hash}`, {
+            withCredentials: true
+        })
+        console.log(data);
+        dispatch({
+            type: 'GetClicksSuccess',
+            payload: data
+        })
+    }
+    catch(error){
+        dispatch({
+            type: 'GetClicksFailure',
+            payload: error.response.data.message
+        })
+    }
+}

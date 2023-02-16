@@ -3,18 +3,11 @@ import { getAnalytics } from '../../../../Actions/Analytics.actions'
 import {useSelector, useDispatch} from 'react-redux'
 
 
-const ClicksCards = () => {
+const ClicksCards = ({analytics}) => {
 
-    const {analytics} = useSelector(state => state.analytics);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAnalytics());
-  },[])
 
   return (
-    <div className="clicksCard-box">
+    // <div className="clicksCard-box">
         <section className='click-cards'>
         <div className="click-card">
           <div className="click-card-title">
@@ -52,7 +45,7 @@ const ClicksCards = () => {
           </div>
         </div>
       </section>
-    </div>
+    // </div>
   )
 }
 

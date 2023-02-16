@@ -12,7 +12,7 @@ const {
 } = require('../middleware/auth.middleware');
 
 router.route('/getAll').get(isAuthenticated, getAnalytics);
-router.route('/getClicks').get(isAuthenticated, getClicks);
+router.route('/clicks').get(isAuthenticated, getClicks);
 
 module.exports = router;
 

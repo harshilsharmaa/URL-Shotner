@@ -10,6 +10,7 @@ export const urlReducer = createReducer(initialState, {
     getMyUrlsSuccess: (state, action)=>{
         state.loading = false;
         state.urls = action.payload.urls;
+        state.pageCount = action.payload.pageCount;
         state.message = action.payload.message;
         state.status = 'success';
     },
@@ -51,5 +52,25 @@ export const viewUrlReducer = createReducer(initialState, {
     viewUrlFailure: (state, action)=>{
         state.loading = false;
         state.error = action.payload;
+    }
+})
+
+export const deleteUrlReducer = createReducer(initialState, {
+    deleteUrlRequest: (state)=>{
+        state.loading = true;
+    },
+    deleteUrlSuccess: (state, action)=>{
+        state.loading = false;
+        state.message = action.payload.message;
+    },
+    deleteUrlFailure: (state, action)=>{
+        state.loading = false;
+        state.error = action.payload;
+    },
+    CLEAR_MESSAGES: (state)=>{
+        state.message = null;
+    },
+    CLEAR_ERRORS: (state)=>{
+        state.error = null;
     }
 })

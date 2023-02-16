@@ -7,11 +7,13 @@ import {
 import {
     urlReducer,
     createUrlReducer,
-    viewUrlReducer
+    viewUrlReducer,
+    deleteUrlReducer
 } from './Reducers/Url.reducer';
 
 import {
-    analyticsReducer
+    analyticsReducer,
+    clicksReducer
 } from './Reducers/Analytics.reducer';
 
 const store = configureStore({
@@ -20,7 +22,9 @@ const store = configureStore({
         urls: urlReducer,
         createUrl: createUrlReducer,
         url: viewUrlReducer,
-        analytics: analyticsReducer
+        analytics: analyticsReducer,
+        clicks: clicksReducer,
+        deleteUrl: deleteUrlReducer
     }
 });
 

@@ -175,17 +175,38 @@ exports.getUrl = async (req, res) => {
     }
 }
 
+
+const pageLimit = 6;
 exports.getMyUrls = async (req, res) => {
     try {
         const user = req.user;
+        let { page } = req.query;
+        if(!page) page = 1;
 
-        // const urls = await User.findById(user._id).populate('urls');
-        const { urls } = await user.populate('urls');
+        let search = req.query.search;
+        if(!req.query.search || req.query.search === 'null'){
+            search = '';
+        }
+
+        const urlsData = await Url.aggregate([
+            {
+                $match: {
+                    owner: user._id,
+                    $or: [{urlName: { $regex: search, $options: 'i' }}, {hash: { $regex: search, $options: 'i' }}, {longUrl: { $regex: search, $options: 'i' }}]
+                }
+            },
+            {$sort: {createdAt: -1}},
+            { '$facet'    : {
+                "info": [ { $count: "total" }, { $addFields: { page: Number(page) } } ],
+                "urls": [ { $skip:  (page-1)*pageLimit}, { $limit: pageLimit } ] 
+            } }
+        ])
 
         res.status(200).json({
             success: true,
             message: "Urls fetched successfully",
-            urls
+            urls: urlsData[0].urls,
+            pageCount: Math.ceil(urlsData[0].info[0].total/pageLimit),
         });
     }
     catch (error) {
@@ -216,6 +237,47 @@ exports.viewUrl = async (req, res) => {
             url
         })
 
+    }
+    catch(error){
+        res.status(400).json({
+            success: false,
+            error: error.message
+        })
+    }
+}
+
+exports.deleteUrl = async (req, res) => {
+    try{
+
+        const { hash } = req.params;
+        if(!hash) return res.status(400).json({
+            success: false,
+            error: "Hash is required"
+        })
+        const user = req.user;
+
+        const url = await Url.findOne({ hash, owner: user._id });
+        if(!url){
+            return res.status(404).json({
+                success: false,
+                error: "Url not found"
+            })
+        }
+
+        const analytic = await Analytics.findOne({urlHah: hash});
+        if(analytic){
+            await analytic.remove();
+        }
+
+        user.urls = user.urls.filter(url => url.toString() !== url._id.toString());
+        await user.save();
+
+        await url.remove();
+
+        res.status(200).json({
+            success: true,
+            message: "Url deleted successfully"
+        })
     }
     catch(error){
         res.status(400).json({

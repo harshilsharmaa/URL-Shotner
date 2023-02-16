@@ -16,5 +16,20 @@ export const analyticsReducer = createReducer(initialState, {
     GetAnalyticsFailure: (state, action)=>{
         state.loading = false;
         state.error = action.payload;
+    },
+})
+
+export const clicksReducer = createReducer(initialState, {
+    GetClicksRequest: (state)=>{
+        state.loading = true;
+    },
+    GetClicksSuccess: (state, action)=>{
+        state.loading = false;
+        state.clicks = action.payload.clicks;
+        state.message = action.payload.message;
+    },
+    GetClicksFailure: (state, action)=>{
+        state.loading = false;
+        state.error = action.payload;
     }
 })

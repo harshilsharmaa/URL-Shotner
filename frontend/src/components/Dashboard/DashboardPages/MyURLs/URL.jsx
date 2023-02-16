@@ -5,7 +5,7 @@ import copy from '../../../../images/copy.png'
 import view from '../../../../images/view.png'
 import edit from '../../../../images/edit.png'
 
-const URL = ({url,index}) => {
+const URL = ({url,sr}) => {
 
     const clicked = (e) => {
         console.log("id");
@@ -13,7 +13,7 @@ const URL = ({url,index}) => {
   return (
     <div className='url'>
         <div className="url-component sr">
-            <p>{index}</p>
+            <p>{sr}</p>
         </div>
 
         <div className="url-component name">

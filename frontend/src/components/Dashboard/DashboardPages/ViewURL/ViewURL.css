@@ -1,18 +1,18 @@
+.viewUrl-container{
+    margin-bottom: 30px;
+}
+
 .url-detail-box{
-    /* background-color: #ccc; */
-    /* border: 1px solid #e6e6e6; */
     border-radius: 4px;
     width: 95%;
     margin: 4px auto;
     display: flex;
-    /* border-bottom: 1px solid #e6e6e621; */
     border-bottom: 1px solid #e6e6e612;
 }
 
 .url-detail-box .left,
 .url-detail-box .right{
     padding: 10px 10px;
-    /* border: 1px solid yellow; */
     font-size: 1.6rem;
 }
 
