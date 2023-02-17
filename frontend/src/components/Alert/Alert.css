@@ -1,11 +1,13 @@
 .alert {
     padding: 20px;
     color: white;
-    margin-bottom: 15px;
-    width: 30%;
-    top: 2%;
-    position: fixed;
-    font-size: 1.4rem;
+    position: absolute;
+    width: 60%;
+    top: 1%;
+    font-size: 1.7rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 1000;
   }
 
 .success {

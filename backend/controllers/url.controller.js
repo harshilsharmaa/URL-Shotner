@@ -227,7 +227,7 @@ exports.viewUrl = async (req, res) => {
         if(!url){
             return res.status(404).json({
                 success: false,
-                message: "Url not found"
+                error: "Url not found"
             })
         }
 

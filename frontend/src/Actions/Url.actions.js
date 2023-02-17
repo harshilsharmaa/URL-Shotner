@@ -84,7 +84,7 @@ export const viewUrl = (hash)=> async(dispatch) => {
     catch(error){
         dispatch({
             type:'viewUrlFailure',
-            payload: error.response.data.message
+            payload: error.response.data.error
         })
     } 
 }
@@ -95,8 +95,6 @@ export const deleteUrlReq = (hash)=> async(dispatch) => {
         dispatch({
             type: 'deleteUrlRequest'
         })
-
-        // hash = "sdfasdf";
 
         const {data} = await axios.delete(`${rootUrl}/api/v1/url/delete/${hash}`,{
             withCredentials: true
@@ -113,7 +111,7 @@ export const deleteUrlReq = (hash)=> async(dispatch) => {
     catch(error){
         dispatch({
             type:'deleteUrlFailure',
-            payload: error.response.data.message
+            payload: error.response.data.error
         })
     } 
 } 

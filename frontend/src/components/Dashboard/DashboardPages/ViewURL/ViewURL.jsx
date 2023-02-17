@@ -3,7 +3,6 @@ import dateFormat from "dateformat";
 import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { viewUrl, deleteUrlReq } from '../../../../Actions/Url.actions'
-import ClicksCards from '../../Analytics/ClickCards/ClicksCards';
 import Analytics from '../../Analytics/Analytics'
 import './ViewURL.css'
 import '../../../common.css'
@@ -27,6 +26,8 @@ const ViewURL = () => {
     const [urlDetails, setUrlDetails] = useState({});
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null);
+    const [showDeleteModel, setShowDeleteModel] = useState(false);
+    const [deleteUrlHash, setDeleteUrlHash] = useState("");
 
     useEffect(() => {
         dispatch(viewUrl(hash));
@@ -48,12 +49,11 @@ const ViewURL = () => {
         }
     }, [url]);
 
-    console.log(deleteUrlMessage);
-    console.log(deleteUrlError);
+
 
     useEffect(() => {
         if (urlError) {
-            setMessage(urlError);
+            setError(urlError);
         }
         if (deleteUrlMessage){
             setMessage(deleteUrlMessage)
@@ -61,8 +61,12 @@ const ViewURL = () => {
         }
         if(deleteUrlError){
             setError(deleteUrlError);
-            console.log(deleteUrlError);
         }
+
+        setTimeout(() => {
+            setError(null);
+            setMessage(null);
+        }, 5000);
 
         dispatch({type: "CLEAR_MESSAGES"});
         dispatch({type: "CLEAR_ERRORS"});
@@ -70,7 +74,14 @@ const ViewURL = () => {
     }, [deleteUrlMessage, deleteUrlError, urlMessage, urlError])
 
     const handleDeleteUrl = () => {
+
+        // console.log("handle delete url");
+
+        if(deleteUrlHash !== url?.hash){
+            return;
+        }
         dispatch(deleteUrlReq(url?.hash));
+        setShowDeleteModel(false);
     }
 
     return (
@@ -87,15 +98,35 @@ const ViewURL = () => {
                                     <p>Edit</p>
                                     <img src={edit} alt="" />
                                 </button>
-                                <button onClick={(e)=>handleDeleteUrl()} style={{"margin-left":"5px"}}>
+                                <button onClick={(e)=>setShowDeleteModel(true)} style={{"margin-left":"5px"}}>
                                     <p>Delete</p>
                                     <img src={deleteIcon} alt="" />
                                 </button>
-                                {/* <button>
-                                    <p>Analytics</p>
-                                    <img src={pdfIcon} alt="" />
-                                </button> */}
                             </div>
+
+                            {/* Delete url confirmation modal */}
+                            {
+                                showDeleteModel ?
+                                // console.log("show delete model")
+                                // : null
+                                    <div className="delete-model">
+                                        <div className="delete-model-container">
+                                            <div className="delete-model-heading">
+                                                <h4>Delete URL</h4>
+                                            </div>
+                                            <div className="delete-model-body">
+                                                <p>Type <b>{url?.hash}</b> to delete this url.</p>
+                                                <input value={deleteUrlHash} onChange={(e)=>setDeleteUrlHash(e.target.value)} type="text" />
+                                                {deleteUrlHash.length>0 && deleteUrlHash!==url?.hash ? <p id="delete-error">Hash does not match</p> : null}
+                                            </div>
+                                            <div className="delete-model-footer">
+                                                <button id='delete' onClick={(e) => handleDeleteUrl()}>Delete</button>
+                                                <button id='cancle' onClick={(e) => setShowDeleteModel(false)}>Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div> : null
+                            }
+
                             <div className="url-details">
                                 {
                                     Object.keys(urlDetails).map((key, index) => {
