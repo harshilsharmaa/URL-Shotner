@@ -16,6 +16,7 @@ const CreditsPage = () => {
                 <a href="https://www.flaticon.com/free-icons/edit" title="edit icons">Edit icons created by Freepik - Flaticon</a>
                 <a href="https://www.flaticon.com/free-icons/eye" title="eye icons">Eye icons created by Sergei Kokota - Flaticon</a>
                 <a href="https://www.flaticon.com/free-icons/delete" title="delete icons">Delete icons created by QudaDesign - Flaticon</a>
+                <a href="https://www.flaticon.com/free-icons/download" title="download icons">Download icons created by Good Ware - Flaticon</a>
             </div>
 
         </div>

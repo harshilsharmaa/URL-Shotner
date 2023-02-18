@@ -11,20 +11,23 @@
 
 
 .export,
-.viewUrl-btn-section{
+.viewUrl-btn-section,
+.qr-code-btn{
     margin: 20px;
-    /* border: 1px solid red; */
     display: flex;
     align-items: center;
 }
 
+.qr-code-btn{
+    margin-left: 0px;
+}
+
 .export button,
-.viewUrl-btn-section button{
-    width: 150px;
-    height: 50px;
+.viewUrl-btn-section button,
+.qr-code-btn button{
     border: none;
     border-radius: 5px;
-    background-color: #7b0bc051;
+    background-color: #290552;
     color: #ccc;
     font-size: 1.4rem;
     cursor: pointer;
@@ -34,7 +37,7 @@
     transition: all 0.2s ease-in;
     display: flex;
     align-items: center;
-    padding: 0 8px;
+    padding: 13px 16px;
 }
 
 .export button p{
@@ -47,8 +50,15 @@
     padding: 0;
 }
 
+.qr-code-btn button p{
+    margin-right: 30px;
+    margin-left: 20px;
+    padding: 0;
+}
+
 .export button img,
-.viewUrl-btn-section button img{
+.viewUrl-btn-section button img,
+.qr-code-btn button img{
     width: 25px;
     height: 25px;
     /* border: 1px solid red; */
@@ -69,7 +79,8 @@
 
 
 .export button:hover,
-.viewUrl-btn-section button:hover{
+.viewUrl-btn-section button:hover,
+.qr-code-btn button:hover{
     background-color: #7b0bc0a9;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.908);
 }

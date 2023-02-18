@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { viewUrl, deleteUrlReq } from '../../../../Actions/Url.actions'
 import Analytics from '../../Analytics/Analytics'
+import GenrateQR from '../../../GenrateQR/GenrateQR';
 import './ViewURL.css'
 import '../../../common.css'
 import Loader from '../../../Loader/Loader'
@@ -28,6 +29,7 @@ const ViewURL = () => {
     const [message, setMessage] = useState(null);
     const [showDeleteModel, setShowDeleteModel] = useState(false);
     const [deleteUrlHash, setDeleteUrlHash] = useState("");
+    const [gerateQr, setGerateQr] = useState(false);
 
     useEffect(() => {
         dispatch(viewUrl(hash));
@@ -102,7 +104,14 @@ const ViewURL = () => {
                                     <p>Delete</p>
                                     <img src={deleteIcon} alt="" />
                                 </button>
+                                <button onClick={(e)=>setGerateQr(true)} style={{"margin-left":"5px"}}>
+                                    <p>Genrate QR</p>
+                                    <img src={deleteIcon} alt="" />
+                                </button>
                             </div>
+                            {
+                                gerateQr ? <GenrateQR value={url?.longUrl} /> : null
+                            }
 
                             {/* Delete url confirmation modal */}
                             {
