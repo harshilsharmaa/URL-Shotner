@@ -135,7 +135,7 @@ exports.getUrl = async (req, res) => {
 
                 const result = detector.detect(userAgent);
 
-                console.log(result);
+                // console.log(result);
 
                 analytic.os.push(result.os.name);
                 analytic.browsers.push(result.client.name);

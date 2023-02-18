@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const rootUrl = 'http://localhost:4000';
+// const rootUrl = 'http://localhost:4000';
+const rootUrl = '';
 
 export const registerUserEmail = ({username, email, password}) => async (dispatch) => {
 
@@ -60,6 +61,35 @@ export const loginUserEmail = ({email, password}) => async (dispatch) => {
                 payload: error.response.data.message
             })
         }
+}
+
+export const loginUserGoogle = () => async (dispatch) => {
+    try {
+
+        dispatch({
+            type: 'LoginRequest'
+        })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            withCredentials: 'true'
+        }
+
+        const { data } = await axios.get(`${rootUrl}/auth/google`, config);
+
+        dispatch({
+            type: 'LoginSuccess',
+            payload: data
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: 'LoginFailure',
+            payload: error.response.data.message
+        })
+    }
 }
 
 export const loadUser = () => async (dispatch) => {

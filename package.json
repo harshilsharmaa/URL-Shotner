@@ -18,6 +18,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "hbs": "^4.2.0",
+    "http-proxy-middleware": "^2.0.6",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.3.1",
     "node-device-detector": "^2.0.11",

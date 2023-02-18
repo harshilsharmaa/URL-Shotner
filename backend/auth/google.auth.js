@@ -46,8 +46,6 @@ passport.use(new Strategy(AUTH_OPTIONS, verifyCallback));
 
 app.use(passport.initialize());
 
-
-
 router.route('/google').get(
   passport.authenticate('google', {
     scope: ['email', 'profile', 'openid', 'https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'],
@@ -56,7 +54,7 @@ router.route('/google').get(
 
 router.route('/google/callback').get(
   passport.authenticate('google', {
-    failureRedirect: '/failure',
+    failureRedirect: '/login',
     session: false,
   }),
   (req, res) => {
@@ -66,11 +64,14 @@ router.route('/google/callback').get(
       secure: true,
       expiresIn: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
     }
+    // res.cookie('token', token, options)
+    // .status(200).json({
+    //   success: true,
+    //   message: 'Login successful'
+    // });
+
     res.cookie('token', token, options)
-    .status(200).json({
-      success: true,
-      message: 'Login successful'
-    });
+    .redirect('http://localhost:4000/dashboard-home')
   }
 )
 

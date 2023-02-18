@@ -1,8 +1,9 @@
 import React,{useState, useEffect} from 'react';
 import GoogleButton from 'react-google-button';
 import './Login-Register.css';
-import { loginUserEmail } from '../../Actions/User.actions';
+import { loginUserEmail, loginUserGoogle } from '../../Actions/User.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 import Alert from '../Alert/Alert';
 
 const Login = () => {
@@ -13,6 +14,7 @@ const Login = () => {
     const [password, setPassword] = useState('')
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,6 +25,12 @@ const Login = () => {
         }
 
         dispatch(loginUserEmail({email,password}));
+    }
+
+    const handleGoogleLogin = () => {
+        // dispatch(loginUserGoogle());
+        // navigate('/auth/google');
+        window.location.href = 'http://localhost:4000/auth/google';
     }
 
     useEffect(() => {
@@ -60,7 +68,7 @@ const Login = () => {
         <p id='or'>or</p>
             <GoogleButton
                 label="Login with Google"
-                onClick={() => { console.log('Google button clicked') }}
+                onClick={(e)=>handleGoogleLogin() }
             />
     </div>
   )

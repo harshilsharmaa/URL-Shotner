@@ -1,6 +1,5 @@
 const express = require('express');
 const User = require('../models/User');
-const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
@@ -95,7 +94,6 @@ router.route('/login').post(
                     message: "Invalid credentials"
                 });
             }
-            console.log("adsfas");
             const isMatch = await user.comparePassword(password);
             if(!isMatch){
                 return res.status(400).json({

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const rootUrl = 'http://localhost:4000';
+// const rootUrl = 'http://localhost:4000';
+const rootUrl = '';
 
 export const getMyUrls = (reqPage, reqSearch)=> async(dispatch) => {
     try {

@@ -26,19 +26,19 @@ function App() {
       <Routes>
 
         {/* Public Routes */}
-        <Route path='/' element={<Home/>} ></Route>
-        <Route path='/login' element={!isAuthenticated?<Login/>:<Dashboard page={'profile'}/>} ></Route>
-        <Route path='/signup' element={!isAuthenticated?<Signup/>:<Dashboard page={'profile'}/>} ></Route>
-        <Route path='/credits' element={<CreditsPage/>} ></Route>
+        <Route path='/' exact element={<Home/>} ></Route>
+        <Route path='/login' exact element={!isAuthenticated?<Login/>:<Dashboard page={'profile'}/>} ></Route>
+        <Route path='/signup' exact element={!isAuthenticated?<Signup/>:<Dashboard page={'profile'}/>} ></Route>
+        <Route path='/credits' exact element={<CreditsPage/>} ></Route>
 
         {/* Protected Routes */}
-        <Route path='/dashboard-home' element={isAuthenticated? <Dashboard page={'dashboard-home'}/>: <Login/>} ></Route>
-        <Route path='/profile' element={isAuthenticated? <Dashboard page={'profile'}/>: <Login/>} ></Route>
-        <Route path='/reports' element={isAuthenticated? <Dashboard page={'reports'}/>: <Login/>} ></Route>
-        <Route path='/myUrls' element={isAuthenticated? <Dashboard page={'myUrls'}/>: <Login/>} ></Route>
-        <Route path='/createUrl' element={isAuthenticated? <Dashboard page={'createUrl'}/>: <Login/>} ></Route>
-        <Route path='/url/:hash' element={isAuthenticated? <Dashboard page={'viewUrl'}/>: <Login/>} ></Route>
-        <Route path='/editUrl/:hash' element={isAuthenticated? <Dashboard page={'editUrl'}/>: <Login/>} ></Route>
+        <Route path='/dashboard-home' exact element={isAuthenticated? <Dashboard page={'dashboard-home'}/>: <Login/>} ></Route>
+        <Route path='/profile' exact element={isAuthenticated? <Dashboard page={'profile'}/>: <Login/>} ></Route>
+        <Route path='/reports' exact element={isAuthenticated? <Dashboard page={'reports'}/>: <Login/>} ></Route>
+        <Route path='/myUrls' exact element={isAuthenticated? <Dashboard page={'myUrls'}/>: <Login/>} ></Route>
+        <Route path='/createUrl' exact element={isAuthenticated? <Dashboard page={'createUrl'}/>: <Login/>} ></Route>
+        <Route path='/url/:hash' exact element={isAuthenticated? <Dashboard page={'viewUrl'}/>: <Login/>} ></Route>
+        <Route path='/editUrl/:hash'exact element={isAuthenticated? <Dashboard page={'editUrl'}/>: <Login/>} ></Route>
       </Routes>
 
       {/* <Footer/> */}

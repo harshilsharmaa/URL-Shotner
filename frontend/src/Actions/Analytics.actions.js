@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const root = 'http://localhost:4000';
+// const rootUrl = 'http://localhost:4000';
+const rootUrl = '';
 
 export const getAnalytics = () => async(dispatch)=> {
     try {
@@ -10,7 +11,7 @@ export const getAnalytics = () => async(dispatch)=> {
     })
 
 
-    const {data} = await axios.get(`${root}/api/v1/analytics/getAll`, {
+    const {data} = await axios.get(`${rootUrl}/api/v1/analytics/getAll`, {
         withCredentials: true
     })
     console.log(data);
@@ -33,7 +34,7 @@ export const getClicks = (hash) => async(dispatch)=> {
         dispatch({
             type: 'GetClicksRequest'
         })
-        const {data} = await axios.get(`${root}/api/v1/analytics/clicks?hash=${hash}`, {
+        const {data} = await axios.get(`${rootUrl}/api/v1/analytics/clicks?hash=${hash}`, {
             withCredentials: true
         })
         console.log(data);
