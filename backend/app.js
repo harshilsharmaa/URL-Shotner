@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 // Route for getting the url
 const {getUrl} = require('./controllers/url.controller');
-// app.get('/:hash', getUrl)
+app.get('/s:hash', getUrl)// s is for short and to not conflict with the routes like /signup
 
 // Routes
 const urlRouter = require('./routes/url.router');

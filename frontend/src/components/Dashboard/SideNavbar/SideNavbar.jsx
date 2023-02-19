@@ -13,7 +13,7 @@ const SideNavbar = () => {
                 {
                     sideNavbarData.map((item, index) => {
                         return (
-                            <Link to={item.path}>
+                            <Link key={index} to={item.path}>
                                 <div className='menu-item-selected menu-item' key={index}>
                                     <div className="menu-item-icon">
                                         <img src={item.icon} alt={item.title} />

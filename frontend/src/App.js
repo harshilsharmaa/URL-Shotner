@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { loadUser } from './Actions/User.actions';
 import { useSelector, useDispatch } from 'react-redux';
 import Home from './components/Home/Home';
-import Footer from './components/Footer/Footer';
+// import Footer from './components/Footer/Footer';
 import Login from './components/Login-Register/Login';
 import Signup from './components/Login-Register/Signup';
 import Dashboard from './components/Dashboard/Dashboard';

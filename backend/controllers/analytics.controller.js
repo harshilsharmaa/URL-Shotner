@@ -2,6 +2,7 @@ const Url = require("../models/Url");
 const Analytics = require("../models/Analytics");
 const User = require("../models/User");
 
+
 exports.getAnalytics = async (req, res) => {
     try {
 
@@ -16,20 +17,19 @@ exports.getAnalytics = async (req, res) => {
         let clicksToday = 0;
 
         const allUrls = await Url.find({ owner: userId }).populate('analytics');
-        console.log(allUrls);
+
 
         for (let i = 0; i < allUrls.length; i++) {
             const url = allUrls[i];
             const analytics = url.analytics;
             if (analytics) {
-                clicksTotal = analytics.clicks.length;
-                clicksThisYear = analytics.clicks.filter(click => click.getFullYear() === new Date().getFullYear()).length;
-                clicksThisMonth = analytics.clicks.filter(click => click.getMonth() === new Date().getMonth()).length;
-                clicksToday = analytics.clicks.filter(click => click.getDate() === new Date().getDate()).length;
+                clicksTotal += analytics.clicks.length;
+                clicksThisYear += analytics.clicks.filter(click => click.getFullYear() === new Date().getFullYear()).length;
+                clicksThisMonth += analytics.clicks.filter(click => click.getMonth() === new Date().getMonth()).length;
+                clicksToday += analytics.clicks.filter(click => click.getDate() === new Date().getDate()).length;
                 os = os.concat(analytics.os);
                 browser = browser.concat(analytics.browsers);
                 device = device.concat(analytics.devices);
-                console.log(analytics);
             }
         }
 
@@ -86,6 +86,100 @@ exports.getAnalytics = async (req, res) => {
 
     }
     catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        })
+    }
+}
+
+exports.urlAnalytics = async (req, res) => {
+    try{
+
+        if(!req.params.hash){
+            return res.status(400).json({
+                error: "Please Provide url hash",
+                success: false
+            })
+        }
+
+        const userId = req.user._id;
+
+        let os = [];
+        let browser = [];
+        let device = [];
+        let clicksTotal = 0;
+        let clicksThisYear = 0;
+        let clicksThisMonth = 0;
+        let clicksToday = 0;
+        console.log(req.params.hash)
+        const analytics = await Analytics.findOne({ urlHash: req.params.hash, user: userId });
+        if(!analytics){
+            return res.status(404).json({
+                success:false,
+                error: 'url not found'
+            })
+        }
+
+        clicksTotal = analytics.clicks.length;
+        clicksThisYear = analytics.clicks.filter(click => click.getFullYear() === new Date().getFullYear()).length;
+        clicksThisMonth = analytics.clicks.filter(click => click.getMonth() === new Date().getMonth()).length;
+        clicksToday = analytics.clicks.filter(click => click.getDate() === new Date().getDate()).length;
+        os = os.concat(analytics.os);
+        browser = browser.concat(analytics.browsers);
+        device = device.concat(analytics.devices);
+
+        let osCount = {};
+        let browserCount = {};
+        let deviceCount = {}
+
+        for(let i=0;i<os.length;i++){
+            osCount[os[i]] = (osCount[os[i]] || 0) + 1;
+            browserCount[browser[i]] = (browserCount[browser[i]] || 0) + 1;
+            deviceCount[device[i]] = (deviceCount[device[i]] || 0) + 1;
+        }
+
+        const osArray = [];
+        const browserArray = [];
+        const deviceArray = [];
+
+        for(let key in osCount){
+            osArray.push({
+                name: key,
+                count: osCount[key]
+            })
+        }
+        for(let key in browserCount){
+            browserArray.push({
+                name: key,
+                count: browserCount[key]
+            })
+        }
+        for(let key in deviceCount){
+            deviceArray.push({
+                name: key,
+                count: deviceCount[key]
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            message: 'Analytics fetched successfully',
+            analytics: {
+                clicks: {
+                    total: clicksTotal,
+                    thisYear: clicksThisYear,
+                    thisMonth: clicksThisMonth,
+                    today: clicksToday
+                },
+                os: osArray,
+                browser: browserArray,
+                device: deviceArray
+            }
+        });
+
+    }
+    catch(error){
         res.status(500).json({
             success: false,
             error: error.message
@@ -189,6 +283,7 @@ exports.getClicks = async (req, res) => {
 
         if (req.query.duration === 'today') {
 
+
             let hours = {
                 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0, 13: 0, 14: 0, 15: 0, 16: 0, 17: 0, 18: 0, 19: 0, 20: 0, 21: 0, 22: 0, 23: 0
             }
@@ -253,7 +348,6 @@ exports.getClicks = async (req, res) => {
             else {
                 for (let i = 0; i < analytics.length; i++) {
                     for (let j = 0; j < analytics[i].clicks.length; j++) {
-                        console.log(analytics[i].clicks[j]);
                         if (analytics[i].clicks[j] >= fromDate) {
                             months[analytics[i].clicks[j].getMonth() + 1]++;
                         }

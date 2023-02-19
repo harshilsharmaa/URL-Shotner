@@ -4,21 +4,21 @@ import LineChart from './Graphs/LineChart';
 import PieChart from './Graphs/PieChart';
 import csv from '../../../images/csv.png'
 import pdfIcon from '../../../images/pdfIcon.png'
-import { getAnalytics } from '../../../Actions/Analytics.actions'
+import { getAnalytics, getUrlAnalytics } from '../../../Actions/Analytics.actions'
 import {useSelector, useDispatch} from 'react-redux'
 import ClickCards from './ClickCards/ClicksCards';
 import GraphSection from './Graphs/GraphSection';
   
 
 const Analytics = ({urlHash}) => {
-
+  
   const {analytics} = useSelector(state => state.analytics);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if(urlHash){
-      dispatch(getAnalytics(urlHash));
+      dispatch(getUrlAnalytics(urlHash));
     }else{
       dispatch(getAnalytics());
     }
@@ -41,7 +41,7 @@ const Analytics = ({urlHash}) => {
         </button>
       </section>
     
-      <GraphSection analytics={analytics} />
+      <GraphSection urlHash={urlHash} analytics={analytics} />
     </div>
   )
 }

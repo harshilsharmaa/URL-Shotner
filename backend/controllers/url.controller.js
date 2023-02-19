@@ -93,7 +93,7 @@ exports.login_short = async (req, res) => {
         const analytic = await Analytics.create({
             url: url._id,
             user: user._id,
-            hash: url.hash,
+            urlHash: url.hash,
             createdAt: Date.now()
         })
 
@@ -223,7 +223,7 @@ exports.viewUrl = async (req, res) => {
         const { hash } = req.params;
         const user = req.user;
 
-        const url = await Url.findOne({ hash, owner: user._id });
+        const url = await Url.findOne({ hash, owner: user._id }).populate('analytics');
         if(!url){
             return res.status(404).json({
                 success: false,
