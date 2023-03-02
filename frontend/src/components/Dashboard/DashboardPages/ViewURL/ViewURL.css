@@ -23,12 +23,26 @@
 .url-detail-box .right{
     width: 75%;
     color: rgb(213, 143, 213);
+    /* overflow-wrap:break-word; */
+    display: flex;
+    align-items: center;
+}
+.url-detail-box .right h4{
+    width: 90%;
     overflow-wrap:break-word;
 }
 
-.url-detail-box .right img{
+.url-detail-box .right button{
+    border: none;
+    background: none;
+    margin-left: 5px;
+}
+
+.url-detail-box .right svg{
     height: 20px;
     width: 20px;
+    fill:#ccc;
+    cursor: pointer;
 }
 
 

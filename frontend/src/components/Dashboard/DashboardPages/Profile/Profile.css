@@ -10,11 +10,6 @@
     padding: 8px 18px;
 }
 
-.info{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
 .genral-info{
     display: flex;
@@ -24,10 +19,6 @@
     width: 45%;
 }
 
-.vertical-line{
-    height: auto 100px;
-    border: 1px solid #7b0bc051;
-}
 
 .change-password{
     display: flex;
@@ -95,4 +86,26 @@
 
 .info-component button:hover{
     background-color: #7b0bc0;
+}
+
+.profile-bottom{
+    width: 95%;
+    margin: 20px auto;
+}
+
+#delete-acc{
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 5px;
+    background: none;
+    outline: none;
+    color: red;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#delete-acc:hover{
+    color: rgb(255, 29, 29);
+    border: 1px solid rgb(255, 29, 29);
 }

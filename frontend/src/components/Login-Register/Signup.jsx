@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
-    const {error, message, status} = useSelector(state => state.user);
+    const {user, error, message, status} = useSelector(state => state.user);
 
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
@@ -31,7 +31,7 @@ const Signup = () => {
     useEffect(() => {
         if(status === 'success'){
             dispatch({type: 'CLEAR_STATUS'})
-            navigate('/dashboard');
+            navigate('/dashboard-home');
         }
         if(error){
             setTimeout(() => {
@@ -44,6 +44,10 @@ const Signup = () => {
             }, 5000);
         }
     }, [error, message, status])
+
+    useEffect(()=>{
+        if(user) navigate('/dashboard-home');
+    },[user])
 
     return (
         <div className='login-register'>

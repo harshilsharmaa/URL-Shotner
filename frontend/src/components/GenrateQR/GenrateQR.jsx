@@ -1,10 +1,10 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import QRCode from "react-qr-code";
 import './GenrateQR.css'
 import downloadIcon from '../../images/download.png'
 import { Canvg } from 'canvg';
 
-const GenrateQR = ({ value }) => {
+const GenrateQR = ({ value, handleCloseGenrateQr }) => {
 
     const handleQrDownload = () => {
 
@@ -25,6 +25,10 @@ const GenrateQR = ({ value }) => {
     return (
         <div className='qr-code'>
             <div className="qr-code-container">
+                <div className="qr-code-header">
+                    <h4>QR Code</h4>
+                    <button onClick={(e) => handleCloseGenrateQr()}>X</button>
+                </div>
                 <div style={{ height: "auto", margin: "0 auto", maxWidth: 360, width: "100%" }}>
                     <QRCode
                         id='qr-code'
@@ -35,7 +39,7 @@ const GenrateQR = ({ value }) => {
                     />
                 </div>
                 <div className="qr-code-btn">
-                    <button onClick={(e)=>handleQrDownload()}>
+                    <button onClick={(e) => handleQrDownload()}>
                         <p>Genrate QR</p>
                         <img src={downloadIcon} alt="" />
                     </button>

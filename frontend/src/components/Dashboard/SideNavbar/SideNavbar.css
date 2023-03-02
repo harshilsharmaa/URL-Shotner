@@ -14,10 +14,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #03031f;
-    width: 50px;
-    height: 50px;
-    margin-top: 10px;
 }
 
 .sideNavbar__logo > img{
@@ -25,9 +21,20 @@
     height: 100%;
 }
 
+.sideNavbar__logo > h1{
+    color: rgb(255, 63, 63);
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-family: 'forte';
+}
+
+.sideNavbar__logo #logo-u{
+    font-size: 5rem;
+}
+
 .sideNavbar__menu{
     width: 100%;
-    margin-top: 20px;
+    margin-top:7px;
 }
 
 a{
@@ -38,8 +45,6 @@ a{
     list-style: none;
     height: 50px;
     width: 100%;
-    font-size: 15px;
-    font-weight: bold;
     text-align: center;
     border-bottom: 0.4px solid rgba(255, 255, 255, 0.12);
     padding: 9px;
@@ -65,6 +70,8 @@ a{
 .menu-item-name{
     /* border: 1px solid red; */
     width: 60%;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 .menu-item img{

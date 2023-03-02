@@ -1,7 +1,6 @@
 .navbar{
     background-color: #03031f;
     color: #fff;
-    /* padding: 0.5rem 1rem; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,7 +21,6 @@
 
 .navbar__links ul{
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
     width: 100%;
 }
@@ -31,10 +29,12 @@
     list-style: none;
     padding: 20px 40px;
     font-size: 2rem;
-    /* border: 1px solid red; */
-    cursor: pointer;
 }
 
-.navbar__links ul li:hover{
-    background-color: #27008230;
+.navbar__links ul li a{
+    text-decoration: none;
+}
+
+.navbar__links ul li a:hover{
+    color: #9880ff;
 }

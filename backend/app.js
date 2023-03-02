@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 // Route for getting the url
 const {getUrl} = require('./controllers/url.controller');
-app.get('/s:hash', getUrl)// s is for short and to not conflict with the routes like /signup
+app.get('/s/:hash', getUrl)// s is for short and to not conflict with the routes like /signup
 
 // Routes
 const urlRouter = require('./routes/url.router');
@@ -41,10 +41,10 @@ app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/analytics', analyticsRouter);
 
 
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-app.get("*", (req,res)=>{
-    res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
-});
+// app.use(express.static(path.join(__dirname, "../frontend/build")));
+// app.get("*", (req,res)=>{
+//     res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+// });
 
 
 module.exports = app;

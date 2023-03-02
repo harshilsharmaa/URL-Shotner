@@ -3,22 +3,26 @@ import dateFormat from "dateformat";
 import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { viewUrl, deleteUrlReq } from '../../../../Actions/Url.actions'
+import { getUrlAnalytics, getClicks } from '../../../../Actions/Analytics.actions'
 import Analytics from '../../Analytics/Analytics'
 import GenrateQR from '../../../GenrateQR/GenrateQR';
 import './ViewURL.css'
 import '../../../common.css'
 import Loader from '../../../Loader/Loader'
 import deleteIcon from '../../../../images/delete.png'
-import copy from '../../../../images/copy.png'
 import edit from '../../../../images/edit.png'
+import qrcode from '../../../../images/qr-code.png'
 import Footer from '../../../Footer/Footer'
 import Alert from '../../../Alert/Alert'
 
+const copy = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M224 0c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224zM64 160c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64H64V224h64V160H64z" /></svg>
 
 const ViewURL = () => {
 
     const { url, message: urlMessage, error: urlError, loading: urlLoading } = useSelector(state => state.url);
-    const {message: deleteUrlMessage, error: deleteUrlError, loading: deleteUrlLoading} = useSelector(state => state.deleteUrl);
+    const { message: deleteUrlMessage, error: deleteUrlError, loading: deleteUrlLoading } = useSelector(state => state.deleteUrl);
+    const { urlAnalytics } = useSelector(state => state.urlAnalytics);
+    const { clicks } = useSelector(state => state.clicks);
 
     const { hash } = useParams();
     const dispatch = useDispatch();
@@ -33,6 +37,8 @@ const ViewURL = () => {
 
     useEffect(() => {
         dispatch(viewUrl(hash));
+        dispatch(getUrlAnalytics(hash));
+        dispatch(getClicks(hash, 'today'))
     }, [dispatch])
 
     useEffect(() => {
@@ -57,11 +63,11 @@ const ViewURL = () => {
         if (urlError) {
             setError(urlError);
         }
-        if (deleteUrlMessage){
+        if (deleteUrlMessage) {
             setMessage(deleteUrlMessage)
-            navigate('/myUrls', {replace: true});
+            navigate('/myUrls', { replace: true });
         }
-        if(deleteUrlError){
+        if (deleteUrlError) {
             setError(deleteUrlError);
         }
 
@@ -70,54 +76,66 @@ const ViewURL = () => {
             setMessage(null);
         }, 5000);
 
-        dispatch({type: "CLEAR_MESSAGES"});
-        dispatch({type: "CLEAR_ERRORS"});
+        dispatch({ type: "CLEAR_MESSAGES" });
+        dispatch({ type: "CLEAR_ERRORS" });
 
     }, [deleteUrlMessage, deleteUrlError, urlMessage, urlError])
 
     const handleDeleteUrl = () => {
 
-        // console.log("handle delete url");
-
-        if(deleteUrlHash !== url?.hash){
+        if (deleteUrlHash !== url?.hash) {
             return;
         }
         dispatch(deleteUrlReq(url?.hash));
         setShowDeleteModel(false);
     }
 
+    const handleCloseGenrateQr = () => {
+        setGerateQr(false);
+    }
+
+    const handleCopy = (value) => {
+        window.navigator.clipboard.writeText(value);
+        setMessage("Copied to clipboard");
+        setTimeout(() => {
+            setMessage(null);
+        }, 5000);
+    }
+
     return (
         <div className='viewUrl page-container'>
             {
-                urlLoading || deleteUrlLoading ? <Loader/> :
+                message? <Alert text={message} type="success"/> :  
+                error? <Alert text={error} type="error"/> : null
+            }
+            {
+                urlLoading || deleteUrlLoading ? <Loader /> :
                     url ?
                         <div className='viewUrl-container'>
                             <div className="heading">
-                                <h3>URL - {url.urlName.length > 0 ? url.urlName :""} ({url.hash})</h3>
+                                <h3>URL - {url.urlName.length > 0 ? url.urlName : ""} ({url.hash})</h3>
                             </div>
                             <div className="common viewUrl-btn-section">
                                 <button>
                                     <p>Edit</p>
                                     <img src={edit} alt="" />
                                 </button>
-                                <button onClick={(e)=>setShowDeleteModel(true)} style={{"margin-left":"5px"}}>
+                                <button onClick={(e) => setShowDeleteModel(true)} style={{ "margin-left": "5px" }}>
                                     <p>Delete</p>
                                     <img src={deleteIcon} alt="" />
                                 </button>
-                                <button onClick={(e)=>setGerateQr(true)} style={{"margin-left":"5px"}}>
+                                <button onClick={(e) => setGerateQr(true)} style={{ "margin-left": "5px" }}>
                                     <p>Genrate QR</p>
-                                    <img src={deleteIcon} alt="" />
+                                    <img src={qrcode} alt="" />
                                 </button>
                             </div>
                             {
-                                gerateQr ? <GenrateQR value={url?.longUrl} /> : null
+                                gerateQr ? <GenrateQR value={url?.longUrl} handleCloseGenrateQr={handleCloseGenrateQr} /> : null
                             }
 
                             {/* Delete url confirmation modal */}
                             {
                                 showDeleteModel ?
-                                // console.log("show delete model")
-                                // : null
                                     <div className="delete-model">
                                         <div className="delete-model-container">
                                             <div className="delete-model-heading">
@@ -125,8 +143,8 @@ const ViewURL = () => {
                                             </div>
                                             <div className="delete-model-body">
                                                 <p>Type <b>{url?.hash}</b> to delete this url.</p>
-                                                <input value={deleteUrlHash} onChange={(e)=>setDeleteUrlHash(e.target.value)} type="text" />
-                                                {deleteUrlHash.length>0 && deleteUrlHash!==url?.hash ? <p id="delete-error">Hash does not match</p> : null}
+                                                <input value={deleteUrlHash} onChange={(e) => setDeleteUrlHash(e.target.value)} type="text" />
+                                                {deleteUrlHash.length > 0 && deleteUrlHash !== url?.hash ? <p id="delete-error">Hash does not match</p> : null}
                                             </div>
                                             <div className="delete-model-footer">
                                                 <button id='delete' onClick={(e) => handleDeleteUrl()}>Delete</button>
@@ -147,7 +165,10 @@ const ViewURL = () => {
                                                 <div className="right">
                                                     {
                                                         !urlDetails[key] ? <h4>-</h4> :
-                                                        <h4>{urlDetails[key]}</h4>
+                                                            <h4>{urlDetails[key]}</h4>
+                                                    }
+                                                    {
+                                                        key === "Short Url" || key === "Original Url" ? <button onClick={(e) => handleCopy(`${urlDetails[key]}`)}>{copy}</button> : null
                                                     }
                                                 </div>
                                             </div>
@@ -155,18 +176,18 @@ const ViewURL = () => {
                                     })
                                 }
                             </div>
-                        </div> :
-                        message? <Alert text={message} type="success"/> : 
-                        error? <Alert text={error} type="error"/> : null
+                        </div> : null
+
+                
             }
             <section className="analytics-section">
                 {
-                    url?
-                    <Analytics urlHash={url?.hash}/>
-                    :null
+                    url && urlAnalytics && clicks ?
+                        <Analytics analytics={urlAnalytics} urlHash={url.hash} />
+                        : null
                 }
             </section>
-            <Footer/>
+            <Footer />
         </div>
     )
 }

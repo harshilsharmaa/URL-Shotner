@@ -18,6 +18,43 @@ export const analyticsReducer = createReducer(initialState, {
         state.error = action.payload;
     },
 })
+export const urlAnalyticsReducer = createReducer(initialState, {
+
+    GetUrlAnalyticsRequest: (state)=>{
+        state.loading = true;
+    },
+    GetUrlAnalyticsSuccess: (state, action)=>{
+        state.loading = false;
+        state.urlAnalytics = action.payload.analytics;
+        state.message = action.payload.message;
+        state.status = 'success';
+    },
+    GetUrlAnalyticsFailure: (state, action)=>{
+        state.loading = false;
+        state.error = action.payload;
+    },
+    CLEAR_URL_ANALYTICS: (state)=>{
+        state.urlAnalytics = null;
+    }
+})
+
+export const groupAnalyticsReducer = createReducer(initialState, {
+    GetGroupAnalyticsRequest: (state)=>{
+        state.loading = true;
+    },
+    GetGroupAnalyticsSuccess: (state, action)=>{
+        state.loading = false;
+        state.groupAnalytics = action.payload.analytics;
+        state.message = action.payload.message;
+    },
+    GetGroupAnalyticsFailure: (state, action)=>{
+        state.loading = false;
+        state.error = action.payload;
+    },
+    CLEAR_GROUP_ANALYTICS: (state)=>{
+        state.groupAnalytics = null;
+    }
+})
 
 export const clicksReducer = createReducer(initialState, {
     GetClicksRequest: (state)=>{

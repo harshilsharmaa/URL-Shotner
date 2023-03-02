@@ -2,6 +2,9 @@ import url from '../../../images/url.png';
 import dashboard from '../../../images/dashboard.png';
 import profile from '../../../images/profile.png';
 import team from '../../../images/team.png';
+import plans from '../../../images/plans.png';
+import invite from '../../../images/invite.png';
+import group from '../../../images/group.png'
 
 export const sideNavbarData = [
     {
@@ -15,9 +18,14 @@ export const sideNavbarData = [
         icon: url,
     },
     {
-        title: 'Reports',
-        path: '/reports',
-        icon: 'https://www.flaticon.com/svg/static/icons/svg/25/25231.svg',
+        title: 'URLs Group',
+        path: '/group',
+        icon: group,
+    },
+    {
+        title: 'My Profile',
+        path: '/profile',
+        icon: profile,
     },
     {
         title: 'My Team',
@@ -25,8 +33,13 @@ export const sideNavbarData = [
         icon: team,
     },
     {
-        title: 'My Profile',
-        path: '/profile',
-        icon: profile,
-    }
+        title: 'Plans',
+        path: '/Plans',
+        icon: plans,
+    },
+    {
+        title: 'Invite People',
+        path: '/invite',
+        icon: invite,
+    },
 ]

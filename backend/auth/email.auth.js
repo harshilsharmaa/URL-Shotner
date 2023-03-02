@@ -28,7 +28,7 @@ router.route('/register').post(
             if(user){
                 return res.status(400).json({
                     success: false,
-                    message: "User already"
+                    message: "User already Exist"
                 });
             }
     
@@ -54,7 +54,6 @@ router.route('/register').post(
             const option = {
                 expiresIn: new Date(Date.now() + 30*24*60*60*1000),
                 httpOnly: true,
-                secure: true
             }
     
             res.status(200).cookie('token', token, option).json({

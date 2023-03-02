@@ -1,13 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { sideNavbarData } from './sideNavbarData'
+import {loagout} from '../../../Actions/User.actions'
+import { useDispatch, useSelector } from 'react-redux'
+// import {useHistory} from 'react-router-dom'
 import './SideNavbar.css'
 
 const SideNavbar = () => {
+
+    const {user} = useSelector(state => state.user);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(!user){
+            window.location.href = "/login";
+        }
+    }, [user])
+
+    const handleLogout = () => {
+        dispatch(loagout())
+    }
+
     return (
         <div className='sideNavbar'>
             <div className='sideNavbar__logo'>
-                <img src="https://cdn.pixabay.com/photo/2017/03/19/20/19/ball-2157465__340.png" alt="logo" />
+                {/* <img src="https://cdn.pixabay.com/photo/2017/03/19/20/19/ball-2157465__340.png" alt="logo" /> */}
+                <h1><span id='logo-u'>U</span>rily</h1>
             </div>
             <div className='sideNavbar__menu'>
                 {
@@ -39,7 +57,7 @@ const SideNavbar = () => {
 
             </div>
             <div className="sideNavbar-bottom">
-                <button>Logout</button>
+                <button onClick={(e)=>handleLogout()}>Logout</button>
             </div>
         </div>
     )

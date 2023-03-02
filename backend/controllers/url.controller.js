@@ -2,6 +2,7 @@ const Url = require('../models/Url');
 const User = require('../models/User');
 const Analytics = require('../models/Analytics');
 const DeviceDetector = require('node-device-detector');
+const UrlGroup = require('../models/UrlGroup');
 
 const detector = new DeviceDetector({
     clientIndexes: true,
@@ -62,7 +63,7 @@ exports.login_short = async (req, res) => {
         if (!originalUrl) {
             return res.status(400).json({
                 success: false,
-                message: "Please enter original url"
+                error: "Please enter original url"
             })
         }
 
@@ -83,7 +84,7 @@ exports.login_short = async (req, res) => {
             if (!user.urlGroups.includes(req.body.urlGroup)) {
                 return res.status(400).json({
                     success: false,
-                    message: "You don't have this group"
+                    error: "You don't have this group"
                 })
             }
             url.urlGroup = req.body.urlGroup;
@@ -113,7 +114,7 @@ exports.login_short = async (req, res) => {
     } catch (error) {
         res.status(400).json({
             success: false,
-            message: error.message
+            error: error.message
         })
     }
 }
@@ -171,7 +172,10 @@ exports.getUrl = async (req, res) => {
         })
 
     } catch (error) {
-        console.log(error);
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
     }
 }
 
@@ -187,6 +191,15 @@ exports.getMyUrls = async (req, res) => {
         if(!req.query.search || req.query.search === 'null'){
             search = '';
         }
+
+        if(user.urls.length===0){
+            return res.status(200).json({
+                success: true,
+                message: "Urls fetched successfully",
+                urls: [],
+                pageCount: 0,
+            });
+        } 
 
         const urlsData = await Url.aggregate([
             {
@@ -264,7 +277,7 @@ exports.deleteUrl = async (req, res) => {
             })
         }
 
-        const analytic = await Analytics.findOne({urlHah: hash});
+        const analytic = await Analytics.findOne({urlHash: hash});
         if(analytic){
             await analytic.remove();
         }
@@ -283,6 +296,139 @@ exports.deleteUrl = async (req, res) => {
         res.status(400).json({
             success: false,
             error: error.message
+        })
+    }
+}
+
+exports.groupUrl = async (req, res) => {
+    try{
+
+        const {urls, groupName} = req.body;
+
+        if(!urls || urls.length===0){
+            return res.status(400).json({
+                success:false,
+                error: "Urls cannot be empty"
+            })
+        }
+
+        if(!groupName || groupName.length===0){
+            return res.status(400).json({
+                success:false,
+                error: "Please enter the Group Name"
+            })
+        }
+
+        const userId = req.user._id;
+        
+        const newGroup = await UrlGroup.create({
+            urlGroupName: groupName,
+            owner: userId,
+            createdAt: Date.now()
+        })
+
+        for(const url of urls){
+            const searchUrl = await Url.findOne({hash: url, owner: userId});
+            if(searchUrl){
+                newGroup.urls.push(searchUrl._id);
+            }
+        }
+        
+        await newGroup.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Group created successfully",
+            newGroup
+        })
+    }
+    catch(err){
+        res.status(500).json({
+            success:false,
+            error: err.message
+        })
+    }
+}
+
+
+exports.getAllGroups = async (req, res) => {
+    try{
+        const userId = req.user._id;
+        const groups = await UrlGroup.find({owner: userId});
+        console.log(groups);
+        res.status(200).json({
+            success: true,
+            groups
+        })
+    }
+    catch(err){
+        res.status(500).json({
+            success:false,
+            error: err.message
+        })
+    }
+}
+
+exports.getGroupById = async (req, res) => {
+    try{
+
+        const group = await UrlGroup.findById(req.params.id).populate('urls');
+        if(!group){
+            return res.status(404).json({
+                success:false,
+                error: "Group not found"
+            })
+        }
+        
+        if(toString(group.owner)!==toString(req.user._id)){
+            return res.status(401).json({
+                success:false,
+                error: "Unauthorized"
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Group fetched successfully",
+            group
+        })
+
+    }
+    catch(err){
+        res.status(500).json({
+            success:false,
+            error: err.message
+        })
+    }
+}
+
+exports.deleteGroup = async (req, res) => {
+    try{
+        const group = await UrlGroup.findById(req.params.id);
+        if(!group){
+            return res.status(404).json({
+                success:false,
+                error: "Group not found"
+            })
+        }
+        if(toString(group.owner)!==toString(req.user._id)){
+            return res.status(401).json({
+                success:false,
+                error: "Unauthorized"
+            })
+        }
+
+        await group.remove();
+
+        res.status(200).json({
+            success: true,
+            message: "Group deleted successfully"
+        })
+    }
+    catch(err){
+        res.status(500).json({
+            success:false,
+            error: err.message
         })
     }
 }

@@ -8,7 +8,10 @@
     border-bottom: 0.4px solid #7b0bc051;
 }
 
-
+.text-center{
+    text-align: center;
+    color: #ccc;
+}
 
 .export,
 .viewUrl-btn-section,

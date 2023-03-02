@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const rootUrl = 'http://localhost:4000';
-const rootUrl = '';
+const rootUrl = 'http://localhost:4000';
+// const rootUrl = '';
 
 export const registerUserEmail = ({username, email, password}) => async (dispatch) => {
 
@@ -92,6 +92,35 @@ export const loginUserGoogle = () => async (dispatch) => {
     }
 }
 
+export const loagout = () => async (dispatch) => {
+    try {
+
+        dispatch({
+            type: 'LogoutRequest'
+        })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            withCredentials: 'true'
+        }
+
+        const { data } = await axios.get(`${rootUrl}/auth/logout`, config);
+
+        dispatch({
+            type: 'LogoutSuccess',
+            payload: data
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: 'LogoutFailure',
+            payload: error.response.data.message
+        })
+    }
+}
+
 export const loadUser = () => async (dispatch) => {
     try {
         dispatch({
@@ -116,6 +145,34 @@ export const loadUser = () => async (dispatch) => {
         dispatch({
             type: 'LoadUserFailure',
             // payload: error.response.data.message
+        })
+    }
+}
+
+export const deleteAccount = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: 'DeleteAccountRequest'
+        })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            withCredentials: 'true'
+        }
+
+        const { data } = await axios.delete(`${rootUrl}/api/v1/user/delete`, config);
+
+        dispatch({
+            type: 'DeleteAccountSuccess',
+            payload: data
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: 'DeleteAccountFailure',
+            payload: error.response.data.message
         })
     }
 }

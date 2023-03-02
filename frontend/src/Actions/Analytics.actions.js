@@ -10,7 +10,6 @@ export const getAnalytics = () => async(dispatch)=> {
         type: 'GetAnalyticsRequest'
     })
 
-
     const {data} = await axios.get(`${rootUrl}/api/v1/analytics/getAll`, {
         withCredentials: true
     })
@@ -32,7 +31,7 @@ export const getUrlAnalytics = (hash) => async(dispatch)=> {
     try {
 
     dispatch({
-        type: 'GetAnalyticsRequest'
+        type: 'GetUrlAnalyticsRequest'
     })
 
 
@@ -41,14 +40,38 @@ export const getUrlAnalytics = (hash) => async(dispatch)=> {
     })
 
     dispatch({
-        type: 'GetAnalyticsSuccess',
+        type: 'GetUrlAnalyticsSuccess',
         payload: data
     })
         
     } catch (error) {
         dispatch({
-            type: 'GetAnalyticsFailure',
-            payload: error.response.data.message
+            type: 'GetUrlAnalyticsFailure',
+            payload: error.response.data.error
+        })
+    }
+}
+
+export const getGroupAnalytics = (groupId, duration) => async(dispatch)=> {
+    try{
+
+        dispatch({
+            type: 'GetGroupAnalyticsRequest'
+        })
+
+        const {data} = await axios.get(`${rootUrl}/api/v1/analytics/group/${groupId}`, {
+            withCredentials: true
+        })
+
+        dispatch({
+            type: 'GetGroupAnalyticsSuccess',
+            payload: data
+        })
+    }
+    catch(error){
+        dispatch({
+            type: 'GetGroupAnalyticsFailure',
+            payload: error.response.data.error
         })
     }
 }

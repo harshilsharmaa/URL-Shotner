@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import LineChart from './LineChart';
 import PieChart from './PieChart';
 
-const GraphSection = ({urlHash, analytics}) => {
+const GraphSection = ({analytics, urlHash}) => {
 
   const [clicksDuration, setClicksDuration] = useState('today');
 
@@ -30,7 +30,7 @@ const GraphSection = ({urlHash, analytics}) => {
           </div>
           <div className="analytic-card">
             <div className="analytic-card-title">
-              <p>Countries</p>
+              <p>Browsers</p>
               <select name="date" id="">
                 <option value="this-month">This Month</option>
                 <option value="this-year">This Year</option>
@@ -43,7 +43,7 @@ const GraphSection = ({urlHash, analytics}) => {
               </select>
             </div>
             <div className="analytic-card-content">
-              <PieChart />
+              <PieChart analytics={analytics}/>
             </div>
           </div>
         </div>

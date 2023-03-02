@@ -8,7 +8,13 @@
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 1000;
-  }
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 1%; opacity: 1;}
+}
 
 .success {
     background-color: #4CAF50;

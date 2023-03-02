@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import './Analytics.css'
 import LineChart from './Graphs/LineChart';
 import PieChart from './Graphs/PieChart';
@@ -10,25 +10,19 @@ import ClickCards from './ClickCards/ClicksCards';
 import GraphSection from './Graphs/GraphSection';
   
 
-const Analytics = ({urlHash}) => {
-  
-  const {analytics} = useSelector(state => state.analytics);
-
-  const dispatch = useDispatch();
+const Analytics = ({analytics, urlHash, groupId}) => {
 
   useEffect(() => {
-    if(urlHash){
-      dispatch(getUrlAnalytics(urlHash));
-    }else{
-      dispatch(getAnalytics());
-    }
-  },[])
-  
+    if(urlHash) console.log('urlHash', urlHash);
+    if(groupId) console.log('groupId', groupId);
+  },[urlHash, groupId])
 
   return (
     <div className='analytics-page page-container'>
       
+      
       <ClickCards analytics={analytics} />
+    
 
       <section className="export">
         <button>
@@ -40,8 +34,13 @@ const Analytics = ({urlHash}) => {
           <img src={pdfIcon} alt="" />
         </button>
       </section>
+
+      {
+        urlHash ? <GraphSection analytics={analytics} urlHash={urlHash}/>:
+        groupId ? <GraphSection analytics={analytics} groupId={groupId}/>:
+        <GraphSection analytics={analytics} />
+      }
     
-      <GraphSection urlHash={urlHash} analytics={analytics} />
     </div>
   )
 }

@@ -74,3 +74,79 @@ export const deleteUrlReducer = createReducer(initialState, {
         state.error = null;
     }
 })
+
+export const createGroupReducer = createReducer(initialState, {
+    createGroupRequest: (state)=>{
+        state.loading = true;
+    },
+    createGroupSuccess: (state, action)=>{
+        state.loading = false;
+        state.message = action.payload.message;
+        state.createdGroup = action.payload.newGroup;
+    },
+    createGroupFailure: (state, action)=>{
+        state.loading = false;
+        state.error = action.payload;
+    },
+    CLEAR_CREATED_GROUP: (state)=>{
+        state.createdGroup = null;
+    }
+})
+
+export const getAllGroupsReducer = createReducer(initialState, {
+    getAllGroupsRequest: (state)=>{
+        state.loading = true;
+    },
+    getAllGroupsSuccess: (state, action)=>{
+        state.loading = false;
+        state.allGroups = action.payload.groups;
+    },
+    getAllGroupsFailure: (state, action)=>{
+        state.loading = false;
+        state.error = action.payload;
+    }
+})
+
+export const getGroupReducer = createReducer(initialState, {
+    getGroupByIdRequest: (state)=>{
+        state.loading = true;
+    },
+    getGroupByIdSuccess: (state, action)=>{
+        state.loading = false;
+        state.message = action.payload.message;
+        state.group = action.payload.group;
+    },
+    getGroupByIdFailure: (state, action)=>{
+        state.loading = false;
+        state.error = action.payload;
+    },
+    CLEAR_ERRORS: (state)=>{
+        state.error = null;
+    },
+    CLEAR_MESSAGES: (state)=>{
+        state.message = null;
+    }
+})
+
+export const deleteGroupReducer = createReducer(initialState, {
+    deleteGroupRequest: (state)=>{
+        state.loading = true;
+    },
+    deleteGroupSuccess: (state, action)=>{
+        state.loading = false;
+        state.message = action.payload.message;
+    },
+    deleteGroupFailure: (state, action)=>{
+        state.loading = false;
+        state.error = action.payload;
+    },
+    CLEAR_ERRORS: (state)=>{
+        state.error = null;
+    },
+    CLEAR_MESSAGES: (state)=>{
+        state.message = null;
+    },
+    CLEAR_GROUP: (state)=>{
+        state.group = null;
+    }
+})

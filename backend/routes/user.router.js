@@ -7,12 +7,14 @@ const {
 } = require('../middleware/auth.middleware');
 
 const {
-    profile
+    profile,
+    deleteAccount
 } = require('../controllers/user.controller');
 
 
 
 router.route('/profile').get(isAuthenticated, profile);
+router.route('/delete').delete(isAuthenticated, deleteAccount);
 
 
 module.exports = router;

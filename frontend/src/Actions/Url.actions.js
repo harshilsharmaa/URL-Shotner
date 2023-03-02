@@ -116,3 +116,105 @@ export const deleteUrlReq = (hash)=> async(dispatch) => {
         })
     } 
 } 
+
+export const createGroup = (groupName, urls) => async(dispatch)=>{
+    try{
+        dispatch({
+            type: 'createGroupRequest'
+        })
+    
+        let urlsList = [];
+        urls.forEach(url => {
+            urlsList.push(url.hash);
+        })
+    
+        const {data} = await axios.post(`${rootUrl}/api/v1/url/group`, {
+            groupName,
+            urls:urlsList
+        },{
+            withCredentials: true
+        })
+    
+        dispatch({
+            type: 'createGroupSuccess',
+            payload: data
+        })
+    }
+    catch(error){
+        dispatch({
+            type: 'createGroupFailure',
+            payload: error.response.data.error
+        })
+    }
+}
+
+export const getGroups = () => async(dispatch)=>{
+    try{
+        dispatch({
+            type: 'getAllGroupsRequest'
+        })
+    
+        const {data} = await axios.get(`${rootUrl}/api/v1/url/group/all`,{
+            withCredentials: true
+        })
+
+        console.log(data);
+    
+        dispatch({
+            type: 'getAllGroupsSuccess',
+            payload: data
+        })
+    }
+    catch(error){
+        dispatch({
+            type: 'getAllGroupsFailure',
+            payload: error.response.data.error
+        })
+    }
+}
+
+export const getGroupById = (groupId) => async(dispatch)=>{
+    try{
+        dispatch({
+            type: 'getGroupByIdRequest'
+        })
+    
+        const {data} = await axios.get(`${rootUrl}/api/v1/url/group/${groupId}`,{
+            withCredentials: true
+        })
+    
+        dispatch({
+            type: 'getGroupByIdSuccess',
+            payload: data
+        })
+    }
+    catch(error){
+        dispatch({
+            type: 'getGroupByIdFailure',
+            payload: error.response.data.error
+        })
+    }
+}
+
+export const deleteGroupReq = (groupId) => async(dispatch)=>{
+    try{
+        dispatch({
+            type: 'deleteGroupRequest'
+        })
+    
+        const {data} = await axios.delete(`${rootUrl}/api/v1/url/group/delete/${groupId}`,{
+            withCredentials: true
+        })
+    
+        dispatch({
+            type: 'deleteGroupSuccess',
+            payload: data
+        })
+    }
+    catch(error){
+        dispatch({
+            type: 'deleteGroupFailure',
+            payload: error.response.data.error
+        })
+    }
+}

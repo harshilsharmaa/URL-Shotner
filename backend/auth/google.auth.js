@@ -75,12 +75,19 @@ router.route('/google/callback').get(
   }
 )
 
-app.get('/logout', (req,res)=>{
-  res.clearCookie('cookie');
-  res.status(200).json({
-    success: true,
-    message: 'Logout successful'
-  })
+router.route('/logout').get((req, res) => {
+  try{
+    res.clearCookie('token').status(200).json({
+      success: true,
+      message: 'Logout successful'
+    })
+  }
+  catch(error){
+    res.status(500).json({
+      success: false,
+      message: error.message
+    })
+  }
 })
 
 module.exports = router;

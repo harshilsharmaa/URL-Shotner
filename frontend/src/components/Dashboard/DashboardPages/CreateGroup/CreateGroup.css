@@ -1,0 +1,177 @@
+.create-group-body{
+    margin: 0 auto;
+    width: 95%;
+}
+
+.group-name-form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.group-name-form input{
+    width: 40%;
+    padding: 12px 10px;
+    background: rgba(128, 0, 128, 0.127);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: #ccc;
+    font-size: 2rem;
+    margin: 0 auto;
+}
+
+.add-url{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+}
+
+.add-url h1{
+    font-size: 2rem;
+    color: #ccc;
+    text-align: center;
+}
+.add-url-left{
+    width: 45%;
+    border: 2px solid purple;
+    border-radius: 7px;
+    padding: 0 5px;
+    
+}
+
+.add-url-right{
+    width: 45%;
+    border: 2px solid purple;
+    border-radius: 7px;
+    padding: 0 5px;
+}
+
+.add-url-list{
+    height: 40rem;
+    overflow-y: auto;
+}
+
+.add-url-save-btn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 20px; */
+}
+
+.add-url-save-btn button{
+    width: 70%;
+    padding: 7px 10px;
+    background: rgba(0, 128, 0, 0.396);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: #ccc;
+    font-size: 2rem;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-url-save-btn button:hover{
+    background: rgba(0, 128, 0, 0.596);
+}
+
+.add-url-shuffle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.add-url-shuffle button{
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.add-url-shuffle button img{
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-url-shuffle #remove-btn{
+    /* make image red color */
+    filter: hue(100%);
+
+}
+
+
+/* ---------------------- url-g */
+
+.url-g{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 100%; */
+    height: 50px;
+    background-color: #7b0bc051;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    margin: 6px 0;
+}
+
+.url-g-component{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+    color: #ccc;
+    font-size: 1.6rem;
+}
+
+.url-g .name{
+    font-size: 1.6rem;
+    width: 12%;
+}
+
+.url-g input{
+    /* width: 57%; */
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.comb-url-g{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 57%;
+}
+
+.comb-url-g #shortUrl{
+    font-size: 1.6rem;
+    color: rgb(0, 128, 60);
+    font-weight: bold;
+}
+
+
+
+.comb-url-g #shortUrl span:hover{
+    color: rgb(0, 128, 60);
+}
+
+.comb-url-g #longUrl{
+    font-size: 1.2rem;
+    color: #ccc;
+    font-weight: bold;
+}

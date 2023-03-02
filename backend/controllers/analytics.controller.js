@@ -1,9 +1,10 @@
 const Url = require("../models/Url");
 const Analytics = require("../models/Analytics");
 const User = require("../models/User");
+const UrlGroup = require("../models/UrlGroup");
 
+const calculateAnalytics = async (req, type) => {
 
-exports.getAnalytics = async (req, res) => {
     try {
 
         const userId = req.user._id;
@@ -16,26 +17,54 @@ exports.getAnalytics = async (req, res) => {
         let clicksThisMonth = 0;
         let clicksToday = 0;
 
-        const allUrls = await Url.find({ owner: userId }).populate('analytics');
+        if (type === 'all' || type === 'group') {
 
-
-        for (let i = 0; i < allUrls.length; i++) {
-            const url = allUrls[i];
-            const analytics = url.analytics;
-            if (analytics) {
-                clicksTotal += analytics.clicks.length;
-                clicksThisYear += analytics.clicks.filter(click => click.getFullYear() === new Date().getFullYear()).length;
-                clicksThisMonth += analytics.clicks.filter(click => click.getMonth() === new Date().getMonth()).length;
-                clicksToday += analytics.clicks.filter(click => click.getDate() === new Date().getDate()).length;
-                os = os.concat(analytics.os);
-                browser = browser.concat(analytics.browsers);
-                device = device.concat(analytics.devices);
+            let allUrls;
+            if (type === 'all') {
+               allUrls = await Url.find({ owner: userId }).populate('analytics');
             }
+            else if (type === 'group') {
+                const group = await UrlGroup.findById(req.params.id).populate({path: 'urls', populate: {path: 'analytics'}});
+                if(!group || group.owner.toString() !== userId.toString()){
+                    return false;
+                }
+                allUrls = group.urls;
+            }
+
+            for (let i = 0; i < allUrls.length; i++) {
+                const url = allUrls[i];
+                const analytics = url.analytics;
+                if (analytics) {
+                    clicksTotal += analytics.clicks.length;
+                    clicksThisYear += analytics.clicks.filter(click => click.getFullYear() === new Date().getFullYear()).length;
+                    clicksThisMonth += analytics.clicks.filter(click => click.getMonth() === new Date().getMonth()).length;
+                    clicksToday += analytics.clicks.filter(click => click.getDate() === new Date().getDate()).length;
+                    os = os.concat(analytics.os);
+                    browser = browser.concat(analytics.browsers);
+                    device = device.concat(analytics.devices);
+                }
+            }
+
+        }
+        else if (type === 'single') {
+            const analytics = await Analytics.findOne({ urlHash: req.params.hash, user: userId });
+
+            if(!analytics) {
+                return false;
+            }
+
+            clicksTotal = analytics.clicks.length;
+            clicksThisYear = analytics.clicks.filter(click => click.getFullYear() === new Date().getFullYear()).length;
+            clicksThisMonth = analytics.clicks.filter(click => click.getMonth() === new Date().getMonth()).length;
+            clicksToday = analytics.clicks.filter(click => click.getDate() === new Date().getDate()).length;
+            os = os.concat(analytics.os);
+            browser = browser.concat(analytics.browsers);
+            device = device.concat(analytics.devices);
         }
 
-        const osCount = {};
-        const browserCount = {};
-        const deviceCount = {};
+        let osCount = {};
+        let browserCount = {};
+        let deviceCount = {}
 
         for (let i = 0; i < os.length; i++) {
             osCount[os[i]] = (osCount[os[i]] || 0) + 1;
@@ -53,14 +82,12 @@ exports.getAnalytics = async (req, res) => {
                 count: osCount[key]
             })
         }
-
         for (let key in browserCount) {
             browserArray.push({
                 name: key,
                 count: browserCount[key]
             })
         }
-
         for (let key in deviceCount) {
             deviceArray.push({
                 name: key,
@@ -68,21 +95,33 @@ exports.getAnalytics = async (req, res) => {
             })
         }
 
-        res.status(200).json({
+
+        return {
+            clicks: {
+                total: clicksTotal,
+                thisYear: clicksThisYear,
+                thisMonth: clicksThisMonth,
+                today: clicksToday
+            },
+            os: osArray,
+            browser: browserArray,
+            device: deviceArray
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
+exports.getAnalytics = async (req, res) => {
+    try {
+
+        const analytics = await calculateAnalytics(req, 'all');
+        return res.status(200).json({
             success: true,
             message: 'Analytics fetched successfully',
-            analytics: {
-                clicks: {
-                    total: clicksTotal,
-                    thisYear: clicksThisYear,
-                    thisMonth: clicksThisMonth,
-                    today: clicksToday
-                },
-                os: osArray,
-                browser: browserArray,
-                device: deviceArray
-            }
-        });
+            analytics
+        })
 
     }
     catch (error) {
@@ -94,92 +133,50 @@ exports.getAnalytics = async (req, res) => {
 }
 
 exports.urlAnalytics = async (req, res) => {
-    try{
+    try {
 
-        if(!req.params.hash){
-            return res.status(400).json({
-                error: "Please Provide url hash",
-                success: false
-            })
-        }
-
-        const userId = req.user._id;
-
-        let os = [];
-        let browser = [];
-        let device = [];
-        let clicksTotal = 0;
-        let clicksThisYear = 0;
-        let clicksThisMonth = 0;
-        let clicksToday = 0;
-        console.log(req.params.hash)
-        const analytics = await Analytics.findOne({ urlHash: req.params.hash, user: userId });
+        const analytics = await calculateAnalytics(req, 'single');
         if(!analytics){
             return res.status(404).json({
-                success:false,
+                success: false,
                 error: 'url not found'
             })
         }
 
-        clicksTotal = analytics.clicks.length;
-        clicksThisYear = analytics.clicks.filter(click => click.getFullYear() === new Date().getFullYear()).length;
-        clicksThisMonth = analytics.clicks.filter(click => click.getMonth() === new Date().getMonth()).length;
-        clicksToday = analytics.clicks.filter(click => click.getDate() === new Date().getDate()).length;
-        os = os.concat(analytics.os);
-        browser = browser.concat(analytics.browsers);
-        device = device.concat(analytics.devices);
-
-        let osCount = {};
-        let browserCount = {};
-        let deviceCount = {}
-
-        for(let i=0;i<os.length;i++){
-            osCount[os[i]] = (osCount[os[i]] || 0) + 1;
-            browserCount[browser[i]] = (browserCount[browser[i]] || 0) + 1;
-            deviceCount[device[i]] = (deviceCount[device[i]] || 0) + 1;
-        }
-
-        const osArray = [];
-        const browserArray = [];
-        const deviceArray = [];
-
-        for(let key in osCount){
-            osArray.push({
-                name: key,
-                count: osCount[key]
-            })
-        }
-        for(let key in browserCount){
-            browserArray.push({
-                name: key,
-                count: browserCount[key]
-            })
-        }
-        for(let key in deviceCount){
-            deviceArray.push({
-                name: key,
-                count: deviceCount[key]
-            })
-        }
-
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: 'Analytics fetched successfully',
-            analytics: {
-                clicks: {
-                    total: clicksTotal,
-                    thisYear: clicksThisYear,
-                    thisMonth: clicksThisMonth,
-                    today: clicksToday
-                },
-                os: osArray,
-                browser: browserArray,
-                device: deviceArray
-            }
-        });
+            analytics
+        })
 
     }
-    catch(error){
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        })
+    }
+}
+
+exports.groupAnalytics = async (req, res) => {
+    try {
+
+        const analytics = await calculateAnalytics(req, 'group');
+        if(!analytics){
+            return res.status(404).json({
+                success: false,
+                error: 'group not found'
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'Analytics fetched successfully',
+            analytics
+        })
+
+    }
+    catch (error) {
         res.status(500).json({
             success: false,
             error: error.message
@@ -191,13 +188,26 @@ exports.getClicks = async (req, res) => {
     try {
 
         let specificUrl = false;
-
-        if (req.query.hash) {
+        let specificGroup = false;
+        if(req.query.group){
+            specificGroup = true;
+        }
+        else if (req.query.hash) {
             specificUrl = true;
         }
 
         let analytics;
-        if (specificUrl) {
+        if(specificGroup){
+            const group = await UrlGroup.findById(req.query.group).populate({path: 'urls', populate: {path: 'analytics'}});
+            if(!group || group.owner.toString() !== req.user._id.toString()){
+                return res.status(404).json({
+                    success: false,
+                    message: 'Group not found'
+                })
+            }
+            analytics = group.urls.map(url => url.analytics);
+        }
+        else if (specificUrl) {
             const url = await Url.findOne({ hash: req.query.hash });
             if (!url) {
                 return res.status(404).json({
@@ -214,7 +224,8 @@ exports.getClicks = async (req, res) => {
             analytics = await Analytics.findOne({ urlHash: req.query.hash });
         }
         else {
-            analytics = await Analytics.find({ owner: req.user._id });
+            analytics = await Analytics.find({ user: req.user._id });
+
         }
 
 
@@ -239,6 +250,13 @@ exports.getClicks = async (req, res) => {
                         }
                     }
                 }
+            }
+
+            let monthsName = { '1': 'Jan', '2': 'Feb', '3': 'Mar', '4': 'Apr', '5': 'May', '6': 'Jun', '7': 'Jul', '8': 'Aug', '9': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dec' };
+
+            for (let key in months) {
+                months[monthsName[key]] = months[key];
+                delete months[key];
             }
 
             return res.status(200).json({
@@ -318,24 +336,24 @@ exports.getClicks = async (req, res) => {
             let months = {};
 
             let fromDate;
-            if (req.query.duration === 'last-3-months'){
+            if (req.query.duration === 'last-3-months') {
                 fromDate = new Date(new Date().getTime() - 90 * 24 * 60 * 60 * 1000);
-                for(let i = 1; i <= 3; i++){
+                for (let i = 1; i <= 3; i++) {
                     months[new Date(fromDate.getTime() + i * 30 * 24 * 60 * 60 * 1000).getMonth() + 1] = 0;
                 }
             }
-            if (req.query.duration === 'last-6-months'){
+            if (req.query.duration === 'last-6-months') {
                 fromDate = new Date(new Date().getTime() - 180 * 24 * 60 * 60 * 1000);
-                for(let i = 6; i >= 1; i--){
+                for (let i = 6; i >= 1; i--) {
                     months[new Date(fromDate.getTime() + i * 30 * 24 * 60 * 60 * 1000).getMonth() + 1] = 0;
                 }
-            } 
-            if (req.query.duration === 'last-9-months'){
+            }
+            if (req.query.duration === 'last-9-months') {
                 fromDate = new Date(new Date().getTime() - 270 * 24 * 60 * 60 * 1000);
-                for(let i = 1; i <= 9; i++){
+                for (let i = 1; i <= 9; i++) {
                     months[new Date(fromDate.getTime() + i * 30 * 24 * 60 * 60 * 1000).getMonth() + 1] = 0;
                 }
-            } 
+            }
 
 
             if (specificUrl) {
@@ -346,6 +364,7 @@ exports.getClicks = async (req, res) => {
                 }
             }
             else {
+                console.table(analytics);
                 for (let i = 0; i < analytics.length; i++) {
                     for (let j = 0; j < analytics[i].clicks.length; j++) {
                         if (analytics[i].clicks[j] >= fromDate) {

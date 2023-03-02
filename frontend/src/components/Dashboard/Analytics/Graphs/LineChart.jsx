@@ -34,11 +34,10 @@ export const options = {
   plugins: {
     legend: {
       display: false,
-      // position: 'top',
     },
     title: {
       display: true,
-      text: 'Line Chart',
+      // text: 'Line Chart',
     },
   },
 };
@@ -46,6 +45,7 @@ export const options = {
 const LineChart = ({urlHash, duration}) => {
 
   const { clicks } = useSelector(state => state.clicks);
+  // console.log(clicks);
 
   const [labelInfo, setLabelInfo] = useState('');
   const [clickCount, setClickCount] = useState('');
@@ -62,6 +62,7 @@ const LineChart = ({urlHash, duration}) => {
         borderWidth: 1,
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
         tension: 0,
+        // pointStyle: false,
       },
     ],
   };
@@ -69,16 +70,12 @@ const LineChart = ({urlHash, duration}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(urlHash){
-      dispatch(getClicks(urlHash, duration))
-    }
-    else{
-      dispatch(getClicks(false, duration))
-    }
-  }, [duration, urlHash]);
+    dispatch(getClicks(urlHash, duration))
+  }, [duration]);
 
   useEffect(() => {
     if (clicks) {
+      console.log(clicks);
       let labels = Object.keys(clicks);
       let clickCount = Object.values(clicks);
       
@@ -90,7 +87,9 @@ const LineChart = ({urlHash, duration}) => {
 
   return (
     <div className="canvas-div line" id="all_three_line-div d-inline-block">
-      <Line options={options} data={data} />
+      {
+        clicks && Object.keys(clicks).length > 0 ? <Line options={options} data={data} /> : <h4 style={{"font-size":"1.6rem"}} className="text-center">Not enough data to track</h4>
+      }
     </div>
   )
 }

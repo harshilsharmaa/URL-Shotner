@@ -15,18 +15,18 @@ const urlGroupSchema = new mongoose.Schema({
             ref: 'User'
         }
     ],
-    analytics:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Analytics'
-    },
+    urls:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Url'
+        }
+    ],
     createdAt: {
         type: Date
     },
     updatedAt: {
-        type: Date
-    },
-    expiryDate: {
-        type: Date
+        type: Date,
+        default: Date.now
     }
 })
 

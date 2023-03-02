@@ -1,14 +1,16 @@
 import React,{useState, useEffect} from 'react';
 import GoogleButton from 'react-google-button';
 import './Login-Register.css';
-import { loginUserEmail, loginUserGoogle } from '../../Actions/User.actions';
+import { loginUserEmail, loginUserGoogle, loadUser } from '../../Actions/User.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import Alert from '../Alert/Alert';
+import Loader from '../Loader/Loader';
 
 const Login = () => {
 
-    const {error, message, status} = useSelector(state => state.user);
+    const {loading:userLoading, user, error, message} = useSelector(state => state.user);
+    const {loading:loginUserLoading ,message:loggedInMessage, error:loggedInError} = useSelector(state => state.loginUser);;
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -33,24 +35,35 @@ const Login = () => {
         window.location.href = 'http://localhost:4000/auth/google';
     }
 
+    useEffect(()=>{
+        console.log(user);
+        if(user) {
+            navigate('/dashboard-home');
+        }
+    },[user,message])
+
     useEffect(() => {
-        if(error){
+        if(loggedInError){
             setTimeout(() => {
                 dispatch({type: 'CLEAR_ERRORS'})
             }, 5000);
         }
-        if(message){
+        if(loggedInMessage){
+            dispatch(loadUser());
             setTimeout(() => {
                 dispatch({type: 'CLEAR_MESSAGES'})
             }, 5000);
         }
-    }, [error, message])
+    }, [loggedInError, loggedInMessage])
 
   return (
     <div className='login-register'>
+        {
+            loginUserLoading || userLoading ? <Loader/> : null
+        }
          {
-                error ? <Alert text={error} type={"error"}/> :
-                message ? <Alert text={message} type={"success"}/>: null
+                loggedInError ? <Alert text={loggedInError} type={"error"}/> :
+                loggedInMessage ? <Alert text={loggedInMessage} type={"success"}/>: null
             }
         <h2>Login</h2>
         <div className="login-register-form">

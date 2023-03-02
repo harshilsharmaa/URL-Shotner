@@ -1,19 +1,26 @@
 import {configureStore} from '@reduxjs/toolkit';
 
 import {
-    userReducer
+    userReducer,
+    loginUserReducer
 } from './Reducers/User.reducer';
 
 import {
     urlReducer,
     createUrlReducer,
     viewUrlReducer,
-    deleteUrlReducer
+    deleteUrlReducer,
+    createGroupReducer,
+    getAllGroupsReducer,
+    getGroupReducer,
+    deleteGroupReducer
 } from './Reducers/Url.reducer';
 
 import {
     analyticsReducer,
-    clicksReducer
+    clicksReducer,
+    urlAnalyticsReducer,
+    groupAnalyticsReducer
 } from './Reducers/Analytics.reducer';
 
 const store = configureStore({
@@ -24,7 +31,14 @@ const store = configureStore({
         url: viewUrlReducer,
         analytics: analyticsReducer,
         clicks: clicksReducer,
-        deleteUrl: deleteUrlReducer
+        deleteUrl: deleteUrlReducer,
+        urlAnalytics: urlAnalyticsReducer,
+        groupAnalytics: groupAnalyticsReducer,
+        createGroup: createGroupReducer,
+        allGroups: getAllGroupsReducer,
+        loginUser: loginUserReducer,
+        groupById: getGroupReducer,
+        deleteGroup: deleteGroupReducer
     }
 });
 

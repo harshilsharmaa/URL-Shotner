@@ -7,6 +7,11 @@ import MyURLs from './DashboardPages/MyURLs/MyURLs'
 import CreateURL from './DashboardPages/CreateUrl/CreateURL'
 import ViewURL from './DashboardPages/ViewURL/ViewURL'
 import EditUrl from './DashboardPages/EditUrl/EditUrl'
+import Plans from './DashboardPages/Plans/Plan'
+import GroupUrl from './DashboardPages/GroupUrl/GroupUrl'
+import ShowGroup from './DashboardPages/GroupUrl/ShowGroup'
+import CreateGroup from './DashboardPages/CreateGroup/CreateGroup'
+import GroupAnalytics from './DashboardPages/GroupUrl/GroupAnalytics'
 import './Dashboard.css'
 
 const Dashboard = ({page}) => {
@@ -26,6 +31,11 @@ const Dashboard = ({page}) => {
           page==='createUrl' ? <CreateURL /> :
           page==='viewUrl' ? <ViewURL /> :
           page==='editUrl' ? <EditUrl /> :
+          page==='plans' ? <Plans /> :
+          page==='group' ? <GroupUrl/>:
+          page==='show-group' ? <ShowGroup/> :
+          page==='create-group' ? <CreateGroup/> :
+          page==='group-analytics' ? <GroupAnalytics/> :
           <h1>404</h1>
         }
       </section>

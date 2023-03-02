@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const Url = require('../models/Url');
 const Analytics = require('../models/Analytics');
+const UrlGroup = require('../models/UrlGroup'); 
 
 exports.getAllUser = async (req, res)=>{
     try {
@@ -25,6 +26,46 @@ exports.removeAllUser = async (req, res)=>{
             users
         })
     } catch (error) {
+        res.status(400).json({
+            success:false,
+            message: error.message
+        })
+    }
+}
+
+exports.removeAllGroups = async(req,res)=>{
+    try {
+        const groups = await UrlGroup.deleteMany();
+        res.status(200).json({
+            success: true,
+            groups
+        })
+    } catch (error) {
+        res.status(400).json({
+            success:false,
+            message: error.message
+        })
+    }
+}
+
+exports.getAllData = async(req,res)=>{
+    try{
+
+        const users = await User.find();
+        const urls = await Url.find();
+        const analytics = await Analytics.find();
+        const groups = await UrlGroup.find();
+
+        res.status(200).json({
+            success: true,
+            users:{count:users.length, users},
+            urls:{count:urls.length, urls},
+            analytics:{count:analytics.length, analytics},
+            groups:{count:groups.length, groups}
+        })
+
+    }
+    catch(error){
         res.status(400).json({
             success:false,
             message: error.message
