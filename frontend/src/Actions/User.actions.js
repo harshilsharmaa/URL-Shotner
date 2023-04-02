@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const rootUrl = 'http://localhost:4000';
-// const rootUrl = '';
+// const rootUrl = 'http://localhost:4000';
+const rootUrl = '';
 
 export const registerUserEmail = ({username, email, password}) => async (dispatch) => {
 
