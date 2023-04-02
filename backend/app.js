@@ -2,95 +2,60 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const cron = require('node-cron');
 
 dotenv.config({ path: './config/config.env' });
 
 const app = express();
 
+app.use(cors({credentials: true, methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', origin: ['http://localhost:3000', 'http://localhost:4000']}));
+// app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
+
+
+// Route for getting the url
+const {getUrl} = require('./controllers/url.controller');
+app.get('/:hash', getUrl)// s is for short and to not conflict with the routes like /signup
+
+// Routes
+const urlRouter = require('./routes/url.router');
+const googleAuthRouter = require('./auth/google.auth');
+const emailAuthRouter = require('./auth/email.auth');
+const userRouter = require('./routes/user.router');
+const adminRouter = require('./routes/admin.router');
+const analyticsRouter = require('./routes/analytics.router');
+const paymentRouter = require('./routes/payment.router');
+
+// // routers
+app.use('/api/v1/url', urlRouter);
+app.use('/auth', googleAuthRouter);
+app.use('/auth-email', emailAuthRouter);
+app.use('/api/v1/user', userRouter);
+app.use('/api/v1/admin', adminRouter);
+app.use('/api/v1/analytics', analyticsRouter);
+app.use('/api/v1/payment', paymentRouter);
 
 
 
-const Url = require('./models/Url');
-
-
-app.post('/shorten', async(req, res)=>{
-
-    const originalUrl = req.body.originalUrl;
-
-    const checkUrl = await Url.findOne({originalUrl});
-
-   
-
-    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let urlId = '';
-
-    const genrateUrlId = ()=>{
-
-        const charactersLength = characters.length;
-        for ( let i = 0; i < 7; i++ ) {
-            urlId += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-    }
-
-    const checkUrlId = await Url.findOne({urlId});
-
-    if(checkUrlId){
-        genrateUrlId();
-    }
-
-
-    if(checkUrl){
-
-        genrateUrlId();
-
-        checkUrl.urlId = urlId; 
-        checkUrl.save();
-    }
-    else{
-
-        genrateUrlId();
-
-        const url = await Url.create({
-            originalUrl,
-            urlId,
-        })
-    }
-
-
-    res.status(200).json({
-        urlId
-    })
-})
-
-app.get('/:urlId', async(req, res)=>{
-
-    try {
-
-        const urlId = req.params.urlId;
-        const url = await Url.findOne({urlId});
-        if(url){
-            return res.redirect(url.originalUrl);
-        }
-
-        res.status(404).json({
-            error: 'Url not found'
-        })
-
-    } catch (error) {
-        console.log(error);
-    }
-
-})
+const {urlSchedule} = require('./controllers/urlSchedule');
+// cron.schedule('*/5 * * * * *', () => {
+    // console.log("Running at every 5 seconds");
+    // urlSchedule();
+// });
 
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
-
 app.get("*", (req,res)=>{
     res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
 });
-
 
 
 module.exports = app;

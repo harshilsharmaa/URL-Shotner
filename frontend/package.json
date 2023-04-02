@@ -3,13 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.0",
+    "canvg": "^4.0.1",
+    "chart.js": "^3.9.1",
+    "chartjs": "^0.3.24",
+    "dateformat": "^5.0.3",
     "react": "^18.0.0",
+    "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.3.0",
+    "react-google-button": "^0.7.2",
+    "react-qr-code": "^2.0.11",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.8.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^2.1.4"
   },
@@ -37,5 +46,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://localhost:4000/"
+  "proxy": "http://localhost:4000/",
+  "devDependencies": {
+    "react-error-overlay": "^6.0.9"
+  }
 }

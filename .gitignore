@@ -1,5 +1,8 @@
 /node_modules
+/secret.txt
 /backend/config/config.env
+/backend/server.key
+/backend/server.cert
 /frontend/node_modules
 /frontend/.pnp
 /frontend/.pnp.js
@@ -13,3 +16,5 @@
 /frontend/.env.development.local
 /frontend/.env.test.local
 /frontend/.env.production.local
+
+/features.md

@@ -1,0 +1,212 @@
+.searchUrl{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0;
+    margin: 20px;
+}
+
+.searchUrl div{
+    /* border: 1px solid red; */
+    display: flex;
+    margin: 0 auto;
+}
+
+.searchUrl div h4{
+    font-size: 1.8rem;
+    color: #ccc;
+}
+
+.searchUrl div .clear-search-btn{
+    width: 60px;
+    height: 25px;
+    border: none;
+    background-color: rgb(249, 179, 179);
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: red;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+.searchUrl input{
+    width: 30%;
+    height: 40px;
+    border: 1px solid #ccc;
+    background-color: #ccc;
+    color: black;
+    border-radius: 5px;
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.searchUrl .search-btn{
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: #ccc;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    outline: none;
+    padding: 5px;
+    cursor: pointer;
+    border-left: 1px solid rgb(134, 134, 134);
+}
+
+.searchUrl .search-btn img{
+    width: 28px;
+    height: 28px;
+    transition: all 0.3s ease;
+}
+
+.searchUrl .search-btn:hover img{
+    width: 30px;
+    height: 30px;
+}
+
+.urlList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    height: 65%;
+}
+
+
+.urlList-heading{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 90%; */
+    height: 50px;
+    background-color: #7b0bc051;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    margin: 15px 20px;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.urlList-heading-component{
+    /* border: 1px solid red; */
+    color: cyan;
+}
+
+.urlList-heading .sr{
+    width: 3%;
+}
+
+.urlList-heading .name{
+    width: 12%;
+}
+
+
+.urlList-heading .comb-url{
+    width: 35%;
+}
+
+.urlList-heading .expiry{
+    width: 6%;
+}
+
+.urlList-heading .analytics{
+    width: 6%;
+}
+
+
+.urlList-heading .edit{
+    width: 6%;
+}
+
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+}
+
+
+.pagination .page-btn{
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    cursor: pointer;
+    color: white;
+    margin: 0 1px;
+    cursor: pointer;
+}
+
+.pagination .page-btn-enabled{
+    background-color: #6b15a0;
+}
+
+.pagination .page-btn-disabled{
+    background-color: #7c7c7c;
+    cursor: not-allowed;
+}
+
+.pagination #next{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 50px;
+    margin-left: 4px;
+}
+
+.pagination #prev{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 50px;
+    margin-right: 4px;
+}
+
+
+.no-urls{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 2rem;
+    color: #ccc;
+}
+
+.no-urls h4{
+    font-size: 2rem;
+    color: #ccc;
+}
+
+.no-urls button{
+    width: 100px;
+    height: 40px;
+    border: none;
+    background-color: #6b15a0;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+}

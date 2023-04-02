@@ -1,6 +1,6 @@
 {
   "name": "url-shotner",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,10 +11,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "hbs": "^4.2.0",
-    "mongoose": "^6.3.1"
+    "http-proxy-middleware": "^2.0.6",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.3.1",
+    "node-cron": "^3.0.2",
+    "node-device-detector": "^2.0.11",
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0",
+    "pdfkit": "^0.13.0",
+    "razorpay": "^2.8.6"
   }
 }

@@ -1,0 +1,107 @@
+DataBase Schema
+    - user
+        username: string
+        password: string
+        email: string (unique)
+        phone: string (unique) - optional
+        urls: reference to url schema (array)
+        urlsGroup: reference to urlsGroup schema (array)
+        analytics: reference to analytics schema (array)
+        team: reference to user schema
+        points: number
+        premiumMember: boolean
+        premiumPlan: string
+        premiumPlanStartDate: date
+        premiumExpiration: date
+        transactions: reference to transaction schema (array)
+        loginDate: date
+        createdAt: date
+        updatedAt: date
+
+    - url
+        longUrl: string
+        shortUrl: string
+        hash: string
+        urlName: string
+        urlGroup: reference to urlGroup schema
+        password: string (default: null)
+        owner: reference to user schema
+        users: reference to user schema
+        analytics: reference to analytics schema
+        createdAt: date
+        updatedAt: date
+        expiryDate: date
+
+    - urlGroup
+        urlGroup: reference to urlGroup schema
+        owner: reference to user schema
+        users: reference to user schema
+        urls: reference to url schema
+        createdAt: date
+        updatedAt: date
+
+    - analytics
+        url: reference to url schema
+        user: reference to user schema
+        clicks: number
+        countries: string (array)
+        devices: string (array)               // if possible
+        browsers: string (array)              // if possible
+        operatingSystems: string (array)      // if possible
+        createdAt: date
+        updatedAt: date
+
+    - transaction
+        transactionId: string
+        user: reference to user schema
+        amount: number
+        premiumPlan: string
+        createdAt: date
+
+    - problemReport
+        user: reference to user schema
+        status: string
+        problem: string
+        createdAt: date
+
+-------------------------------------------------------------------------------------------------------------------
+
+APIs
+    - user
+        - POST
+            - signup
+            - login
+            - logout
+            - forgot password
+            - reset password
+        - change password
+        - change username
+        - profile
+        - GET
+            - get user urls
+            - get user urlsGroup
+            - get user analytics
+            - get user points
+            - get user premiumMember
+            - get user premiumPlan
+            - get user premiumExpiration
+            - get user team
+        - UPDATE
+            - update user details
+            - update user urls
+            - update user urlsGroup
+            - update user analytics
+            - update user points
+            - update user premiumMember
+            - update user premiumPlan
+            - update user premiumExpiration
+            - update user team
+        - DELETE
+            - delete account
+            - delete urlsGroup
+            - remove user from team
+
+    - url
+        - create url
+        - get url analytics
+        

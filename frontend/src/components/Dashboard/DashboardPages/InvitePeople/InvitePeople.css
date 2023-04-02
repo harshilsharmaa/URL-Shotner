@@ -1,0 +1,72 @@
+.invite-people-content{
+    padding: 0 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.invite-people-content p{
+    font-size: 2.6rem;
+    color: #ccc;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.invite-people-link{
+    font-size: 2.6rem;
+    color: #ccc;
+    margin: 0;
+    margin-bottom: 20px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.invite-people-link input{
+    width: 70%;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background-color: #ccc;
+}
+
+.invite-people-link button{
+    width: 15%;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 1.6rem;
+    background-color: #290552;
+    color: #fff;
+    cursor: pointer;
+}
+
+.invite-people-social{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.invite-people-social h4{
+    font-size: 1.8rem;
+    color: #ccc;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.invite-people-social img{
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    cursor: pointer;
+
+}
