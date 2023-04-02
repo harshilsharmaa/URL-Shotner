@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './Home.css'
 import Navbar from '../Navbar/Navbar'
@@ -95,7 +95,7 @@ const Home = () => {
 
 
             <div className="login-section">
-                <p>Login Now to access all features <a href="/login">Login</a></p>
+                <p>Login Now to access all features <Link to="/v/login">Login</Link></p>
             </div>
 
             <div id={"features"} className="features-section">

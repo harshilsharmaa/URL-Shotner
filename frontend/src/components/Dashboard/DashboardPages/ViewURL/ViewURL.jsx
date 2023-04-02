@@ -68,7 +68,7 @@ const ViewURL = () => {
         }
         if (deleteUrlMessage) {
             setMessage(deleteUrlMessage)
-            navigate('/myUrls', { replace: true });
+            navigate('/v/myUrls', { replace: true });
         }
         if (deleteUrlError) {
             setError(deleteUrlError);

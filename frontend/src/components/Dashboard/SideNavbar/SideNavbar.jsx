@@ -14,7 +14,7 @@ const SideNavbar = () => {
 
     useEffect(() => {
         if(!user){
-           navigate('/login', {replace: true});
+           navigate('/v/login', {replace: true});
         }
     }, [user])
 
@@ -45,7 +45,7 @@ const SideNavbar = () => {
                         )
                     })
                 }
-                <Link to={'/createURL'}>
+                <Link to={'/v/createURL'}>
                     <div className='menu-item' id='create-url-btn'>
                         {/* <div className="menu-item-icon">
                         <img src={item.icon} alt={item.title} />

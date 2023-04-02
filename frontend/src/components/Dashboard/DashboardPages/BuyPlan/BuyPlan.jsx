@@ -23,7 +23,7 @@ const BuyPlan = () => {
             if(type==='360') setPlan(PlanData[2]);
             return;
         } 
-        navigate('/plans')
+        navigate('/v/plans')
     }, [type])
 
     useEffect(()=>{
