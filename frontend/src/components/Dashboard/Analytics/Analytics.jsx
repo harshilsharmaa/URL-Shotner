@@ -22,12 +22,12 @@ const Analytics = ({analytics, urlHash, groupId}) => {
   //   if(groupId) console.log('groupId', groupId);
   // },[urlHash, groupId])
 
-  useEffect(() => {
-    if(reportUrl) {
-      window.location = reportUrl;
+  // useEffect(() => {
+    // if(reportUrl) {
+      // window.location = reportUrl;
       // console.log('reportUrl', reportUrl);
-    };
-  },[reportUrl])
+    // };
+  // },[reportUrl])
 
   const handleGenrateReport = () => {
     if(urlHash) dispatch(generateUrlReport(urlHash));

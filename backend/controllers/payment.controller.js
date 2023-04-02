@@ -74,7 +74,7 @@ exports.paymentVerification = async (req, res) => {
         user.urlsLimitPerWeek = 10000;
         user.save();
 
-        res.redirect(`http://localhost:3000/payment/success?reference=${razorpay_payment_id}`);
+        res.redirect(`https://urily.onrender.com/v/payment/success?reference=${razorpay_payment_id}`);
     }
     catch (error) {
         res.status(500).json({

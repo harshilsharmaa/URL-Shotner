@@ -413,13 +413,13 @@ exports.genrateUrlReport = async (req, res) => {
                 message: 'Report not genrated',
             })
         }
-
-        return res.status(200).json({
-            success: true,
-            message: 'Report genrated successfully',
-            // reportUrl: `${process.env.BASE_URL}/${genrated}`
-            reportUrl: `${genrated}`
-        })
+        res.download(genrated);
+        // return res.status(200).json({
+        //     success: true,
+        //     message: 'Report genrated successfully',
+        //     // reportUrl: `${process.env.BASE_URL}/${genrated}`
+        //     reportUrl: `${genrated}`
+        // })
         
         
     }
