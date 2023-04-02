@@ -31,7 +31,7 @@ const Signup = () => {
     useEffect(() => {
         if(status === 'success'){
             dispatch({type: 'CLEAR_STATUS'})
-            navigate('/dashboard-home');
+            navigate('/v/dashboard-home');
         }
         if(error){
             setTimeout(() => {
@@ -48,6 +48,10 @@ const Signup = () => {
     useEffect(()=>{
         if(user) navigate('/v/dashboard-home');
     },[user])
+
+    const handleGoogleSignup = () => {
+        window.location.href = 'https://urily.onrender.com/auth/google';
+    }
 
     return (
         <div className='login-register'>
@@ -76,7 +80,7 @@ const Signup = () => {
             <p id='or'>or</p>
             <GoogleButton
                 label="Continue with Google"
-                onClick={() => { console.log('Google button clicked') }}
+                onClick={(e)=>handleGoogleSignup() }
             />
         </div>
     )

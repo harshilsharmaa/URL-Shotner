@@ -30,15 +30,13 @@ const Login = () => {
     }
 
     const handleGoogleLogin = () => {
-        // dispatch(loginUserGoogle());
-        // navigate('/auth/google');
-        window.location.href = 'http://localhost:4000/auth/google';
+        window.location.href = 'https://urily.onrender.com/auth/google';
     }
 
     useEffect(()=>{
         console.log(user);
         if(user) {
-            navigate('/dashboard-home');
+            navigate('/v/dashboard-home');
         }
     },[user,message])
 

@@ -123,7 +123,7 @@ const ViewURL = () => {
                                 <h3>URL - {url.urlName.length > 0 ? url.urlName : ""} ({url.hash})</h3>
                             </div>
                             <div className="common viewUrl-btn-section">
-                                <button onClick={((e) => navigate(`/editUrl/${url.hash}`))}>
+                                <button onClick={((e) => navigate(`/v/editUrl/${url.hash}`))}>
                                     <p>Edit</p>
                                     <img src={edit} alt="" />
                                 </button>
