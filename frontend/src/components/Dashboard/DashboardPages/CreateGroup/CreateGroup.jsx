@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './CreateGroup.css'
-import { Link, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 import arrowIcon from '../../../../images/arrow-right.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMyUrls, createGroup } from '../../../../Actions/Url.actions'
+import removeIcon from '../../../../images/remove.png'
 
 const CreateGroup = () => {
 
@@ -25,8 +26,20 @@ const CreateGroup = () => {
     }, [])
 
     useEffect(()=>{
-        setAllUrls(urls);
+        if(urls){
+            if(currentPage===1){
+                setAllUrls(urls);
+            }
+            else{
+
+                setAllUrls((prev)=>[...prev, ...urls]);
+                // scroll to bottom in element : add-url-list
+                const addUrlList = document.getElementById('add-url-list');
+                addUrlList.scrollTop = addUrlList.scrollHeight;
+            }
+        }
     },[urls])
+    
 
     useEffect(()=>{
         if(createdGroup){
@@ -58,6 +71,12 @@ const CreateGroup = () => {
         dispatch(createGroup(groupName, addedUrls));
     }
 
+    const handleLoadMore = ()=>{
+
+        dispatch(getMyUrls(currentPage+1));
+        setCurrentPage(currentPage+1);
+    }
+
     return (
         <div className='create-group page-container'>
             <div className="heading">
@@ -76,7 +95,9 @@ const CreateGroup = () => {
                                     return (
                                         <div className='url-g'>
                                             <div className="url-g-component select-url-g">
-                                                <button onClick={(e)=>handleRemove( url)}>remove</button>
+                                                <button id='remove-btn' onClick={(e)=>handleRemove( url)}> 
+                                                remove
+                                                </button>
                                             </div>
                                             <div className="url-g-component name">
                                                 <p>{url.urlName}</p>
@@ -94,14 +115,17 @@ const CreateGroup = () => {
 
                     <div className="add-url-right">
                         <h1>All Urls</h1>
-                        <div className="add-url-list">
+                        <div id='add-url-list' className="add-url-list">
 
+                            {/* {
+                                allUrls && allUrls.length>0 ? console.log(allUrls):null
+                            } */}
                             {
                                 allUrls?.length>0 ? allUrls.map((url, index) => {
                                     return (
                                         <div className='url-g'>
                                             <div className="url-g-component select-url-g">
-                                                <button onClick={(e)=>handleAdd(url)}>Add</button>
+                                                <button id='add-btn' onClick={(e)=>handleAdd(url)}>Add</button>
                                             </div>
                                             <div className="url-g-component name">
                                                 <p>{url.urlName}</p>
@@ -113,8 +137,9 @@ const CreateGroup = () => {
                                         </div>
                                     )
                                 })   
-                                    : null
+                                : null
                             }
+                            <button onClick={(e)=>handleLoadMore()}>Load More</button>
 
                             
 

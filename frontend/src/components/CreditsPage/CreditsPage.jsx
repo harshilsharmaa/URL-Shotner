@@ -24,6 +24,7 @@ const CreditsPage = () => {
                 <a href="https://www.flaticon.com/free-icons/combination" title="combination icons">Combination icons created by ultimatearm - Flaticon</a>
                 <a href="https://www.flaticon.com/free-icons/arrow" title="arrow icons">Arrow icons created by Creative Stall Premium - Flaticon</a>
                 <a href="https://www.flaticon.com/free-icons/barcode" title="barcode icons">Barcode icons created by Dewi Sari - Flaticon</a>
+                <a href="https://www.flaticon.com/free-icons/whatsapp" title="whatsapp icons">Whatsapp icons created by Freepik - Flaticon</a>
             </div>
 
         </div>

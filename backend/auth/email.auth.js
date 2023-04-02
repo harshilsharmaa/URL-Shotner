@@ -39,13 +39,13 @@ router.route('/register').post(
             })
 
             if(req.query.utm){
-                newUser.points = newUser.points + 10;
-                await newUser.save();
-
                 const refererUser = await User.findOne({utmCode: req.query.utm});
                 if(refererUser){
                     refererUser.points = refererUser.points + 10;
                     await refererUser.save();
+
+                    newUser.points = newUser.points + 10;
+                    await newUser.save();
                 }
             }
 

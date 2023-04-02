@@ -4,6 +4,7 @@ import URL from './URL'
 import search from '../../../../images/search.png'
 import { getMyUrls } from '../../../../Actions/Url.actions'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Loader from '../../../Loader/Loader'
 
 const MyURLs = () => {
@@ -17,10 +18,11 @@ const MyURLs = () => {
     const [searchText, setSearchText] = useState('');
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getMyUrls(1));
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         setMyUrls(urls);
@@ -104,6 +106,13 @@ const MyURLs = () => {
                 myUrls && myUrls.length>0 ? myUrls.map((url, index) => {
                         return <URL key={index} sr={(currentPage-1)*6 + index+1} index={index+1} url={url} />
                 }):null
+            }
+            {
+                myUrls && myUrls.length==0 && !loading? <div className='no-urls'>
+                        <h4>No URLs found</h4>
+                        <button onClick={(e)=>navigate('/createUrl')}>Create Url +</button>
+                    </div>
+                : null
             }
         </section>
         <div className="pagination">

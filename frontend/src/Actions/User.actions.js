@@ -176,3 +176,31 @@ export const deleteAccount = () => async (dispatch) => {
         })
     }
 }
+
+export const urlsLimit = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: 'UrlsLimitRequest'
+        })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            withCredentials: 'true'
+        }
+
+        const { data } = await axios.get(`${rootUrl}/api/v1/user/urls-limit`, config);
+
+        dispatch({
+            type: 'UrlsLimitSuccess',
+            payload: data
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: 'UrlsLimitFailure',
+            payload: error.response.data.message
+        })
+    }
+}

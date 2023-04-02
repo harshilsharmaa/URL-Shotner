@@ -40,9 +40,17 @@ export const options = {
       // text: 'Line Chart',
     },
   },
+  scales: {
+    y: {
+      beginAtZero: true,
+      ticks: {
+        stepSize: 1
+      },
+    },
+  }
 };
 
-const LineChart = ({urlHash, duration}) => {
+const LineChart = ({ urlHash, duration }) => {
 
   const { clicks } = useSelector(state => state.clicks);
   // console.log(clicks);
@@ -78,17 +86,17 @@ const LineChart = ({urlHash, duration}) => {
       console.log(clicks);
       let labels = Object.keys(clicks);
       let clickCount = Object.values(clicks);
-      
+
       setLabelInfo(labels);
       setClickCount(clickCount);
     }
-  },[clicks])
+  }, [clicks])
 
 
   return (
     <div className="canvas-div line" id="all_three_line-div d-inline-block">
       {
-        clicks && Object.keys(clicks).length > 0 ? <Line options={options} data={data} /> : <h4 style={{"font-size":"1.6rem"}} className="text-center">Not enough data to track</h4>
+        clicks && Object.keys(clicks).length > 0 ? <Line options={options} data={data} /> : <h4 style={{ "font-size": "1.6rem" }} className="text-center">Not enough data to track</h4>
       }
     </div>
   )

@@ -39,7 +39,7 @@ export const sideNavbarData = [
     },
     {
         title: 'Invite People',
-        path: '/invite',
+        path: '/invite-people',
         icon: invite,
     },
 ]

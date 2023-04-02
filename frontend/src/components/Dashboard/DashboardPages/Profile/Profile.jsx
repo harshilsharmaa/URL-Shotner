@@ -76,10 +76,10 @@ const Profile = () => {
           </div>
           <div className="url-detail-box">
             <div className="left">
-              <h4>Remaining URLs</h4>
+              <h4>URLs Limit</h4>
             </div>
             <div className="right">
-              <h4>5/10</h4>
+              <h4>{user?.premiumMember ? "Unlimited": `${5-user?.urls.length}`}</h4>
             </div>
           </div>
           <div className="url-detail-box">

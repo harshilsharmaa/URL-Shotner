@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const cron = require('node-cron');
 
 dotenv.config({ path: './config/config.env' });
 
@@ -22,7 +23,7 @@ app.use(cookieParser());
 
 // Route for getting the url
 const {getUrl} = require('./controllers/url.controller');
-app.get('/s/:hash', getUrl)// s is for short and to not conflict with the routes like /signup
+app.get('/:hash', getUrl)// s is for short and to not conflict with the routes like /signup
 
 // Routes
 const urlRouter = require('./routes/url.router');
@@ -31,6 +32,7 @@ const emailAuthRouter = require('./auth/email.auth');
 const userRouter = require('./routes/user.router');
 const adminRouter = require('./routes/admin.router');
 const analyticsRouter = require('./routes/analytics.router');
+const paymentRouter = require('./routes/payment.router');
 
 // // routers
 app.use('/api/v1/url', urlRouter);
@@ -39,6 +41,15 @@ app.use('/auth-email', emailAuthRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/analytics', analyticsRouter);
+app.use('/api/v1/payment', paymentRouter);
+
+
+
+const {urlSchedule} = require('./controllers/urlSchedule');
+// cron.schedule('*/5 * * * * *', () => {
+    // console.log("Running at every 5 seconds");
+    // urlSchedule();
+// });
 
 
 // app.use(express.static(path.join(__dirname, "../frontend/build")));

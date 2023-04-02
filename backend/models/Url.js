@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const User = require('./User');
 
 const urlSchema = new mongoose.Schema({
     longUrl: {
@@ -15,12 +17,13 @@ const urlSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    protected:{
+    customHash: {
         type: Boolean,
         default: false
     },
-    password:{
-        type: String,
+    captcha:{
+        type: Boolean,
+        default: false
     },
     urlName:{
         type: String,
@@ -44,6 +47,17 @@ const urlSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Analytics',
     },
+    status:{
+        type: String,
+        default: 'active'
+    },
+    scheduleStatus:{
+        type: Boolean,
+        default: false
+    },
+    scheduleTime:{
+        type: Date
+    },
     createdAt: {
         type: Date,
     },
@@ -51,13 +65,17 @@ const urlSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    expiryDate: {
-        type: Date,
-    }
+    // expireAt: {
+    //     type: Date,
+    //     default: Date.now,
+    //     index: { expires: '1m' },
+    // },
 })
 
 urlSchema.pre('save', async function(next){
     if(this.isModified('password')){
+        console.log("abc");
+        console.log(this.password);
         this.password = await bcrypt.hash(this.password, 10);
     }
     next();

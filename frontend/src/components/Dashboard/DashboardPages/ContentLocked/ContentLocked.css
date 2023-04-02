@@ -1,0 +1,43 @@
+.content-locked{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 89vh; */
+    height: 100vh;
+    width: 100%;
+    padding: 0 20px;
+    /* dark and blur backround */
+    background: rgba(0,0,0,0.5);
+    /* backdrop-filter: blur(5px); */
+}
+
+.content-locked img{
+    max-width: 100px;
+}
+
+.content-locked h4{
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin: 10px 0;
+    color: rgb(154, 39, 39);
+}
+
+.content-locked p{
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin: 10px 0;
+    color: #ccc;
+}
+
+.content-locked button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #1e88e5;
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 40px;
+}

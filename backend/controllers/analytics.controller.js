@@ -3,6 +3,8 @@ const Analytics = require("../models/Analytics");
 const User = require("../models/User");
 const UrlGroup = require("../models/UrlGroup");
 
+const {genrateUrlReport} = require('./genrateReport');
+
 const calculateAnalytics = async (req, type) => {
 
     try {
@@ -382,6 +384,46 @@ exports.getClicks = async (req, res) => {
         }
 
     } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        })
+    }
+}
+
+
+exports.genrateUrlReport = async (req, res) => {
+    try {
+
+        const url = await Url.findOne({ hash: req.params.hash, owner: req.user._id });
+
+        const analytics = await calculateAnalytics(req, 'single');
+        if(!analytics || !url){
+            return res.status(404).json({
+                success: false,
+                error: 'url not found'
+            })
+        }
+
+        const genrated = await genrateUrlReport(url, analytics);
+
+        if(!genrated){
+            return res.status(400).json({
+                success: false,
+                message: 'Report not genrated',
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'Report genrated successfully',
+            // reportUrl: `${process.env.BASE_URL}/${genrated}`
+            reportUrl: `${genrated}`
+        })
+        
+        
+    }
+    catch (error) {
         res.status(500).json({
             success: false,
             error: error.message

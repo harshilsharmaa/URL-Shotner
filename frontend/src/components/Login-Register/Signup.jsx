@@ -75,7 +75,7 @@ const Signup = () => {
             </div>
             <p id='or'>or</p>
             <GoogleButton
-                label="Signup with Google"
+                label="Continue with Google"
                 onClick={() => { console.log('Google button clicked') }}
             />
         </div>

@@ -1,6 +1,6 @@
 export const PlanData = [
     {
-        "id": 1,
+        "id": 0,
         "name": "Free",
         "price": 0,
         "features": [
@@ -13,51 +13,31 @@ export const PlanData = [
                 "value": 0
             },
             {
+                "name": "Unlimited URLs",
+                "value": 0
+            },
+            {
                 "name": "Analytics",
-                "value": 0
-            },
-            {
-                "name": "API Access",
-                "value": 0
-            },
-            {
-                "name": "Custom Domains",
-                "value": 0
-            },
-            {
-                "name": "Password Protection",
-                "value": 0
-            },
-            {
-                "name": "Branded Links",
-                "value": 0
-            },
-            {
-                "name": "Link Expiration",
-                "value": 0
-            },
-            {
-                "name": "Link Notes",
-                "value": 0
-            },
-            {
-                "name": "Link Tags",
-                "value": 0
-            },
-            {
-                "name": "Link Groups",
                 "value": 0
             },
             {
                 "name": "Make Team",
                 "value": 0
-            }
+            },
+            {
+                "name": "Captcha Protection",
+                "value": 0
+            },
+            {
+                "name": "Temprary deactivation/activation",
+                "value": 0
+            },
         ]
     },
     {
-        "id": 2,
+        "id": 30,
         "name": "Monthly",
-        "price": 5,
+        "price": 250,
         "features": [
             {
                 "name": "Shorten URLs",
@@ -68,11 +48,11 @@ export const PlanData = [
                 "value": 1
             },
             {
-                "name": "Analytics",
+                "name": "Unlimited URLs",
                 "value": 1
             },
             {
-                "name": "API Access",
+                "name": "Analytics",
                 "value": 1
             },
             {
@@ -80,39 +60,19 @@ export const PlanData = [
                 "value": 1
             },
             {
-                "name": "Password Protection",
+                "name": "Captcha Protection",
                 "value": 1
             },
             {
-                "name": "Branded Links",
+                "name": "Temprary deactivation/activation",
                 "value": 1
             },
-            {
-                "name": "Link Expiration",
-                "value": 1
-            },
-            {
-                "name": "Link Notes",
-                "value": 1
-            },
-            {
-                "name": "Link Tags",
-                "value": 1
-            },
-            {
-                "name": "Link Groups",
-                "value": 1
-            },
-            {
-                "name": "Make Team",
-                "value": 0
-            }
         ]
     },
     {
-        "id": 3,
+        "id": 360,
         "name": "Annually",
-        "price": 50,
+        "price": 2650,
         "features": [
             {
                 "name": "Shorten URLs",
@@ -127,19 +87,7 @@ export const PlanData = [
                 "value": 1
             },
             {
-                "name": "API Access",
-                "value": 1
-            },
-            {
                 "name": "Custom Domains",
-                "value": 1
-            },
-            {
-                "name": "Password Protection",
-                "value": 1
-            },
-            {
-                "name": "Branded Links",
                 "value": 1
             },
             {
@@ -147,21 +95,13 @@ export const PlanData = [
                 "value": 1
             },
             {
-                "name": "Link Notes",
+                "name": "Make Team (coming soon)",
                 "value": 1
             },
             {
-                "name": "Link Tags",
+                "name": "Temprary deactivation/activation",
                 "value": 1
             },
-            {
-                "name": "Link Groups",
-                "value": 1
-            },
-            {
-                "name": "Make Team",
-                "value": 1
-            }
         ]
     }
 ]

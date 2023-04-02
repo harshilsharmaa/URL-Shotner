@@ -26,6 +26,12 @@
     font-size: 1.6rem;
 }
 
+.footer-bottom #cpr{
+    font-size: 1.4rem;
+    margin-top: 10px;
+    color: #ccc;
+}
+
 .footer-bottom span img{
 
     height: 20px;

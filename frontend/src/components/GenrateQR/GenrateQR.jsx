@@ -43,6 +43,7 @@ const GenrateQR = ({ value, handleCloseGenrateQr }) => {
                         <p>Genrate QR</p>
                         <img src={downloadIcon} alt="" />
                     </button>
+                    <a href="https://web.whatsapp.com/send?text=mai hun harshil" data-action="share/whatsapp/share" target={"_blank"}>Share via Whatsapp web</a>
                 </div>
             </div>
         </div>

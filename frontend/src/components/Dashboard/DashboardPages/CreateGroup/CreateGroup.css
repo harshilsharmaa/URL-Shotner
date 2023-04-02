@@ -56,7 +56,7 @@
 
 .add-url-list{
     height: 40rem;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .add-url-save-btn{
@@ -138,6 +138,27 @@
     box-sizing: border-box;
     color: #ccc;
     font-size: 1.6rem;
+}
+
+.url-g-component button{
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-radius: 2px;
+    padding: 2px 3px;
+}
+
+.url-g-component #add-btn{
+    color: green;
+    background: rgb(105, 253, 105);
+}
+
+.url-g-component #remove-btn{
+    color: red;
+    background: rgb(255, 132, 132);
 }
 
 .url-g .name{

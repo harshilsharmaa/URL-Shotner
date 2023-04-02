@@ -6,17 +6,20 @@ const {
     getAnalytics,
     urlAnalytics,
     groupAnalytics,
-    getClicks 
+    getClicks,
+    genrateUrlReport 
 } = require('../controllers/analytics.controller');
 
 const {
-    isAuthenticated
+    isAuthenticated,
+    premiumMember
 } = require('../middleware/auth.middleware');
 
-router.route('/getAll').get(isAuthenticated, getAnalytics);
-router.route('/url/:hash').get(isAuthenticated, urlAnalytics)
-router.route('/clicks').get(isAuthenticated, getClicks);
-router.route('/group/:id').get(isAuthenticated, groupAnalytics);
+router.route('/getAll').get(isAuthenticated, premiumMember, getAnalytics);
+router.route('/url/:hash').get(isAuthenticated, premiumMember, urlAnalytics)
+router.route('/report/url/:hash').get(isAuthenticated, premiumMember, genrateUrlReport)
+router.route('/clicks').get(isAuthenticated, premiumMember, getClicks);
+router.route('/group/:id').get(isAuthenticated, premiumMember, groupAnalytics);
 
 module.exports = router;
 

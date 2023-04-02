@@ -93,3 +93,18 @@ export const loginUserReducer = createReducer(initialState, {
         state.message = null;
     },
 })
+
+export const urlsLimitReducer = createReducer(initialState, {
+    UrlsLimitRequest: (state)=>{
+        state.loading = true;
+    },
+    UrlsLimitSuccess: (state, action)=>{
+        state.loading = false;
+        state.message = action.payload.message;
+        state.overLimit = action.payload.overLimit;
+    },
+    UrlsLimitFailure: (state, action)=>{
+        state.loading = false;
+        state.error = action.payload;
+    }
+})

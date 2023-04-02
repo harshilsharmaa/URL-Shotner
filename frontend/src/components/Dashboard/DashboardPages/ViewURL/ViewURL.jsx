@@ -34,6 +34,7 @@ const ViewURL = () => {
     const [showDeleteModel, setShowDeleteModel] = useState(false);
     const [deleteUrlHash, setDeleteUrlHash] = useState("");
     const [gerateQr, setGerateQr] = useState(false);
+    const [status, setStatus] = useState(false);
 
     useEffect(() => {
         dispatch(viewUrl(hash));
@@ -48,12 +49,14 @@ const ViewURL = () => {
                 "Original Url": url.longUrl,
                 "Short Url": url.shortUrl,
                 "Hash": url.hash,
-                "Users": url.users,
-                "Password": url.password,
-                "Expires At": dateFormat(url.expiryDate, "d mmmm yyyy - hh:MM:ss TT"),
+                "Captcha": url.captcha ? "Yes" : "No",
+                // "Users": url.users,
+                // "Password": url.password,
+                // "Expires At": dateFormat(url.expiryDate, "d mmmm yyyy - hh:MM:ss TT"),
                 "Created At": dateFormat(url.createdAt, "d mmmm yyyy - hh:MM:ss TT"),
                 "Updated At": dateFormat(url.updatedAt, "d mmmm yyyy - hh:MM:ss TT"),
             })
+            setStatus(url.status === 'active' ? true : false);
         }
     }, [url]);
 
@@ -102,11 +105,15 @@ const ViewURL = () => {
         }, 5000);
     }
 
+    const handleStatusChange = () => {
+        setStatus(!status);
+    }
+
     return (
         <div className='viewUrl page-container'>
             {
-                message? <Alert text={message} type="success"/> :  
-                error? <Alert text={error} type="error"/> : null
+                message ? <Alert text={message} type="success" /> :
+                    error ? <Alert text={error} type="error" /> : null
             }
             {
                 urlLoading || deleteUrlLoading ? <Loader /> :
@@ -116,18 +123,34 @@ const ViewURL = () => {
                                 <h3>URL - {url.urlName.length > 0 ? url.urlName : ""} ({url.hash})</h3>
                             </div>
                             <div className="common viewUrl-btn-section">
-                                <button>
+                                <button onClick={((e) => navigate(`/editUrl/${url.hash}`))}>
                                     <p>Edit</p>
                                     <img src={edit} alt="" />
                                 </button>
-                                <button onClick={(e) => setShowDeleteModel(true)} style={{ "margin-left": "5px" }}>
+                                <button onClick={(e) => setShowDeleteModel(true)} style={{ "marginLeft": "5px" }}>
                                     <p>Delete</p>
                                     <img src={deleteIcon} alt="" />
                                 </button>
-                                <button onClick={(e) => setGerateQr(true)} style={{ "margin-left": "5px" }}>
+                                <button onClick={(e) => setGerateQr(true)} style={{ "marginLeft": "5px" }}>
                                     <p>Genrate QR</p>
                                     <img src={qrcode} alt="" />
                                 </button>
+
+                                <div className="status-toggle">
+                                    <div className="label">
+                                        <p>{url?.status==='active'?"Deactivate":"Activate"}</p>
+                                        {/* <div className="info-tooltip">
+                                            <div className="info-tooltip-i">i</div>
+                                            <div className="info-tooltip-p">
+                                                <p>Active - URL is active and can be used.</p>
+                                            </div>
+                                        </div> */}
+                                    </div>
+                                    <label className="switch">
+                                        <input type="checkbox" onChange={handleStatusChange} checked={status}/>
+                                        <span className="slider round"></span>
+                                    </label>
+                                </div>
                             </div>
                             {
                                 gerateQr ? <GenrateQR value={url?.longUrl} handleCloseGenrateQr={handleCloseGenrateQr} /> : null
@@ -178,7 +201,7 @@ const ViewURL = () => {
                             </div>
                         </div> : null
 
-                
+
             }
             <section className="analytics-section">
                 {

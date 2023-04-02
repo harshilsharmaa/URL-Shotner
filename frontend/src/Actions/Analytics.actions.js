@@ -112,3 +112,26 @@ export const getClicks = (hash, duration) => async(dispatch)=> {
         })
     }
 }
+
+export const generateUrlReport = (hash) => async(dispatch)=> {
+    try{
+        dispatch({
+            type: 'GenerateUrlReportRequest'
+        })
+
+        const {data} = await axios.get(`${rootUrl}/api/v1/analytics/report/url/${hash}`, {
+            withCredentials: true
+        })
+
+        dispatch({
+            type: 'GenerateUrlReportSuccess',
+            payload: data
+        })
+    }
+    catch(error){
+        dispatch({
+            type: 'GenerateUrlReportFailure',
+            payload: error.response.data.message
+        })
+    }
+}

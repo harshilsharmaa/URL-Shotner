@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import GoogleButton from 'react-google-button';
 import './Login-Register.css';
-import { loginUserEmail, loginUserGoogle, loadUser } from '../../Actions/User.actions';
+import { loginUserEmail, loadUser } from '../../Actions/User.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import Alert from '../Alert/Alert';
@@ -80,7 +80,7 @@ const Login = () => {
         </div>
         <p id='or'>or</p>
             <GoogleButton
-                label="Login with Google"
+                label="Continue with Google"
                 onClick={(e)=>handleGoogleLogin() }
             />
     </div>

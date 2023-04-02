@@ -1,0 +1,21 @@
+.paymentSuccess-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px auto;
+}
+
+
+.paymentSuccess-body h3{
+    font-size: 2.5rem;
+    color: #ccc;
+    margin: 20px;
+}
+
+.paymentSuccess-body p{
+    font-size: 1.6rem;
+    color: #ccc;
+    margin: 20px;
+}

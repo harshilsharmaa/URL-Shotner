@@ -35,6 +35,7 @@ async function genrateUrlCode() {
     }
     catch (error) {
         console.log(error);
+        return false;
     }
 }
 
@@ -42,14 +43,22 @@ exports.anony_short = async (req, res) => {
 
     const originalUrl = req.body.originalUrl;
 
-    const urlId = genrateUrlCode();
+    const urlId = await genrateUrlCode();
+
+    if(!urlId){
+        return res.status(400).json({
+            success: false,
+            error: "Something went wrong, please try again."
+        })
+    }
 
     console.log(urlId);
 
-    // const url = await Url.create({
-    //     originalUrl,
-    //     urlId,
-    // })
+    const url = await Url.create({
+        longUrl: originalUrl,
+        hash: urlId,
+        shortUrl: `${req.protocol}://${req.get("host")}/${urlId}`,
+    })
 
     res.status(200).json({
         urlId
@@ -69,6 +78,14 @@ exports.login_short = async (req, res) => {
 
         const user = req.user;
 
+        if(user.urlsLimitPerWeek<=user.urls.length){
+            return res.status(400).json({
+                success: false,
+                error: "Your Urls limit per week is over, buy premium or wait for next week",
+                overLimit: true
+            })
+        }
+
         const hash = await genrateUrlCode();
 
         const url = await Url.create({
@@ -80,16 +97,7 @@ exports.login_short = async (req, res) => {
         })
 
         if (req.body.urlName) url.urlName = req.body.urlName;
-        if (req.body.urlGroup) {
-            if (!user.urlGroups.includes(req.body.urlGroup)) {
-                return res.status(400).json({
-                    success: false,
-                    error: "You don't have this group"
-                })
-            }
-            url.urlGroup = req.body.urlGroup;
-        }
-        if (req.body.password) url.password = req.body.password;
+        if (req.body.captcha) url.captcha = true;
 
         const analytic = await Analytics.create({
             url: url._id,
@@ -101,7 +109,6 @@ exports.login_short = async (req, res) => {
         url.analytics = analytic._id;
         await url.save();
 
-        // user.points = user.points - 5;
         user.urls.push(url._id);
         await user.save();
 
@@ -119,6 +126,71 @@ exports.login_short = async (req, res) => {
     }
 }
 
+exports.editUrl = async(req,res)=>{
+    try{
+
+        const url = await Url.findOne({hash:req.params.hash});
+        if(!url){
+            return res.status(404).json({
+                success: false,
+                error: "Url Not Found"
+            })
+        }
+        if(toString(req.user._id)!==toString(url.owner)){
+            return res.status(404).json({
+                success: false,
+                error: "Url Not Found"
+            })
+        }
+        const {urlName,captcha,customUrl} = req.body.urlData;
+
+        if(customUrl && customUrl!==url.hash){
+            const searchHash = await Url.findOne({hash:customUrl});
+            if(searchHash){
+                return res.status(400).json({
+                    success:false,
+                    error: "This cutome url is not available, try another."
+                })
+            }
+            // Updating the url hash in analytics of url
+            const urlAnalytic = await Analytics.findOne({urlHash: url.hash});
+            urlAnalytic.urlHash = customUrl;
+            await urlAnalytic.save();
+
+            url.customHash = true;
+            url.hash = customUrl;
+            url.shortUrl = `${req.protocol}://${req.get("host")}/${customUrl}`
+        }
+
+        if(urlName) url.urlName = urlName;
+
+        if(captcha){
+            url.captcha = true;
+        }
+        else{
+            url.captcha = false;
+        }
+
+        // if(expiryDate){
+        //     let d = new Date(expiryDate);
+        //     url.expiryDate = d;
+        // }
+        await url.save();
+
+        res.status(201).json({
+            success: true,
+            message: "Url updated successfuly",
+            url
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            success: false,
+            error: error.message
+        })
+    }
+}
+
 exports.getUrl = async (req, res) => {
 
     try {
@@ -127,18 +199,25 @@ exports.getUrl = async (req, res) => {
         const url = await Url.findOne({ hash });
         if (url) {
 
+            // annonymous url
+            if(!url.owner){
+                return res.redirect(url.longUrl);
+            }
+
 
             const analytic = await Analytics.findById(url.analytics);
             analytic.clicks.push(Date.now());
 
             if (req.headers['user-agent']) {
                 const userAgent = req.headers['user-agent'];
+                // console.log(req.headers);
 
                 const result = detector.detect(userAgent);
 
                 // console.log(result);
 
                 analytic.os.push(result.os.name);
+                
                 analytic.browsers.push(result.client.name);
                 analytic.devices.push(result.device.type);
 
@@ -150,7 +229,7 @@ exports.getUrl = async (req, res) => {
 
             if (req.headers['referer']) {
                 const referer = req.headers['referer'];
-                console.log(referer)
+                // console.log(referer)
 
                 // const country = await getCountry(referer);
 
@@ -210,16 +289,18 @@ exports.getMyUrls = async (req, res) => {
             },
             {$sort: {createdAt: -1}},
             { '$facet'    : {
-                "info": [ { $count: "total" }, { $addFields: { page: Number(page) } } ],
+                // "info": [ { $count: "total" }, { $addFields: { page: Number(page) } } ],
                 "urls": [ { $skip:  (page-1)*pageLimit}, { $limit: pageLimit } ] 
             } }
         ])
+
+        const totalUrl = await Url.countDocuments({owner: user._id});
 
         res.status(200).json({
             success: true,
             message: "Urls fetched successfully",
             urls: urlsData[0].urls,
-            pageCount: Math.ceil(urlsData[0].info[0].total/pageLimit),
+            pageCount: Math.ceil(totalUrl/pageLimit),
         });
     }
     catch (error) {
@@ -282,7 +363,7 @@ exports.deleteUrl = async (req, res) => {
             await analytic.remove();
         }
 
-        user.urls = user.urls.filter(url => url.toString() !== url._id.toString());
+        user.urls = user.urls.filter(curr => curr.toString() !== url._id.toString());
         await user.save();
 
         await url.remove();

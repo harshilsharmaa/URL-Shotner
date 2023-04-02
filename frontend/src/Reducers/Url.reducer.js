@@ -37,6 +37,9 @@ export const createUrlReducer = createReducer(initialState, {
 
     CLEAR_MESSAGES: (state)=>{
         state.message = null;
+    },
+    CLEAR_ERRORS: (state)=>{
+        state.error = null;
     }
 })
 
@@ -52,6 +55,33 @@ export const viewUrlReducer = createReducer(initialState, {
     viewUrlFailure: (state, action)=>{
         state.loading = false;
         state.error = action.payload;
+    },
+    CLEAR_MESSAGES: (state)=>{
+        state.message = null;
+    },
+    CLEAR_ERRORS: (state)=>{
+        state.error = null;
+    }
+})
+
+export const editUrlReducer = createReducer(initialState, {
+    editUrlRequest: (state)=>{
+        state.loading = true;
+    },
+    editUrlSuccess: (state, action)=>{
+        state.loading = false;
+        state.message = action.payload.message;
+        state.updatedUrl = action.payload.url;
+    },
+    editUrlFailure: (state, action)=>{
+        state.loading = false;
+        state.error = action.payload;
+    },
+    CLEAR_MESSAGES: (state)=>{
+        state.message = null;
+    },
+    CLEAR_ERRORS: (state)=>{
+        state.error = null;
     }
 })
 

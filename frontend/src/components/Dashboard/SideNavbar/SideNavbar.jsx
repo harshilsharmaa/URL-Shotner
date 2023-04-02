@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { sideNavbarData } from './sideNavbarData'
 import {loagout} from '../../../Actions/User.actions'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,10 +10,11 @@ const SideNavbar = () => {
 
     const {user} = useSelector(state => state.user);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(!user){
-            window.location.href = "/login";
+           navigate('/login', {replace: true});
         }
     }, [user])
 

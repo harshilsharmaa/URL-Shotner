@@ -6,9 +6,9 @@ const Loader = () => {
         <div className='loader'>
             <div className='loader_container'>
                 <div className="loading-dots">
-                    <div class="snippet" data-title="dot-flashing">
-                        <div class="stage">
-                            <div class="dot-flashing"></div>
+                    <div className="snippet" data-title="dot-flashing">
+                        <div className="stage">
+                            <div className="dot-flashing"></div>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,110 @@
+.buyPlan-body{
+
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.buyPlan .plan-info{
+    display: flex;
+    padding: 10px;
+    width: 60%;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ccc;
+    text-align: center;
+    margin: 20px auto;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    background-color: rgba(128, 0, 128, 0.468);
+}
+
+.buyPlan-body-left{
+    /* border: 1px solid red; */
+    padding: 20px;
+    /* margin: 20px; */
+    width: 60%;
+}
+
+.buy-plan-features{
+    display: flex;
+    flex-direction: column;
+}
+.buy-plan-feature-item{
+    margin: 5px;
+    font-size: 1.6rem;
+    color: #ccc;
+}
+
+.buyPlan-body-left button{
+    margin: 20px;
+    padding: 10px;
+    font-size: 1.6rem;
+    border: none;
+    background-color: #7b0bc051;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buy-plan-feature-item ::before{
+    content: "✔";
+    color: #00b300;
+    margin-right: 10px;
+}
+
+.buyPlan-body-vertical-line{
+    border-left: 1px solid #cccccc6f;
+    height: auto;
+    margin: 0 20px;
+}
+
+.buyPlan-body-right{
+    /* border: 1px solid red; */
+    padding: 20px;
+    width: 40%;
+    /* display: flex; */
+    /* justify-content: center; */
+}
+
+.place-order-card{
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 90%;
+    /* height: 60%; */
+    background-color: rgb(82, 5, 105);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.place-order-card .item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px 0;
+    width: 100%;
+}
+
+.place-order-card .item-horizontal-line{
+    border-bottom: 1px solid #cccccc6f;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.place-order-card .item p{
+    font-size: 1.6rem;
+    color: #ccc;
+    font-weight: 600;
+}
+
+.place-order-card button{
+    margin: 20px;
+    padding: 10px;
+    font-size: 1.6rem;
+    border: none;
+    background-color: #00b300b0;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}

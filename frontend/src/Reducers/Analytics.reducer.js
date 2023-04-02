@@ -70,3 +70,19 @@ export const clicksReducer = createReducer(initialState, {
         state.error = action.payload;
     }
 })
+
+export const urlReportReducer = createReducer(initialState, {
+
+    GenerateUrlReportRequest: (state)=>{
+        state.loading = true;
+    },
+    GenerateUrlReportSuccess: (state, action)=>{
+        state.loading = false;
+        state.reportUrl = action.payload.reportUrl;
+        state.message = action.payload.message;
+    },
+    GenerateUrlReportFailure: (state, action)=>{
+        state.loading = false;
+        state.error = action.payload;
+    }
+})

@@ -8,6 +8,14 @@
     padding: 0 20px;
 }
 
+.subheading{
+    text-align: center;
+    color: #ccc;
+    font-size: 2.5rem;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
 .plan-card{
     display: flex;
     flex-direction: column;
@@ -20,6 +28,26 @@
     transition: all 0.3s ease-in-out;
 }
 
+.selected-plan{
+    border: 4px solid rgb(182, 182, 60);
+    position: relative;
+}
+
+.selected-plan-tag{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(182, 182, 60);
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 600;
+    z-index: 1;
+}
 .plan-card:hover{
     scale: 1.1;
     cursor: pointer;
@@ -90,6 +118,11 @@
     border-bottom: 1px solid #cccccc55;
     margin: 5px 0;
 }
+
+.plan-body :last-child{
+    border-bottom: none;
+}
+
 .plan-body-item .text{
     color: rgb(71, 14, 80);
 }

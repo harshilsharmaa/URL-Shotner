@@ -255,6 +255,50 @@ h3{
     height: 80%;
 }
 
+/* Pricing section */
+
+.pricing-section{
+    width: 100%;
+}
+
+.plans-container-home{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    /* width: 100%; */
+    /* height: 100%; */
+    padding: 0 20px;
+}
+
+.pricing-section h3{
+    color: rgba(255, 255, 255, 0.702);
+    font-size: 3rem;
+    letter-spacing: 2.4px;
+    padding: 20px;
+}
+
+.plan-card-home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 100%;
+    padding: 5px 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #270082;
+    background-color: #070018;
+}
+
+.plan-card-home .plan-body-item .text{
+    color: #ccc;
+}
+
+.plan-card-home .plan-body :last-child{
+    border-bottom: none;
+}
 
 
 /* FAQ seaction */
@@ -371,7 +415,7 @@ h3{
     }
 
 }
-@media (max-width:500px){
+@media (max-width:670px){
 
 
   
@@ -387,10 +431,19 @@ h3{
         margin-bottom: 1rem;
     }
 
+    .plans-container-home{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .plan-card-home{
+        width: 70%;
+        margin-bottom: 20px;
+    }
 }
+
+
 @media (max-width:500px){
-
-
   
     .showUrl{
        
@@ -404,4 +457,8 @@ h3{
         margin-bottom: 1rem;
     }
 
+    .plan-card-home{
+        width: 90%;
+        margin-bottom: 20px;
+    }
 }

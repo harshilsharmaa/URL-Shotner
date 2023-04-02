@@ -2,7 +2,8 @@ import {configureStore} from '@reduxjs/toolkit';
 
 import {
     userReducer,
-    loginUserReducer
+    loginUserReducer,
+    urlsLimitReducer
 } from './Reducers/User.reducer';
 
 import {
@@ -13,15 +14,21 @@ import {
     createGroupReducer,
     getAllGroupsReducer,
     getGroupReducer,
-    deleteGroupReducer
+    deleteGroupReducer,
+    editUrlReducer
 } from './Reducers/Url.reducer';
 
 import {
     analyticsReducer,
     clicksReducer,
     urlAnalyticsReducer,
-    groupAnalyticsReducer
+    groupAnalyticsReducer,
+    urlReportReducer
 } from './Reducers/Analytics.reducer';
+
+import {
+    paymentReducer
+} from './Reducers/Payment.reducer';
 
 const store = configureStore({
     reducer: {
@@ -38,7 +45,11 @@ const store = configureStore({
         allGroups: getAllGroupsReducer,
         loginUser: loginUserReducer,
         groupById: getGroupReducer,
-        deleteGroup: deleteGroupReducer
+        deleteGroup: deleteGroupReducer,
+        updatedUrl: editUrlReducer,
+        urlsLimit: urlsLimitReducer,
+        order: paymentReducer,
+        reportUrl: urlReportReducer
     }
 });
 

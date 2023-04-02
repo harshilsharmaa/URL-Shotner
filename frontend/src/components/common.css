@@ -87,3 +87,33 @@
     background-color: #7b0bc0a9;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.908);
 }
+
+/* info, tooltip */
+
+.info-tooltip{
+    display: relative;
+}
+
+.info-tooltip .info-tooltip-i{
+    font-size: 1.4rem;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    color: #ccc;
+    text-align: center;
+}
+
+.info-tooltip-p{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #cccccc34;
+    color: #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    /* display: none; */
+    z-index: 999;
+}

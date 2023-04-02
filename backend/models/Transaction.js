@@ -1,25 +1,31 @@
 const mongoose = require('mongoose');
 
+
 const transactionSchema = new mongoose.Schema({
-    transactionId: {
+    razorpay_payment_id: {
         type: String,
         required: true,
-        unique: true
+    },
+    razorpay_order_id: {
+        type: String,
+        required: true,
+    },
+    razorpay_signature: {
+        type: String,
+        required: true,
     },
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    amount:{
-        type: Number,
-        required: true
-    },
-    premiumPlan:{
-        type: String,
-        required: true
+    planId:{
+        type: mongoose.Schema.Types.ObjectId
     },
     createdAt: {
-        type: Date
+        type: Date,
+        default: Date.now
     }
 })
+
+module.exports = mongoose.model('Transaction', transactionSchema);

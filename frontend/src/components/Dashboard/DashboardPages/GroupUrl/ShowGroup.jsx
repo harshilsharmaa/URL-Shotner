@@ -21,7 +21,6 @@ const ShowGroup = () => {
   const { id } = useParams();
 
   const [showDeleteModel, setShowDeleteModel] = useState(false);
-  const [deleteUrlHash, setDeleteUrlHash] = useState("");
   const [confirmText, setConfirmText] = useState("");
 
   useEffect(() => {

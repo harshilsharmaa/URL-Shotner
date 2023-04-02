@@ -9,6 +9,9 @@ import collaborate from '../../images/collaborate.jpg'
 import password from '../../images/password.jpg'
 import graph from '../../images/graph.png'
 import Footer from '../Footer/Footer'
+import { PlanData } from '../Dashboard/DashboardPages/Plans/PlanData'
+import cross from '../../images/cross.png'
+import check from '../../images/check.png'
 
 const angleDown = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" /></svg>
 
@@ -17,9 +20,7 @@ const angleUp = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><p
 const Home = () => {
 
     const [originalUrl, setOriginalUrl] = useState('')
-
     const [shortUrl, setShortUrl] = useState('')
-
     const [copyBtnValue, setCopyBtnValue] = useState('Copy')
     const [copied, setCopied] = useState(false)
 
@@ -30,7 +31,7 @@ const Home = () => {
         const postOriginalUrl = async () => {
 
 
-            const { data } = await axios.post('/shorten', { originalUrl }, {
+            const { data } = await axios.post('/api/v1/url/anony-short', { originalUrl }, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -43,14 +44,7 @@ const Home = () => {
     }
 
     function copyText() {
-
-        /* Select the text field */
-        // shortUrl.select();
-        // shortUrl.setSelectionRange(0, 99999); /* For mobile devices */
-
-        /* Copy the text inside the text field */
         navigator.clipboard.writeText(shortUrl);
-
 
         setCopyBtnValue('Copied');
         setCopied(true);
@@ -76,7 +70,7 @@ const Home = () => {
         <div className='home'>
 
             {
-                <Navbar />
+                // <Navbar />
             }            
 
             <div className="header">
@@ -104,7 +98,7 @@ const Home = () => {
                 <p>Login Now to access all features <a href="/login">Login</a></p>
             </div>
 
-            <div className="features-section">
+            <div id={"features"} className="features-section">
                 <h3>Features</h3>
 
                 <div className="features-div">
@@ -171,6 +165,43 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
+            <section id='pricing' className='pricing-section'>
+                <h3>Pricing</h3>
+                <div className="plans-container-home">
+                {
+                    PlanData.map((plan) => {
+                        return (
+                            <div className={"plan-card-home"} key={plan.id}>
+                                <div className="plan-heading">
+                                    <p>{plan.name}</p>
+                                </div>
+                                <div className="plan-price">
+                                    <p>{plan.price}</p>
+                                </div>
+                                <div className="plan-body">
+                                    {
+                                        plan.features.map((feature, index) => {
+                                            return (
+
+                                                <div className="plan-body-item" key={index}>
+                                                    <h4 className='text'>{feature.name}</h4>
+                                                    {
+                                                        feature.value? <img src={check} alt="Yes" />:
+                                                        <img src={cross} alt="No" />
+                                                    }
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+                </div>
+
+            </section>
 
             <section className='faq-section'>
                 <h3>Frequently asked questions</h3>

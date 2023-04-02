@@ -30,6 +30,10 @@ const userSchema = mongoose.Schema({
             ref: 'Url'
         }
     ],
+    urlsLimitPerWeek:{
+        type: Number,
+        default: 5
+    },
     urlsGroup:[
         {
             type: mongoose.Schema.Types.ObjectId,

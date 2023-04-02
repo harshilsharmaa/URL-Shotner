@@ -60,7 +60,7 @@ export const createUrl = (urlData)=> async(dispatch) => {
     catch(error){
         dispatch({
             type:'createUrlFailure',
-            payload: error.response.data.message
+            payload: error.response.data.error
         })
     }
 }
@@ -115,7 +115,35 @@ export const deleteUrlReq = (hash)=> async(dispatch) => {
             payload: error.response.data.error
         })
     } 
-} 
+}
+
+export const editUrl = (hash, urlData) => async(dispatch)=>{
+    try{
+        dispatch({
+            type: 'editUrlRequest'
+        })
+
+        console.log(urlData)
+        console.log(hash)
+
+        const {data} = await axios.put(`${rootUrl}/api/v1/url/edit/${hash}`,{
+            urlData
+        },{
+            withCredentials: true
+        })
+
+        dispatch({
+            type: 'editUrlSuccess',
+            payload: data
+        })
+    }
+    catch(error){
+        dispatch({
+            type: 'editUrlFailure',
+            payload: error.response.data.error
+        })
+    }
+}
 
 export const createGroup = (groupName, urls) => async(dispatch)=>{
     try{
