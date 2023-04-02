@@ -29,7 +29,7 @@ export const checkout = (user,amount,type) => async(dispatch)=>{
             description: "Test tranction for urily.com",
             image: "https://example.com/your_logo",
             order_id: order.id,
-            callback_url: "http://localhost:4000/api/v1/payment/verification",
+            callback_url: "https://urily.onrender.com/api/v1/payment/verification",
             prefill: {
                 name: user.username,
                 email: user.email,
