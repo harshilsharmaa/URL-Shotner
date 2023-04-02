@@ -54,7 +54,7 @@ router.route('/google').get(
 
 router.route('/google/callback').get(
   passport.authenticate('google', {
-    failureRedirect: '/login',
+    failureRedirect: '/v/login',
     session: false,
   }),
   (req, res) => {
@@ -71,7 +71,7 @@ router.route('/google/callback').get(
     // });
 
     res.cookie('token', token, options)
-    .redirect('http://localhost:4000/dashboard-home')
+    .redirect('https://urily.onrender.com/v/dashboard-home')
   }
 )
 
