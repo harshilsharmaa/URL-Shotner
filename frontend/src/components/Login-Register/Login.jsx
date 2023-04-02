@@ -3,7 +3,7 @@ import GoogleButton from 'react-google-button';
 import './Login-Register.css';
 import { loginUserEmail, loadUser } from '../../Actions/User.actions';
 import { useDispatch, useSelector } from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import Alert from '../Alert/Alert';
 import Loader from '../Loader/Loader';
 
@@ -75,7 +75,7 @@ const Login = () => {
                     <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" name="password" id="password" placeholder="Password" />
                 </div>
                 <button type="submit">Login</button>
-                <p>Not Registered? <span><a href="/signup">Signup</a></span></p>
+                <p>Not Registered? <span><Link to="/v/signup">Signup</Link></span></p>
             </form>
         </div>
         <p id='or'>or</p>

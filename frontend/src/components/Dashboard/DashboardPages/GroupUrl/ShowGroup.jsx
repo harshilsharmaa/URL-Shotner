@@ -40,7 +40,7 @@ const ShowGroup = () => {
     }
     if(deleteGroupMessage){
       dispatch({ type: "CLEAR_GROUP" })
-      navigate('/group')
+      navigate('/v/group')
       setTimeout(() => {
         dispatch({ type: "CLEAR_MESSAGES" })
       }, 3000);

@@ -23,7 +23,7 @@ const Plan = () => {
             },5000)
             return;
         }
-        navigate(`/buy-plan/${id}`)
+        navigate(`/v/buy-plan/${id}`)
     }
 
     return (

@@ -4,7 +4,7 @@ import { registerUserEmail } from '../../Actions/User.actions'
 import { useDispatch, useSelector } from 'react-redux'
 import './Login-Register.css'
 import Alert from '../Alert/Alert'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Signup = () => {
 
@@ -46,7 +46,7 @@ const Signup = () => {
     }, [error, message, status])
 
     useEffect(()=>{
-        if(user) navigate('/dashboard-home');
+        if(user) navigate('/v/dashboard-home');
     },[user])
 
     return (
@@ -70,7 +70,7 @@ const Signup = () => {
                         <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" name="password" id="password" placeholder="Password" />
                     </div>
                     <button type="submit">Register</button>
-                    <p>Already have an account? <span><a href="/login">Login</a></span></p>
+                    <p>Already have an account? <span><Link to="/v/login">Login</Link></span></p>
                 </form>
             </div>
             <p id='or'>or</p>

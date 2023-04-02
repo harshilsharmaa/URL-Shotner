@@ -44,7 +44,7 @@ const CreateGroup = () => {
     useEffect(()=>{
         if(createdGroup){
             dispatch({type:'CLEAR_CREATED_GROUP'})
-            navigate('/group');
+            navigate('/v/group');
         }
     },[createdGroup])
 
