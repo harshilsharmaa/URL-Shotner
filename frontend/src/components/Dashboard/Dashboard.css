@@ -29,3 +29,14 @@
     background-color: #03031f;
     width: 80%;
 }
+
+
+
+@media screen and (max-width: 768px) {
+  .sideNavbar-section {
+    display: none;
+  }
+  .mainContent-section {
+    width: 100%;
+  }
+}
