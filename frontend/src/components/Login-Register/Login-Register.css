@@ -71,3 +71,16 @@
     font-family: sans-serif;
     letter-spacing: 2.4px;
 }
+
+
+@media screen and (max-width: 768px){
+    .login-register-form{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .login-register-form{
+        width: 90%;
+    }
+}
