@@ -50,9 +50,6 @@ const ViewURL = () => {
                 "Short Url": url.shortUrl,
                 "Hash": url.hash,
                 "Captcha": url.captcha ? "Yes" : "No",
-                // "Users": url.users,
-                // "Password": url.password,
-                // "Expires At": dateFormat(url.expiryDate, "d mmmm yyyy - hh:MM:ss TT"),
                 "Created At": dateFormat(url.createdAt, "d mmmm yyyy - hh:MM:ss TT"),
                 "Updated At": dateFormat(url.updatedAt, "d mmmm yyyy - hh:MM:ss TT"),
             })

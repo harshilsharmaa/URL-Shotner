@@ -518,3 +518,36 @@ exports.deleteGroup = async (req, res) => {
         })
     }
 }
+
+exports.updateUrlStatus = async (req, res) => {
+    try{
+
+        const { hash } = req.params;
+        const { status } = req.body;
+        if(!hash) return res.status(400).json({success:false, error: "Hash is required"});
+        if(!status) return res.status(400).json({success:false, error: "Status is required"});
+        if(status!=="active" && status!=="inactive") return res.status(400).json({success:false, error: "Status can be active or inactive only"});
+
+
+        const user = req.user;
+
+        const url = await Url.findOne({ hash, owner: user._id });
+        if(!url) return res.status(404).json({success:false, error: "Url not found"});
+
+        url.status = status;
+        await url.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Url status updated successfully",
+            url
+        });
+
+    }
+    catch(err){
+        res.status(500).json({
+            success:false,
+            error: err.message
+        })
+    }
+}

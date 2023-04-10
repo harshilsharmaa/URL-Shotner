@@ -11,7 +11,7 @@ dotenv.config({ path: './config/config.env' });
 const app = express();
 
 app.use(cors({credentials: true, methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', origin: ['http://localhost:3000', 'http://localhost:4000']}));
-// app.use(cors());
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 // Route for getting the url
 const {getUrl} = require('./controllers/url.controller');
-// app.get('/:hash', getUrl)// s is for short and to not conflict with the routes like /signup
+app.get('/:hash', getUrl);
 
 // Routes
 const urlRouter = require('./routes/url.router');
