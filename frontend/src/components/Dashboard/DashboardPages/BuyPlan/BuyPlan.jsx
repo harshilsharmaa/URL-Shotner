@@ -61,7 +61,7 @@ const BuyPlan = () => {
                         })
                     }
                 </div>
-                <button>Change Plan</button>
+                <button onClick={()=>{navigate("/v/plans")}}>Change Plan</button>
             </div>
             <div className="buyPlan-body-vertical-line"></div>
             <div className="buyPlan-body-right">

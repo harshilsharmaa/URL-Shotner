@@ -8,8 +8,12 @@
     width: 100%;
     padding: 0 20px;
     /* dark and blur backround */
-    background: rgba(0,0,0,0.5);
+    /* background: rgba(0,0,0,0.5); */
     /* backdrop-filter: blur(5px); */
+    background-image: url('../../../../images/dashBblur.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .content-locked img{
