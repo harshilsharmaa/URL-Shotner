@@ -97,7 +97,7 @@ const ShowGroup = () => {
                       </div> : null
                   }
                 </button>
-                <button onClick={(e)=>navigate(`/group/analytics/${group._id}`)} style={{ "margin-left": "5px" }}>
+                <button onClick={(e)=>navigate(`/v/group/analytics/${group._id}`)} style={{ "margin-left": "5px" }}>
                   <p>Analytics</p>
                   <img src="a" alt="" />
                 </button>
