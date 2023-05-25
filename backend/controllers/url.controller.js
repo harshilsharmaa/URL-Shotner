@@ -197,7 +197,7 @@ exports.getUrl = async (req, res) => {
 
         const hash = req.params.hash;
 
-        if(!hash){
+        if(!hash || hash.length===0){
             return res.redirect('https://urily.onrender.com/v/home');
         }
 
