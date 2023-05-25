@@ -77,11 +77,11 @@ const Login = () => {
                 <p>Not Registered? <span><Link to="/v/signup">Signup</Link></span></p>
             </form>
         </div>
-        <p id='or'>or</p>
+        {/* <p id='or'>or</p>
             <GoogleButton
                 label="Continue with Google"
                 onClick={(e)=>handleGoogleLogin() }
-            />
+            /> */}
     </div>
   )
 }
