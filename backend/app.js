@@ -35,6 +35,9 @@ const analyticsRouter = require('./routes/analytics.router');
 const paymentRouter = require('./routes/payment.router');
 
 // // routers
+app.get('/api/test', (req,res)=>{
+    res.send("Health check, API is working !!");
+})
 app.use('/api/v1/url', urlRouter);
 app.use('/auth', googleAuthRouter);
 app.use('/auth-email', emailAuthRouter);
