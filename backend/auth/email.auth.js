@@ -114,7 +114,7 @@ router.route('/login').post(
     
             res.status(200).cookie('token', token, option).json({
                 success: true,
-                message: "User logged in successfully",
+                message: "User logged in successfully"
             })
             
         } catch (error) {
