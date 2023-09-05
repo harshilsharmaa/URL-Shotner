@@ -54,6 +54,8 @@ router.route('/register').post(
             const option = {
                 expiresIn: new Date(Date.now() + 30*24*60*60*1000),
                 httpOnly: true,
+                secure: true, // Make sure this is set to true for secure connections (HTTPS)
+                sameSite: 'None'
             }
     
             res.status(200).cookie('token', token, option).json({
@@ -105,7 +107,9 @@ router.route('/login').post(
     
             const option = {
                 expiresIn: new Date(Date.now() + 30*24*60*60*1000),
-                httpOnly: true
+                httpOnly: true,
+                secure: true, // Make sure this is set to true for secure connections (HTTPS)
+                sameSite: 'None'
             }
     
             res.status(200).cookie('token', token, option).json({
