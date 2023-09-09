@@ -14,7 +14,7 @@ const SideNavbar = () => {
 
     useEffect(() => {
         if(!user){
-           navigate('/v/login', {replace: true});
+           navigate('/login', {replace: true});
         }
     }, [user])
 

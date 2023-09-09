@@ -12,7 +12,7 @@ const ContentLocked = () => {
       <img src={lock} alt="" />
       <h4>Locked</h4>
       <p>Upgrade to premium to unlock this feature</p>
-      <button onClick={()=>navigate('/v/plans')}>Upgrade</button>
+      <button onClick={()=>navigate('/plans')}>Upgrade</button>
     </div>
   )
 }

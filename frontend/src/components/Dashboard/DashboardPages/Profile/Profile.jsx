@@ -25,7 +25,7 @@ const Profile = () => {
 
   useEffect(()=>{
     if(!user){
-      navigate('/v/login');
+      navigate('/login');
     }
   },[user])
 

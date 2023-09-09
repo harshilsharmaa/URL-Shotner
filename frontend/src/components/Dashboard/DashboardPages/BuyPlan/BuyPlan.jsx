@@ -23,7 +23,7 @@ const BuyPlan = () => {
             if(type==='360') setPlan(PlanData[2]);
             return;
         } 
-        navigate('/v/plans')
+        navigate('/plans')
     }, [type])
 
     useEffect(()=>{
@@ -61,7 +61,7 @@ const BuyPlan = () => {
                         })
                     }
                 </div>
-                <button onClick={()=>{navigate("/v/plans")}}>Change Plan</button>
+                <button onClick={()=>{navigate("/plans")}}>Change Plan</button>
             </div>
             <div className="buyPlan-body-vertical-line"></div>
             <div className="buyPlan-body-right">

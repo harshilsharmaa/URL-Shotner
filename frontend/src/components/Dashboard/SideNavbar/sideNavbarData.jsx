@@ -9,37 +9,37 @@ import group from '../../../images/group.png'
 export const sideNavbarData = [
     {
         title: 'Dashboard',
-        path: '/v/dashboard-home',
+        path: '/dashboard-home',
         icon: dashboard,
     },
     {
         title: 'My URLs',
-        path: '/v/myUrls',
+        path: '/myUrls',
         icon: url,
     },
     {
         title: 'URLs Group',
-        path: '/v/group',
+        path: '/group',
         icon: group,
     },
     {
         title: 'My Profile',
-        path: '/v/profile',
+        path: '/profile',
         icon: profile,
     },
     {
         title: 'My Team',
-        path: '/v/my-team',
+        path: '/my-team',
         icon: team,
     },
     {
         title: 'Plans',
-        path: '/v/Plans',
+        path: '/Plans',
         icon: plans,
     },
     {
         title: 'Invite People',
-        path: '/v/invite-people',
+        path: '/invite-people',
         icon: invite,
     },
 ]

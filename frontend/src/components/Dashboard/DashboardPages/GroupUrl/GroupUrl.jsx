@@ -64,7 +64,7 @@ const GroupUrl = () => {
           loading ? <Loader/> :
           allGroups?.length > 0 ? allGroups.map((group, index) => {
             return (
-              <div onClick={(e)=>navigate(`/v/group/${group._id}/${group.urlGroupName}`)} key={index} className="group-card">
+              <div onClick={(e)=>navigate(`/group/${group._id}/${group.urlGroupName}`)} key={index} className="group-card">
                 <div className="group-card-header">
                   <div className="name">
                     <h4>{group.urlGroupName}</h4>

@@ -30,13 +30,13 @@ const URL = ({url,sr}) => {
         </div>
 
         <div className="url-component analytics">
-            <Link to={`/v/url/${url.hash}`}>
+            <Link to={`/url/${url.hash}`}>
                 <img src={view} alt="" />
             </Link>
         </div>
 
         <div className="url-component edit">
-            <Link to={`/v/editUrl/${url.hash}`}>
+            <Link to={`/editUrl/${url.hash}`}>
                 <img src={edit} alt="" />
             </Link>
         </div>

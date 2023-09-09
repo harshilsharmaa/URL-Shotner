@@ -31,7 +31,7 @@ const Signup = () => {
     useEffect(() => {
         if(status === 'success'){
             dispatch({type: 'CLEAR_STATUS'})
-            navigate('/v/dashboard-home');
+            navigate('/dashboard-home');
         }
         if(error){
             setTimeout(() => {
@@ -46,7 +46,7 @@ const Signup = () => {
     }, [error, message, status])
 
     useEffect(()=>{
-        if(user) navigate('/v/dashboard-home');
+        if(user) navigate('/dashboard-home');
     },[user])
 
     const handleGoogleSignup = () => {
@@ -74,7 +74,7 @@ const Signup = () => {
                         <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" name="password" id="password" placeholder="Password" />
                     </div>
                     <button type="submit">Register</button>
-                    <p>Already have an account? <span><Link to="/v/login">Login</Link></span></p>
+                    <p>Already have an account? <span><Link to="/login">Login</Link></span></p>
                 </form>
             </div>
             {/* <p id='or'>or</p>

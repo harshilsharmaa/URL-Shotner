@@ -1,7 +1,5 @@
 import axios from 'axios'
-
-// const rootUrl = 'http://localhost:4000';
-const rootUrl = '';
+import { rootUrl } from '../utils/constant'
 
 export const getAnalytics = () => async(dispatch)=> {
     try {

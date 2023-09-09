@@ -37,7 +37,7 @@ const Login = () => {
     useEffect(()=>{
         console.log(user);
         if(user) {
-            navigate('/v/dashboard-home');
+            navigate('/dashboard-home');
         }
     },[user,message])
 
@@ -74,7 +74,7 @@ const Login = () => {
                     <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" name="password" id="password" placeholder="Password" />
                 </div>
                 <button type="submit">Login</button>
-                <p>Not Registered? <span><Link to="/v/signup">Signup</Link></span></p>
+                <p>Not Registered? <span><Link to="/signup">Signup</Link></span></p>
             </form>
         </div>
         {/* <p id='or'>or</p>

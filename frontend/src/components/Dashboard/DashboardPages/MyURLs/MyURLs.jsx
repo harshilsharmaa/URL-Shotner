@@ -110,7 +110,7 @@ const MyURLs = () => {
             {
                 myUrls && myUrls.length==0 && !loading? <div className='no-urls'>
                         <h4>No URLs found</h4>
-                        <button onClick={(e)=>navigate('/v/createUrl')}>Create Url +</button>
+                        <button onClick={(e)=>navigate('/createUrl')}>Create Url +</button>
                     </div>
                 : null
             }

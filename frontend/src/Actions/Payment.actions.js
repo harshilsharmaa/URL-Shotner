@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// const rootUrl = 'http://localhost:4000';
-const rootUrl = '';
+import { rootUrl } from '../utils/constant'
 
 export const checkout = (user,amount,type) => async(dispatch)=>{
     try{

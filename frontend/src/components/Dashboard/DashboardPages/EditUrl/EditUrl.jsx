@@ -46,7 +46,7 @@ const EditUrl = () => {
                 dispatch({ type: 'CLEAR_MESSAGES' });
             }, 5000);
 
-            navigate(`/v/url/${updatedUrl.hash}`, { replace: true })
+            navigate(`/url/${updatedUrl.hash}`, { replace: true })
         }
         if (updatedUrlError || urlError) {
             setTimeout(() => {

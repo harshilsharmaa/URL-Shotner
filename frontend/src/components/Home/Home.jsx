@@ -12,6 +12,7 @@ import Footer from '../Footer/Footer'
 import { PlanData } from '../Dashboard/DashboardPages/Plans/PlanData'
 import cross from '../../images/cross.png'
 import check from '../../images/check.png'
+import { rootUrl } from '../../utils/constant'
 
 const angleDown = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" /></svg>
 
@@ -31,13 +32,13 @@ const Home = () => {
         const postOriginalUrl = async () => {
 
 
-            const { data } = await axios.post('/api/v1/url/anony-short', { originalUrl }, {
+            const { data } = await axios.post(`${rootUrl}/api/v1/url/anony-short`, { originalUrl }, {
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
 
-            setShortUrl(window.location.href + data.urlId);
+            setShortUrl(data.shortUrl);
         }
         postOriginalUrl();
 
@@ -95,7 +96,7 @@ const Home = () => {
 
 
             <div className="login-section">
-                <p>Login Now to access all features <Link to="/v/login">Login</Link></p>
+                <p>Login Now to access all features <Link to="/login">Login</Link></p>
             </div>
 
             <div id={"features"} className="features-section">
