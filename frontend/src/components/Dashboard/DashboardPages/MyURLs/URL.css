@@ -1,0 +1,90 @@
+.url{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    background-color: #7b0bc051;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    margin: 6px 0;
+}
+
+.url-component{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+    color: #ccc;
+    font-size: 1.6rem;
+}
+
+.url img{
+    height: 25px;
+    width: 25px;
+}
+
+.url .sr{
+    font-size: 1.7rem;
+    color: #ccc;
+    width: 3%;
+}
+
+.url .name{
+    font-size: 1.6rem;
+    width: 12%;
+}
+
+.comb-url{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 35%;
+}
+
+.comb-url #shortUrl{
+    font-size: 1.6rem;
+    color: rgb(0, 128, 60);
+    font-weight: bold;
+}
+
+.comb-url #shortUrl span{
+    font-size: 1.6rem;
+    color: #ccc;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.comb-url #shortUrl span img{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}
+
+.comb-url #shortUrl span:hover{
+    color: rgb(0, 128, 60);
+}
+
+.comb-url #longUrl{
+    font-size: 1.2rem;
+    color: #ccc;
+    font-weight: bold;
+}
+
+.url .expiry{
+    width: 6%;
+}
+
+.url .analytics{
+    width: 6%;
+    cursor: pointer;
+}
+
+.url .edit{
+    width: 6%;
+    cursor: pointer;
+}

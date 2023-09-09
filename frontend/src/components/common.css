@@ -1,0 +1,119 @@
+.page-container{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+.heading{
+    border-bottom: 0.4px solid #7b0bc051;
+}
+
+.text-center{
+    text-align: center;
+    color: #ccc;
+}
+
+.export,
+.viewUrl-btn-section,
+.qr-code-btn{
+    margin: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.qr-code-btn{
+    margin-left: 0px;
+}
+
+.export button,
+.viewUrl-btn-section button,
+.qr-code-btn button{
+    border: none;
+    border-radius: 5px;
+    background-color: #290552;
+    color: #ccc;
+    font-size: 1.4rem;
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.908);
+    transition: all 0.2s ease-in;
+    display: flex;
+    align-items: center;
+    padding: 13px 16px;
+}
+
+.export button p{
+    margin: 0;
+    padding: 0;
+}
+.viewUrl-btn-section button p{
+    margin-right: 30px;
+    margin-left: 20px;
+    padding: 0;
+}
+
+.qr-code-btn button p{
+    margin-right: 30px;
+    margin-left: 20px;
+    padding: 0;
+}
+
+.export button img,
+.viewUrl-btn-section button img,
+.qr-code-btn button img{
+    width: 25px;
+    height: 25px;
+    /* border: 1px solid red; */
+}
+
+.export:last-child{
+    margin-left: 30px;
+}
+
+
+
+.viewUrl-btn-section button{
+    margin-right: 30px;
+}
+/* .viewUrl-btn-section:first-child{
+    margin-left: 0px;
+} */
+
+
+.export button:hover,
+.viewUrl-btn-section button:hover,
+.qr-code-btn button:hover{
+    background-color: #7b0bc0a9;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.908);
+}
+
+/* info, tooltip */
+
+.info-tooltip{
+    display: relative;
+}
+
+.info-tooltip .info-tooltip-i{
+    font-size: 1.4rem;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    color: #ccc;
+    text-align: center;
+}
+
+.info-tooltip-p{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #cccccc34;
+    color: #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    /* display: none; */
+    z-index: 999;
+}

@@ -1,0 +1,89 @@
+.editUrl-body{
+    width: 95%;
+    margin: 0 auto;
+}
+
+.edit-url-details input[type="text"]{
+    width: 40%;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 10px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgb(89, 1, 89);
+    outline : none;
+    
+}
+
+.edit-url-details input[type="text"]:focus{
+    border-bottom: 1px solid rgb(123, 2, 123);
+}
+
+.edit-url-details input[type="date"]{
+    width: 40%;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 10px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgb(89, 1, 89);
+    outline : none;
+}
+
+.edit-url-details input[type="date"]:focus{
+    border-bottom: 1px solid rgb(123, 2, 123);
+}
+
+.edit-url-details input[type="radio"]{
+    margin-right: 10px;
+}
+
+
+.edit-url-details .custom-available{
+    width: 100%;
+}
+
+.edit-url-details .check-available{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.edit-url-details .check-available input{
+    width: 30%;
+}
+
+.edit-url-details .check-available button{
+    padding: 5px;
+    border-radius: 4px;
+    background: rgb(89, 1, 89);
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+
+.edit-url-details .form-container{
+    display: flex;
+    align-items: center;
+}
+
+#save-edit-btn{
+    margin: 0 25px;
+    padding:5px 20px;
+    background: none;
+    border: 2px solid green;
+    color:green;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    background-color: rgba(0, 128, 0, 0.137);
+}

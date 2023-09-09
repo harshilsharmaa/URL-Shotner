@@ -1,0 +1,118 @@
+.sideNavbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #020211;
+    width: 20%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.sideNavbar__logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sideNavbar__logo > img{
+    width: 100%;
+    height: 100%;
+}
+
+.sideNavbar__logo > h1{
+    color: rgb(255, 63, 63);
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-family: 'forte';
+}
+
+.sideNavbar__logo #logo-u{
+    font-size: 5rem;
+}
+
+.sideNavbar__menu{
+    width: 100%;
+    margin-top:7px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.sideNavbar__menu .menu-item{
+    list-style: none;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 0.4px solid rgba(255, 255, 255, 0.12);
+    padding: 9px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.menu-item:hover{
+    background-color: #23235b;
+}
+
+.menu-item-icon{
+    /* border: 1px solid red; */
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.menu-item-name{
+    /* border: 1px solid red; */
+    width: 60%;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.menu-item img{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.sideNavbar-bottom{
+    width: 100%;
+    margin-top: auto;
+}
+
+.sideNavbar-bottom button{
+    width: 100%;
+    border: none;
+    background: none;
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 0.4px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+    padding: 12px 0;
+    letter-spacing: 1px;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.sideNavbar-bottom button:hover{
+    background-color: rgba(255, 0, 0, 0.072);
+}
+
+#create-url-btn{
+    background-color: rgba(0, 128, 0, 0.138);
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 95%;
+    border-bottom: none;
+    border-radius: 5px;
+}
+
+#create-url-btn:hover{
+    background-color: rgba(0, 128, 0, 0.25);
+}

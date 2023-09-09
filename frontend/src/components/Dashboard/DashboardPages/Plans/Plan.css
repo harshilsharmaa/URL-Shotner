@@ -1,0 +1,134 @@
+.plans-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.subheading{
+    text-align: center;
+    color: #ccc;
+    font-size: 2.5rem;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.plan-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 100%;
+    padding: 5px 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.selected-plan{
+    border: 4px solid rgb(182, 182, 60);
+    position: relative;
+}
+
+.selected-plan-tag{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(182, 182, 60);
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 600;
+    z-index: 1;
+}
+.plan-card:hover{
+    scale: 1.1;
+    cursor: pointer;
+    background: hsla(286, 72%, 55%, 1);
+
+    background: linear-gradient(270deg, hsla(286, 72%, 55%, 1) 0%, hsla(218, 32%, 80%, 1) 100%);
+
+    background: -moz-linear-gradient(270deg, hsla(286, 72%, 55%, 1) 0%, hsla(218, 32%, 80%, 1) 100%);
+
+    background: -webkit-linear-gradient(270deg, hsla(286, 72%, 55%, 1) 0%, hsla(218, 32%, 80%, 1) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#B738DE", endColorstr="#bbc7dc", GradientType=1 );
+}
+
+.plan-card:first-child{
+    background-color: rgb(183, 56, 222);
+}
+.plan-card:nth-child(2){
+    background-color: rgb(200, 70, 240);
+}
+.plan-card:nth-child(3){
+    background-color: rgb(196, 33, 246)
+    
+}
+
+
+
+.plan-heading{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    font-size: 1.8rem;
+    color: #ccc;
+}
+
+.plan-price{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    font-size: 4.7rem;
+    color: #ccc;
+}
+
+.plan-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.plan-body-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    /* padding: 0 20px; */
+    padding-bottom: 3px;
+    font-size: 1.6rem;
+    border-bottom: 1px solid #cccccc55;
+    margin: 5px 0;
+}
+
+.plan-body :last-child{
+    border-bottom: none;
+}
+
+.plan-body-item .text{
+    color: rgb(71, 14, 80);
+}
+
+.plan-body-item img{
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}

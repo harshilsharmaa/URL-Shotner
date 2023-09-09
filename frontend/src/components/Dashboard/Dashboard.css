@@ -1,0 +1,42 @@
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #03031f;
+}
+
+
+
+.sideNavbar-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #03031f;
+    height: 100%;
+    width: 20%;
+}
+
+.mainContent-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #03031f;
+    width: 80%;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .sideNavbar-section {
+    display: none;
+  }
+  .mainContent-section {
+    width: 100%;
+  }
+}
