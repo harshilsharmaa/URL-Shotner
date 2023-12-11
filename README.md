@@ -61,7 +61,7 @@ To run the application, you'll need to have Node.js and MongoDB installed on you
 
 1. Clone the repository to your local machine.
 2. Navigate to the project directory and run npm install to install the necessary dependencies.
-3. Start the server by running npm start
+3. Start the server by running npm start.
 
 ## Contributing
 Contributions to the project are welcome! If you find a bug or have an idea for a new feature, please open an issue or submit a pull request in diffrent branch.
