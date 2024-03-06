@@ -10,7 +10,7 @@ dotenv.config({ path: './config/config.env' });
 
 const app = express();
 
-app.use(cors({credentials: true, methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', origin: ['http://localhost:3000', 'http://localhost:4000', 'https://urily.netlify.app']}));
+app.use(cors({credentials: true, methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', origin: ['http://localhost:3000', 'http://localhost:4000', 'https://urily.netlify.app', "https://awful-wrap-hare.cyclic.app"]}));
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
