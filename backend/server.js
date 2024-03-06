@@ -4,7 +4,7 @@ var https = require("https");
 const Razorpay = require('razorpay');
 
 const connectDB = require('./config/database');
-connectDB();
+// connectDB();
 
 exports.instance = new Razorpay({
   key_id: process.env.RAZORPAY_API_KEY,
@@ -12,9 +12,16 @@ exports.instance = new Razorpay({
 });
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+
+connectDB().then(()=>{
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+})
+.catch((err)=>{
+  console.log(err);
+})
+
 
 // https
 //   .createServer(
